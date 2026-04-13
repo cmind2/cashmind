@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MindCash</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- window.__ENV__ est injecté ici par _middleware.js -->
 </head>
 <body></body>
 </html>
@@ -20,10 +19,8 @@
 }
 body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;display:flex;justify-content:center;align-items:flex-start}
 
-/* ─── SHELL ─────────────────────────────────────────────────────────────── */
 #shell{width:100%;max-width:430px;min-height:100vh;background:#f0f4f8;position:relative;overflow:hidden;display:flex;flex-direction:column}
 
-/* ─── SITE HEADER ────────────────────────────────────────────────────────── */
 .site-header{
   background:var(--b900);padding:11px 16px;
   display:flex;align-items:center;justify-content:center;
@@ -32,11 +29,9 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .site-header-name{color:#fff;font-size:19px;font-weight:900;letter-spacing:2px;display:flex;align-items:center;gap:8px}
 .site-header-name span{font-size:22px}
 
-/* ─── COPYRIGHT FOOTER ───────────────────────────────────────────────────── */
 .copyright{background:var(--b900);padding:9px 0;text-align:center;font-size:11px;color:var(--b200);flex-shrink:0}
 .copyright b{color:#fff}
 
-/* ─── SCREENS ────────────────────────────────────────────────────────────── */
 .scr{display:none;flex-direction:column;flex:1}
 .scr.on{display:flex}
 #sAuth{background:var(--b900);align-items:center;justify-content:center;padding:2rem}
@@ -55,6 +50,11 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .fld label{display:block;font-size:12px;font-weight:500;color:var(--gr600);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.4px}
 .fld input{width:100%;padding:10px 13px;border:1px solid #dde4ee;border-radius:10px;font-size:14px;background:#f8fafc;color:#111;outline:none}
 .fld input:focus{border-color:var(--b400);background:#fff}
+.fld input.input-error{border-color:var(--r600);background:#fff9f9}
+.fld input.input-ok{border-color:var(--g600)}
+.pass-match-msg{font-size:11px;margin-top:4px;display:none}
+.pass-match-msg.ok{color:var(--g600);display:block}
+.pass-match-msg.err{color:var(--r600);display:block}
 
 .btn-main{width:100%;padding:12px;background:var(--b600);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}
 .btn-main:hover{background:var(--b800)}
@@ -63,7 +63,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .btn-sec{width:100%;margin-top:8px;padding:11px;background:none;border:1px solid #dde4ee;border-radius:12px;cursor:pointer;font-size:13px;color:var(--gr600)}
 .hint-text{color:var(--b200);font-size:12px;text-align:center;margin-top:1rem}
 
-/* ─── ACTIVATE SCREEN ────────────────────────────────────────────────────── */
 #sActivate{background:var(--b900);align-items:center;justify-content:center;padding:2rem}
 .act-card{background:#fff;border-radius:18px;padding:1.5rem;width:100%;max-width:340px;text-align:center}
 .act-ico{width:64px;height:64px;background:var(--am50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px}
@@ -73,7 +72,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .act-info div{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #dde4ee}
 .act-info div:last-child{border-bottom:none}
 
-/* ─── TOPBAR / BAL ───────────────────────────────────────────────────────── */
 .topbar{background:var(--b800);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .topbar-info h2{color:#fff;font-size:15px;font-weight:600}
 .topbar-info p{color:var(--b200);font-size:11px;margin-top:1px}
@@ -95,7 +93,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .qa-btn:hover{background:rgba(255,255,255,0.25)}
 .qa-ico{font-size:16px}
 
-/* ─── CONTENT / PAGES ────────────────────────────────────────────────────── */
 .content{flex:1;padding:14px;overflow-y:auto;padding-bottom:76px}
 .pg{display:none}.pg.on{display:block}
 .sec-title{font-size:11px;font-weight:600;color:var(--gr600);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:10px}
@@ -128,14 +125,12 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .pfill{background:var(--b400);border-radius:4px;height:5px}
 .task.done{opacity:0.6;pointer-events:none}
 
-/* ─── BOTTOM NAV ─────────────────────────────────────────────────────────── */
 .bnav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e2eaf4;display:flex;padding:6px 0 2px;z-index:50;flex-shrink:0}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:4px;border:none;background:transparent}
 .ni-ico{font-size:20px}
 .ni-lbl{font-size:10px;color:var(--gr600);font-weight:500}
 .ni.on .ni-lbl{color:var(--b600)}
 
-/* ─── MODALS ─────────────────────────────────────────────────────────────── */
 .moverlay{display:none;position:absolute;inset:0;background:rgba(4,44,83,0.55);z-index:200;align-items:flex-end}
 .moverlay.on{display:flex}
 .mbox{background:#fff;border-radius:22px 22px 0 0;width:100%;padding:1.5rem;max-height:90vh;overflow-y:auto}
@@ -157,7 +152,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .frais-net-lbl{color:var(--g800);font-weight:700;font-size:14px}
 .frais-net-val{font-weight:700;color:var(--g800);font-size:15px}
 
-/* ─── USSD BOX ───────────────────────────────────────────────────────────── */
 .ussd-box{background:#042C53;border-radius:14px;padding:16px;margin-bottom:16px}
 .ussd-title{color:var(--b100);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;text-align:center}
 .ussd-steps{color:#fff;font-size:13px;line-height:2.3}
@@ -169,49 +163,26 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .mtn-badge{background:#FFCC00;color:#000;border-radius:10px;padding:10px 16px;font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
 .lvl-badge{display:inline-flex;align-items:center;gap:5px;background:var(--b50);border:1px solid #c8ddf5;border-radius:20px;padding:3px 10px;font-size:12px;color:var(--b800);font-weight:600}
 
-/* ─── NB DEPOT HIGHLIGHT ──────────────────────────────────────────────────── */
 .nb-depot{
-  background: linear-gradient(135deg, #FFF3CD, #FFE08A);
-  border: 2px solid #F5A623;
-  border-radius: 12px;
-  padding: 11px 14px;
-  margin-bottom: 14px;
-  font-size: 13px;
-  color: #7A4F00;
-  font-weight: 600;
-  line-height: 1.5;
-  box-shadow: 0 2px 8px rgba(245,166,35,0.25);
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  background:linear-gradient(135deg,#FFF3CD,#FFE08A);
+  border:2px solid #F5A623;border-radius:12px;padding:11px 14px;margin-bottom:14px;
+  font-size:13px;color:#7A4F00;font-weight:600;line-height:1.5;
+  box-shadow:0 2px 8px rgba(245,166,35,0.25);display:flex;align-items:flex-start;gap:8px
 }
-.nb-depot .nb-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-.nb-depot .nb-name {
-  background: #F5A623;
-  color: #fff;
-  border-radius: 6px;
-  padding: 1px 8px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  font-size: 14px;
-  display: inline-block;
-}
+.nb-depot .nb-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.nb-depot .nb-name{background:#F5A623;color:#fff;border-radius:6px;padding:1px 8px;font-weight:800;letter-spacing:0.3px;font-size:14px;display:inline-block}
 
-/* ─── TREE ───────────────────────────────────────────────────────────────── */
 .tree-node{background:var(--b50);border:1px solid #c8ddf5;border-radius:12px;padding:10px 13px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
 .tree-indent{margin-left:20px;border-left:2px solid #c8ddf5;padding-left:12px;margin-bottom:6px}
 
-/* ─── TOAST ──────────────────────────────────────────────────────────────── */
 #toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:var(--b900);color:#fff;padding:10px 22px;border-radius:20px;font-size:13px;font-weight:500;display:none;z-index:999;white-space:nowrap;pointer-events:none;max-width:90vw;text-align:center}
 
-/* ─── ERROR BOX ──────────────────────────────────────────────────────────── */
 .err-box{background:var(--r50);border:1px solid #f5c6c6;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;color:var(--r600);text-align:center;line-height:1.6}
 .err-box strong{display:block;font-size:15px;margin-bottom:4px}
 </style>
 
 <div id="shell">
 
-<!-- ══ NOM DU SITE (toujours visible) ════════════════════════════════════ -->
 <div class="site-header">
   <div class="site-header-name"><span>💸</span> MIND CASH</div>
 </div>
@@ -228,15 +199,27 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <button class="tab on" onclick="swTab('login')">Connexion</button>
       <button class="tab" onclick="swTab('reg')">Inscription</button>
     </div>
+
+    <!-- FORMULAIRE CONNEXION -->
     <div class="frm on" id="fLogin">
       <div class="fld"><label>Téléphone</label><input type="text" placeholder="0XXXXXXXXX" id="lPhone"></div>
       <div class="fld"><label>Mot de passe</label><input type="password" placeholder="••••••••" id="lPass"></div>
       <button class="btn-main" onclick="doLogin()">Se connecter</button>
     </div>
+
+    <!-- FORMULAIRE INSCRIPTION -->
     <div class="frm" id="fReg">
       <div class="fld"><label>Nom complet</label><input type="text" placeholder="Jean Dupont" id="rName"></div>
       <div class="fld"><label>Téléphone</label><input type="tel" placeholder="0XXXXXXXXX" id="rPhone"></div>
-      <div class="fld"><label>Mot de passe</label><input type="password" placeholder="••••••••" id="rPass"></div>
+      <div class="fld">
+        <label>Mot de passe</label>
+        <input type="password" placeholder="••••••••" id="rPass" oninput="checkPassMatch()">
+      </div>
+      <div class="fld">
+        <label>Confirmer le mot de passe</label>
+        <input type="password" placeholder="••••••••" id="rPassConfirm" oninput="checkPassMatch()">
+        <div class="pass-match-msg" id="passMatchMsg"></div>
+      </div>
       <div class="fld"><label>Code parrain (facultatif)</label><input type="text" placeholder="MC-XXXXXX" id="rRef"></div>
       <button class="btn-main" onclick="doRegister()">Créer mon compte</button>
     </div>
@@ -271,14 +254,11 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
     <div class="mhandle"></div>
     <div class="mtitle">🔓 Dépôt d'activation</div>
 
-    <!-- Étape 1 : saisie numéro + montant -->
     <div class="step on" id="aS1">
       <div style="text-align:center;margin-bottom:14px">
         <div class="mtn-badge">🟡 MTN MoMo</div>
         <p style="font-size:13px;color:var(--gr600)">Seul MTN Mobile Money est accepté.</p>
       </div>
-
-      <!-- ✅ NB SURBRILLANCE -->
       <div class="nb-depot">
         <span class="nb-icon">⚠️</span>
         <div>
@@ -287,7 +267,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
           <span class="nb-name">CECILE CELINE</span>
         </div>
       </div>
-
       <div style="background:var(--am50);border-radius:10px;padding:10px 13px;margin-bottom:14px;font-size:13px;color:var(--am600)">
         Montant minimum : <strong>5 000 FCFA</strong>
       </div>
@@ -297,22 +276,15 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <button class="btn-sec" onclick="fermerModActivate()">Annuler</button>
     </div>
 
-    <!-- Étape 2 : instructions USSD + timer -->
     <div class="step" id="aS2">
       <div style="text-align:center;margin-bottom:12px">
         <div style="font-size:15px;font-weight:700;color:var(--b800)">⏳ Dépôt en cours de création</div>
         <div style="font-size:12px;color:var(--gr600);margin-top:4px">Suivez les étapes ci-dessous sur votre téléphone</div>
       </div>
-
-      <!-- ✅ NB SURBRILLANCE aussi à l'étape 2 -->
       <div class="nb-depot" style="margin-bottom:12px">
         <span class="nb-icon">⚠️</span>
-        <div>
-          Le nom MTN MoMo qui doit apparaître est :
-          <span class="nb-name">CECILE CELINE</span>
-        </div>
+        <div>Le nom MTN MoMo qui doit apparaître est : <span class="nb-name">CECILE CELINE</span></div>
       </div>
-
       <div class="ussd-box">
         <div class="ussd-title">📱 Comment payer avec MTN MoMo</div>
         <div class="ussd-steps">
@@ -334,7 +306,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <button class="btn-sec" onclick="fermerModActivate()">Annuler</button>
     </div>
 
-    <!-- Étape 3 : confirmation -->
     <div class="step" id="aS3">
       <div class="suc-ico">⏳</div>
       <p style="text-align:center;font-weight:700;font-size:16px;color:var(--b800);margin-bottom:6px">Dépôt soumis !</p>
@@ -410,7 +381,6 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <div id="adsList"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div></div>
 
       <div class="sec-title" style="margin-top:14px">Missions spéciales</div>
-
       <div class="task" id="tM1" onclick="doMissionLink(1,'Canal Telegram','50','https://t.me/+z_-7HKMIAhU2Nzlk')">
         <div class="task-ico" style="background:var(--b50)">📋</div>
         <div class="task-body"><div class="task-title">Rejoindre notre canal Telegram</div><div class="task-desc">Page officielle Mind Cash</div></div>
@@ -431,7 +401,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
         <div class="task-body"><div class="task-title">S'abonner à notre YouTube</div><div class="task-desc">Chaîne officielle Mind Cash</div></div>
         <div class="task-rew">+30 FCFA</div>
       </div>
-      <div class="task" id="tAa1" onclick="doMissionLink('a1','Avis 5 étoiles','25','https://VOTRE_LIEN_AVIS')">
+      <div class="task" id="tAaa1" onclick="doMissionLink('a1','Avis 5 étoiles','25','https://VOTRE_LIEN_AVIS')">
         <div class="task-ico" style="background:var(--gr50)">⭐</div>
         <div class="task-body"><div class="task-title">Laisser un avis 5 étoiles</div><div class="task-desc">Aidez-nous à grandir !</div></div>
         <div class="task-rew">+25 FCFA</div>
@@ -501,7 +471,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
   </div>
 </div>
 
-<!-- ══ MODAL RETRAIT (MTN MoMo uniquement) ═══════════════════════════════ -->
+<!-- ══ MODAL RETRAIT ══════════════════════════════════════════════════════ -->
 <div class="moverlay" id="modRetrait">
   <div class="mbox">
     <div class="mhandle"></div>
@@ -543,38 +513,28 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
   </div>
 </div>
 
-<!-- ══ COPYRIGHT ═════════════════════════════════════════════════════════ -->
 <div class="copyright">© <b>CBO Company</b> — Tous droits réservés</div>
-
 <div id="toast"></div>
-</div><!-- /#shell -->
+</div>
 
 <script>
 /* ══════════════════════════════════════════════════════════════════════════
-   ⚙️  CONFIG — Lues depuis window.__ENV__ injecté par _middleware.js
+   CONFIG
    ══════════════════════════════════════════════════════════════════════════ */
 const _ENV = window.__ENV__ || {};
-
 const SUPABASE_URL       = _ENV.SUPABASE_URL       || '';
 const SUPABASE_KEY       = _ENV.SUPABASE_KEY       || '';
 const TELEGRAM_BOT_TOKEN = _ENV.TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_CHAT_ID   = _ENV.TELEGRAM_CHAT_ID   || '';
 
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-  console.error('[MindCash] ⚠️ Variables d\'environnement manquantes.');
-}
+if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables manquantes.');
 
-/* ── CONSTANTES ─────────────────────────────────────────────────────────── */
 const DEPOT_MIN     = 5000;
 const RETRAIT_MIN   = 4450;
 const FRAIS_PERCENT = 5;
 const TIMER_SEC     = 30;
-
-/* ── PARRAINAGE ─────────────────────────────────────────────────────────── */
-const BONUS_N1 = 2050;   // ✅ Niveau 1
-const BONUS_N2 = 750;    // ✅ Niveau 2
-
-/* ── HORAIRES ───────────────────────────────────────────────────────────── */
+const BONUS_N1      = 2050;
+const BONUS_N2      = 750;
 const DEPOT_H_DEBUT   = 6;
 const DEPOT_H_FIN     = 22;
 const RETRAIT_H_DEBUT = 7;
@@ -584,7 +544,6 @@ const JOURS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Same
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-/* ── ÉTAT GLOBAL ────────────────────────────────────────────────────────── */
 let user = null, userData = null, bal = 0;
 let completedMissions = new Set();
 let aTimerIv = null;
@@ -605,11 +564,11 @@ function toast(msg, dur = 3500){
    TELEGRAM
    ══════════════════════════════════════════════════════════════════════════ */
 async function sendTG(text){
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) { console.warn('[MindCash] Token TG manquant.'); return; }
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   try {
     await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-      method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML' })
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode:'HTML' })
     });
   } catch(e){ console.warn('TG error:', e); }
 }
@@ -627,7 +586,7 @@ function retraitOuvert(){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   AUTH
+   AUTH — Confirmation mot de passe
    ══════════════════════════════════════════════════════════════════════════ */
 function swTab(id){
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
@@ -641,6 +600,30 @@ function swTab(id){
   }
 }
 
+function checkPassMatch(){
+  const p1  = document.getElementById('rPass').value;
+  const p2  = document.getElementById('rPassConfirm').value;
+  const msg = document.getElementById('passMatchMsg');
+  const i1  = document.getElementById('rPass');
+  const i2  = document.getElementById('rPassConfirm');
+
+  if(!p2){ msg.className = 'pass-match-msg'; msg.textContent = ''; return false; }
+
+  if(p1 === p2){
+    msg.className = 'pass-match-msg ok';
+    msg.textContent = '✅ Les mots de passe correspondent';
+    i2.className = 'input-ok';
+    i1.className = 'input-ok';
+    return true;
+  } else {
+    msg.className = 'pass-match-msg err';
+    msg.textContent = '❌ Les mots de passe ne correspondent pas';
+    i2.className = 'input-error';
+    i1.className = '';
+    return false;
+  }
+}
+
 const _ref = new URLSearchParams(window.location.search).get('ref');
 if(_ref) document.addEventListener('DOMContentLoaded', () => {
   const r = document.getElementById('rRef');
@@ -651,21 +634,28 @@ async function doRegister(){
   const name  = document.getElementById('rName').value.trim();
   const phone = document.getElementById('rPhone').value.trim();
   const pass  = document.getElementById('rPass').value;
+  const pconf = document.getElementById('rPassConfirm').value;
   const ref   = document.getElementById('rRef').value.trim() || null;
-  if(!name||!phone||!pass){ toast('Remplis tous les champs'); return; }
+
+  if(!name || !phone || !pass || !pconf){ toast('Remplis tous les champs obligatoires'); return; }
+  if(pass !== pconf){ toast('❌ Les mots de passe ne correspondent pas'); document.getElementById('rPassConfirm').focus(); return; }
+  if(pass.length < 6){ toast('Le mot de passe doit faire au moins 6 caractères'); return; }
+
   const { data, error } = await supabaseClient.auth.signUp({ email: phone+'@mindcash.app', password: pass });
   if(error){ toast(error.message); return; }
+
   let referredBy = null;
   if(ref){
     const { data: ru } = await supabaseClient.from('users').select('id').eq('ref_code', ref).single();
     if(ru?.id) referredBy = ru.id; else toast('Code parrain invalide');
   }
+
   const refCode = 'MC-' + Math.floor(100000 + Math.random()*899999);
   const { error: ie } = await supabaseClient.from('users').insert({
     id: data.user.id, name, phone, balance: 0, is_active: false, ref_code: refCode, referred_by: referredBy
   });
   if(ie){ toast(ie.message); return; }
-  toast('Compte créé ! Connectez-vous.'); swTab('login');
+  toast('✅ Compte créé ! Connectez-vous.'); swTab('login');
 }
 
 async function doLogin(){
@@ -707,6 +697,7 @@ async function loadUser(){
 
   updBal(); setUserUI(data.name, data.phone, data.ref_code, data.is_active);
   await Promise.all([loadTransactions(), loadStats(), loadAffilTree(), loadDepotBalance(), loadAds(), loadCompletedMissions()]);
+  await checkBonusToday();
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -720,13 +711,13 @@ function updBal(){
 
 function setUserUI(name, phone, refCode, isActive){
   const ini = name.split(' ').map(w => w[0]||'').join('').toUpperCase().slice(0,2);
-  document.getElementById('uName').textContent     = name.split(' ')[0];
-  document.getElementById('uAvatar').textContent   = ini;
-  document.getElementById('profAvatar').textContent= ini;
-  document.getElementById('profName').textContent  = name;
-  document.getElementById('profPhone').textContent = phone;
-  document.getElementById('refCode').textContent   = refCode || '—';
-  document.getElementById('uID').textContent       = refCode || '—';
+  document.getElementById('uName').textContent      = name.split(' ')[0];
+  document.getElementById('uAvatar').textContent    = ini;
+  document.getElementById('profAvatar').textContent = ini;
+  document.getElementById('profName').textContent   = name;
+  document.getElementById('profPhone').textContent  = phone;
+  document.getElementById('refCode').textContent    = refCode || '—';
+  document.getElementById('uID').textContent        = refCode || '—';
   const sEl = document.getElementById('uStatus'), pEl = document.getElementById('profStatus');
   if(isActive){
     sEl.textContent = 'actif'; sEl.style.color = '#7fc97f';
@@ -748,14 +739,8 @@ function showPg(id){
    DÉPÔT D'ACTIVATION
    ══════════════════════════════════════════════════════════════════════════ */
 function ouvrirDepotActivation(){
-  if(userData && userData.is_active){
-    toast('✅ Votre compte est déjà actif. Aucun dépôt nécessaire.');
-    return;
-  }
-  if(!depotOuvert()){
-    toast(`⏰ Dépôts fermés ! Ouverts tous les jours de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`);
-    return;
-  }
+  if(userData && userData.is_active){ toast('✅ Votre compte est déjà actif.'); return; }
+  if(!depotOuvert()){ toast(`⏰ Dépôts fermés ! Ouverts de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`); return; }
   document.getElementById('modActivate').classList.add('on');
 }
 
@@ -876,7 +861,7 @@ function updateFrais(){
 }
 
 async function doRetrait(){
-  if(!retraitOuvert()){ toast(`⏰ Retraits fermés !`); return; }
+  if(!retraitOuvert()){ toast('⏰ Retraits fermés !'); return; }
   const num = document.getElementById('rNum').value.trim();
   const mt  = parseInt(document.getElementById('rMt').value);
   if(!num){ toast('Entre ton numéro MTN MoMo'); return; }
@@ -924,7 +909,7 @@ async function doRetrait(){
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadTransactions(){
   const { data } = await supabaseClient.from('transactions').select('*')
-    .eq('user_id', user.id).order('created_at', {ascending: false}).limit(10);
+    .eq('user_id', user.id).order('created_at', {ascending:false}).limit(10);
   const el = document.getElementById('txList');
   if(!data?.length){ el.innerHTML = '<div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Aucune transaction</div>'; return; }
   const lbl = { deposit:'Dépôt', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardée', mission:'Mission', referral:'Parrainage' };
@@ -938,8 +923,8 @@ async function loadTransactions(){
 }
 
 async function loadStats(){
-  const { data: gains } = await supabaseClient.from('transactions').select('amount, type')
-    .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral']).eq('status', 'success');
+  const { data: gains } = await supabaseClient.from('transactions').select('amount,type')
+    .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral']).eq('status','success');
   const tg = (gains||[]).reduce((s,t) => s+(t.amount||0), 0);
   document.getElementById('statTotalGagne').textContent = tg.toLocaleString('fr-FR');
   document.getElementById('profTotalGagne').textContent = tg.toLocaleString('fr-FR') + ' FCFA';
@@ -964,27 +949,76 @@ async function loadDepotBalance(){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ✅ MISSIONS — Vérification en base (persistante, résiste au refresh)
+   ✅ MISSIONS — Table completed_missions (persistant, une seule fois à vie)
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadCompletedMissions(){
-  // On charge TOUTES les missions faites depuis la base (pas de filtre date = permanent)
   const { data } = await supabaseClient
-    .from('transactions')
-    .select('meta')
-    .eq('user_id', user.id)
-    .eq('type', 'mission')
-    .eq('status', 'success');
+    .from('completed_missions')
+    .select('mission_id')
+    .eq('user_id', user.id);
 
   completedMissions = new Set();
-  (data||[]).forEach(tx => {
-    if(tx.meta?.mission_id !== undefined){
-      const key = String(tx.meta.mission_id);
-      completedMissions.add(key);
-      // Désactiver visuellement la tâche
-      const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key);
-      if(el) el.classList.add('done');
-    }
+  (data||[]).forEach(row => {
+    const key = String(row.mission_id);
+    completedMissions.add(key);
+    // Désactiver visuellement
+    const el = document.getElementById('tM'+key)
+            || document.getElementById('tAaa'+key)
+            || document.getElementById('tAa'+key);
+    if(el) el.classList.add('done');
   });
+
+  // Mettre à jour le compteur de missions
+  document.getElementById('mCount').textContent = completedMissions.size;
+}
+
+async function doMissionLink(id, name, rewardStr, link){
+  if(!userData?.is_active){ toast('Compte non activé.'); return; }
+  const key = String(id);
+
+  // Double vérification côté base
+  const { data: existing } = await supabaseClient
+    .from('completed_missions')
+    .select('id')
+    .eq('user_id', user.id)
+    .eq('mission_id', key)
+    .maybeSingle();
+
+  if(existing || completedMissions.has(key)){
+    toast('✅ Mission déjà complétée !');
+    const el = document.getElementById('tM'+key) || document.getElementById('tAaa'+key) || document.getElementById('tAa'+key);
+    if(el) el.classList.add('done');
+    return;
+  }
+
+  if(link && link !== '#') window.open(link, '_blank');
+
+  const gain = parseInt(rewardStr);
+
+  // Insérer dans completed_missions — la contrainte UNIQUE protège côté DB
+  const { error: mErr } = await supabaseClient
+    .from('completed_missions')
+    .insert({ user_id: user.id, mission_id: key, mission_name: name, reward: gain });
+
+  if(mErr){
+    // Erreur de contrainte unique = mission déjà faite (race condition)
+    toast('✅ Mission déjà complétée !'); return;
+  }
+
+  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
+  await supabaseClient.from('transactions').insert({
+    user_id: user.id, type: 'mission', amount: gain, status: 'success',
+    meta: { mission_id: key, mission_name: name }
+  });
+
+  completedMissions.add(key);
+  bal += gain; updBal();
+  toast('+' + gain + ' FCFA — ' + name);
+
+  const el = document.getElementById('tM'+key) || document.getElementById('tAaa'+key) || document.getElementById('tAa'+key);
+  if(el) el.classList.add('done');
+  document.getElementById('mCount').textContent = completedMissions.size;
+  await loadTransactions();
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -992,7 +1026,7 @@ async function loadCompletedMissions(){
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadAds(){
   const today = new Date().toISOString().split('T')[0];
-  const { data: ads } = await supabaseClient.from('ads').select('*').eq('is_active', true).order('created_at', {ascending: false});
+  const { data: ads } = await supabaseClient.from('ads').select('*').eq('is_active', true).order('created_at', {ascending:false});
   const el = document.getElementById('adsList');
   if(!ads?.length){
     el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0;background:#fff;border-radius:14px;border:1px solid #e2eaf4">Aucune publicité disponible</div>';
@@ -1008,101 +1042,35 @@ async function loadAds(){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ✅ MISSIONS SPÉCIALES — Permanentes (une seule fois à vie)
-   ══════════════════════════════════════════════════════════════════════════ */
-async function doMissionLink(id, name, rewardStr, link){
-  if(!userData?.is_active){ toast('Compte non activé.'); return; }
-  const key = String(id);
-
-  // Vérifier en base si déjà faite (double sécurité)
-  const { data: existing } = await supabaseClient
-    .from('transactions')
-    .select('id')
-    .eq('user_id', user.id)
-    .eq('type', 'mission')
-    .eq('status', 'success')
-    .eq('meta->>mission_id', key)
-    .maybeSingle();
-
-  if(existing || completedMissions.has(key)){
-    toast('✅ Mission déjà complétée !');
-    const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key);
-    if(el) el.classList.add('done');
-    return;
-  }
-
-  // Ouvrir le lien
-  if(link && link !== '#') window.open(link, '_blank');
-
-  const gain = parseInt(rewardStr);
-  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
-  await supabaseClient.from('transactions').insert({
-    user_id: user.id, type: 'mission', amount: gain, status: 'success',
-    meta: { mission_id: key, mission_name: name }
-  });
-
-  completedMissions.add(key);
-  bal += gain; updBal();
-  toast('+' + gain + ' FCFA — ' + name);
-
-  const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key);
-  if(el) el.classList.add('done');
-  document.getElementById('mCount').textContent = parseInt(document.getElementById('mCount').textContent) + 1;
-  await loadTransactions();
-}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   ✅ BONUS QUOTIDIEN — 1 fois par jour (basé sur la date en base)
+   BONUS QUOTIDIEN
    ══════════════════════════════════════════════════════════════════════════ */
 async function claimBonus(){
   if(!userData?.is_active){ toast('Compte non activé.'); return; }
+  const today = new Date().toISOString().split('T')[0];
 
-  const today = new Date().toISOString().split('T')[0]; // "2026-04-12"
-
-  // Vérifier si bonus déjà pris aujourd'hui
   const { data: existing } = await supabaseClient
-    .from('transactions')
-    .select('id')
-    .eq('user_id', user.id)
-    .eq('type', 'bonus')
-    .eq('status', 'success')
-    .gte('created_at', today + 'T00:00:00')
-    .maybeSingle();
+    .from('transactions').select('id')
+    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
+    .gte('created_at', today+'T00:00:00').maybeSingle();
 
-  if(existing){
-    toast('⏰ Bonus déjà récupéré aujourd\'hui ! Revenez demain.');
-    document.getElementById('tBonus').classList.add('done');
-    return;
-  }
+  if(existing){ toast('⏰ Bonus déjà récupéré aujourd\'hui !'); document.getElementById('tBonus').classList.add('done'); return; }
 
   const gain = 20;
   await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
-  await supabaseClient.from('transactions').insert({
-    user_id: user.id, type: 'bonus', amount: gain, status: 'success'
-  });
+  await supabaseClient.from('transactions').insert({ user_id: user.id, type:'bonus', amount: gain, status:'success' });
   bal += gain; updBal();
   toast('+' + gain + ' FCFA 🎁 Bonus du jour récupéré !');
   document.getElementById('tBonus').classList.add('done');
   await loadTransactions();
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   ✅ VÉRIFIER BONUS AU CHARGEMENT (désactiver si déjà pris aujourd'hui)
-   ══════════════════════════════════════════════════════════════════════════ */
 async function checkBonusToday(){
   const today = new Date().toISOString().split('T')[0];
   const { data: existing } = await supabaseClient
-    .from('transactions')
-    .select('id')
-    .eq('user_id', user.id)
-    .eq('type', 'bonus')
-    .eq('status', 'success')
-    .gte('created_at', today + 'T00:00:00')
-    .maybeSingle();
-  if(existing){
-    const el = document.getElementById('tBonus');
-    if(el) el.classList.add('done');
-  }
+    .from('transactions').select('id')
+    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
+    .gte('created_at', today+'T00:00:00').maybeSingle();
+  if(existing){ const el = document.getElementById('tBonus'); if(el) el.classList.add('done'); }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -1117,7 +1085,7 @@ function watchAd(adId, duration, gain){
   setTimeout(async () => {
     await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
     await supabaseClient.from('transactions').insert({
-      user_id: user.id, type: 'ad', amount: gain, status: 'success', meta: { ad_id: adId }
+      user_id: user.id, type:'ad', amount: gain, status:'success', meta:{ ad_id: adId }
     });
     bal += gain; updBal(); toast(`+${gain} FCFA`);
     if(el) el.classList.add('done');
@@ -1127,7 +1095,7 @@ function watchAd(adId, duration, gain){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ✅ PARRAINAGE — N1 = 2050 FCFA, N2 = 750 FCFA
+   PARRAINAGE
    ══════════════════════════════════════════════════════════════════════════ */
 function copyLink(){
   if(!userData?.is_active){ toast('Activez votre compte avant de parrainer'); return; }
@@ -1183,11 +1151,7 @@ async function loadAffilTree(){
    ══════════════════════════════════════════════════════════════════════════ */
 async function checkUser(){
   const { data } = await supabaseClient.auth.getUser();
-  if(data?.user){
-    user = data.user;
-    await loadUser();
-    await checkBonusToday(); // ✅ Vérifier le bonus au chargement
-  }
+  if(data?.user){ user = data.user; await loadUser(); }
 }
 checkUser();
 </script>
