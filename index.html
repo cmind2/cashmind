@@ -516,10 +516,9 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 <div class="copyright">© <b>CBO Company</b> — Tous droits réservés</div>
 <div id="toast"></div>
 </div>
-
 <script>
 /* ══════════════════════════════════════════════════════════════════════════
-   CONFIG
+   CONFIG — Variables injectées par _middleware.js via window.__ENV__
    ══════════════════════════════════════════════════════════════════════════ */
 const _ENV = window.__ENV__ || {};
 const SUPABASE_URL       = _ENV.SUPABASE_URL       || '';
@@ -529,12 +528,13 @@ const TELEGRAM_CHAT_ID   = _ENV.TELEGRAM_CHAT_ID   || '';
 
 if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables manquantes.');
 
-const DEPOT_MIN     = 5000;
-const RETRAIT_MIN   = 4450;
-const FRAIS_PERCENT = 5;
-const TIMER_SEC     = 30;
-const BONUS_N1      = 2050;
-const BONUS_N2      = 750;
+/* ── CONSTANTES (affichage uniquement — les vraies valeurs sont en base) ── */
+const DEPOT_MIN       = 5000;
+const RETRAIT_MIN     = 4450;
+const FRAIS_PERCENT   = 5;
+const TIMER_SEC       = 30;
+const BONUS_N1        = 2050;
+const BONUS_N2        = 750;
 const DEPOT_H_DEBUT   = 6;
 const DEPOT_H_FIN     = 22;
 const RETRAIT_H_DEBUT = 7;
@@ -542,7 +542,7 @@ const RETRAIT_H_FIN   = 17;
 const RETRAIT_JOURS   = [1,2,3,4,5];
 const JOURS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let user = null, userData = null, bal = 0;
 let completedMissions = new Set();
@@ -561,7 +561,7 @@ function toast(msg, dur = 3500){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   TELEGRAM
+   TELEGRAM (notification admin uniquement — pas de logique métier)
    ══════════════════════════════════════════════════════════════════════════ */
 async function sendTG(text){
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
@@ -586,7 +586,7 @@ function retraitOuvert(){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   AUTH — Confirmation mot de passe
+   AUTH
    ══════════════════════════════════════════════════════════════════════════ */
 function swTab(id){
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
@@ -600,58 +600,32 @@ function swTab(id){
   }
 }
 
-function checkPassMatch(){
-  const p1  = document.getElementById('rPass').value;
-  const p2  = document.getElementById('rPassConfirm').value;
-  const msg = document.getElementById('passMatchMsg');
-  const i1  = document.getElementById('rPass');
-  const i2  = document.getElementById('rPassConfirm');
-
-  if(!p2){ msg.className = 'pass-match-msg'; msg.textContent = ''; return false; }
-
-  if(p1 === p2){
-    msg.className = 'pass-match-msg ok';
-    msg.textContent = '✅ Les mots de passe correspondent';
-    i2.className = 'input-ok';
-    i1.className = 'input-ok';
-    return true;
-  } else {
-    msg.className = 'pass-match-msg err';
-    msg.textContent = '❌ Les mots de passe ne correspondent pas';
-    i2.className = 'input-error';
-    i1.className = '';
-    return false;
-  }
-}
-
+// Pré-remplir le code parrain depuis l'URL
 const _ref = new URLSearchParams(window.location.search).get('ref');
-if(_ref) document.addEventListener('DOMContentLoaded', () => {
+if(_ref){
   const r = document.getElementById('rRef');
   if(r){ r.value = _ref; r.readOnly = true; r.style.background = '#eee'; r.style.cursor = 'not-allowed'; }
-});
+}
 
 async function doRegister(){
   const name  = document.getElementById('rName').value.trim();
   const phone = document.getElementById('rPhone').value.trim();
   const pass  = document.getElementById('rPass').value;
-  const pconf = document.getElementById('rPassConfirm').value;
   const ref   = document.getElementById('rRef').value.trim() || null;
+  if(!name || !phone || !pass){ toast('Remplis tous les champs'); return; }
+  if(pass.length < 6){ toast('Mot de passe : 6 caractères minimum'); return; }
 
-  if(!name || !phone || !pass || !pconf){ toast('Remplis tous les champs obligatoires'); return; }
-  if(pass !== pconf){ toast('❌ Les mots de passe ne correspondent pas'); document.getElementById('rPassConfirm').focus(); return; }
-  if(pass.length < 6){ toast('Le mot de passe doit faire au moins 6 caractères'); return; }
-
-  const { data, error } = await supabaseClient.auth.signUp({ email: phone+'@mindcash.app', password: pass });
+  const { data, error } = await sb.auth.signUp({ email: phone+'@mindcash.app', password: pass });
   if(error){ toast(error.message); return; }
 
   let referredBy = null;
   if(ref){
-    const { data: ru } = await supabaseClient.from('users').select('id').eq('ref_code', ref).single();
+    const { data: ru } = await sb.from('users').select('id').eq('ref_code', ref).single();
     if(ru?.id) referredBy = ru.id; else toast('Code parrain invalide');
   }
 
   const refCode = 'MC-' + Math.floor(100000 + Math.random()*899999);
-  const { error: ie } = await supabaseClient.from('users').insert({
+  const { error: ie } = await sb.from('users').insert({
     id: data.user.id, name, phone, balance: 0, is_active: false, ref_code: refCode, referred_by: referredBy
   });
   if(ie){ toast(ie.message); return; }
@@ -661,13 +635,13 @@ async function doRegister(){
 async function doLogin(){
   const phone = document.getElementById('lPhone').value.trim();
   const pass  = document.getElementById('lPass').value;
-  const { data, error } = await supabaseClient.auth.signInWithPassword({ email: phone+'@mindcash.app', password: pass });
+  const { data, error } = await sb.auth.signInWithPassword({ email: phone+'@mindcash.app', password: pass });
   if(error){ toast(error.message); return; }
   user = data.user; await loadUser();
 }
 
 async function doLogout(){
-  await supabaseClient.auth.signOut();
+  await sb.auth.signOut();
   ['sMain','sActivate'].forEach(id => document.getElementById(id).classList.remove('on'));
   document.getElementById('sAuth').classList.add('on');
   document.getElementById('modActivate').classList.remove('on');
@@ -679,7 +653,7 @@ async function doLogout(){
    LOAD USER
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadUser(){
-  const { data, error } = await supabaseClient.from('users').select('*').eq('id', user.id).single();
+  const { data, error } = await sb.from('users').select('*').eq('id', user.id).single();
   if(error || !data){ toast('Erreur chargement profil'); return; }
   userData = data; bal = data.balance || 0;
   document.getElementById('sAuth').classList.remove('on');
@@ -736,7 +710,7 @@ function showPg(id){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   DÉPÔT D'ACTIVATION
+   DÉPÔT D'ACTIVATION — appelle create_activation_deposit() côté serveur
    ══════════════════════════════════════════════════════════════════════════ */
 function ouvrirDepotActivation(){
   if(userData && userData.is_active){ toast('✅ Votre compte est déjà actif.'); return; }
@@ -766,17 +740,16 @@ async function aCreerDepot(){
   btn.disabled = true; btn.textContent = 'Création en cours…';
 
   try {
-    const { data: dep, error: depErr } = await supabaseClient
-      .from('deposits')
-      .insert({ user_id: user.id, number: num, operator: 'MTN MoMo', amount: mt, status: 'pending', is_activation: true })
-      .select('id').single();
-
-    if(depErr){ toast('Erreur : ' + depErr.message); btn.disabled = false; btn.textContent = 'Créer le dépôt'; return; }
-
-    await supabaseClient.from('transactions').insert({
-      user_id: user.id, type: 'deposit', amount: mt, status: 'pending',
-      meta: { activation: true, deposit_id: dep?.id }
+    // ✅ Appel sécurisé côté serveur
+    const { data: res, error } = await sb.rpc('create_activation_deposit', {
+      p_number: num,
+      p_amount: mt
     });
+
+    if(error || !res?.success){
+      toast('Erreur : ' + (res?.message || error?.message || 'Inconnue'));
+      btn.disabled = false; btn.textContent = 'Créer le dépôt'; return;
+    }
 
     pendingDepotNum = num; pendingDepotMt = mt;
     document.getElementById('aS1').classList.remove('on');
@@ -795,17 +768,11 @@ async function aConfirmerPaiement(){
   document.getElementById('aMtConf').textContent  = pendingDepotMt.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('aS2').classList.remove('on');
   document.getElementById('aS3').classList.add('on');
-
   await sendTG(
     `🔔 <b>DÉPÔT D'ACTIVATION EN ATTENTE</b>\n\n` +
-    `👤 Utilisateur : <b>${userData.name}</b>\n` +
-    `📞 Téléphone : ${userData.phone}\n` +
-    `🆔 Ref : ${userData.ref_code}\n` +
-    `💰 Montant : <b>${pendingDepotMt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `📱 Opérateur : MTN MoMo\n` +
-    `📲 Numéro MoMo : ${pendingDepotNum}\n` +
-    `🏷️ Type : Activation de compte\n\n` +
-    `✅ Vérifiez et validez ce dépôt depuis le tableau de bord admin.`
+    `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
+    `💰 <b>${pendingDepotMt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `📱 MTN MoMo · 📲 ${pendingDepotNum}\n\n✅ Validez depuis le tableau de bord admin.`
   );
   toast("Paiement confirmé — l'admin va activer votre compte !");
 }
@@ -815,8 +782,7 @@ function lancerTimer(displayId, btnId, seconds){
   const display = document.getElementById(displayId);
   const btn     = document.getElementById(btnId);
   if(!display || !btn) return null;
-  btn.disabled = true;
-  btn.textContent = '🔒 Attendez la fin du compte à rebours…';
+  btn.disabled = true; btn.textContent = '🔒 Attendez la fin du compte à rebours…';
   function tick(){
     const m = Math.floor(rem / 60), s = rem % 60;
     display.textContent = m + ':' + String(s).padStart(2, '0');
@@ -829,7 +795,7 @@ function lancerTimer(displayId, btnId, seconds){
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   RETRAIT
+   RETRAIT — appelle request_withdrawal() côté serveur
    ══════════════════════════════════════════════════════════════════════════ */
 function ouvrirRetrait(){
   if(!retraitOuvert()){
@@ -866,38 +832,31 @@ async function doRetrait(){
   const mt  = parseInt(document.getElementById('rMt').value);
   if(!num){ toast('Entre ton numéro MTN MoMo'); return; }
   if(!mt || isNaN(mt)){ toast('Entre un montant valide'); return; }
-  if(mt > bal){ toast('Solde insuffisant'); return; }
-  if(mt < RETRAIT_MIN){ toast(`Minimum ${RETRAIT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
 
-  const frais = Math.round(mt * FRAIS_PERCENT / 100), net = mt - frais;
-
-  const { data: wd, error: wErr } = await supabaseClient
-    .from('withdrawals')
-    .insert({ user_id: user.id, number: num, operator: 'MTN MoMo', amount: mt, status: 'pending', fees: frais, net_amount: net })
-    .select('id').single();
-
-  if(wErr){ toast('Erreur retrait : ' + wErr.message); return; }
-
-  await supabaseClient.from('transactions').insert({
-    user_id: user.id, type: 'withdraw', amount: mt, status: 'pending',
-    meta: { fees: frais, net_amount: net, withdrawal_id: wd?.id }
+  // ✅ Le serveur vérifie le vrai solde — pas besoin de le vérifier ici
+  const { data: res, error } = await sb.rpc('request_withdrawal', {
+    p_number: num,
+    p_amount: mt
   });
 
-  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: -mt });
+  if(error || !res?.success){
+    toast(res?.message || error?.message || 'Erreur retrait'); return;
+  }
+
+  // Mettre à jour l'affichage avec les vraies valeurs retournées par le serveur
   bal -= mt; updBal();
 
   await sendTG(
-    `💳 <b>DEMANDE DE RETRAIT</b>\n\n` +
-    `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
+    `💳 <b>DEMANDE DE RETRAIT</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
     `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `💸 Frais (${FRAIS_PERCENT}%) : ${frais.toLocaleString('fr-FR')} FCFA\n` +
-    `✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
+    `💸 Frais (${FRAIS_PERCENT}%) : ${res.fees.toLocaleString('fr-FR')} FCFA\n` +
+    `✅ Net : <b>${res.net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
   );
 
   document.getElementById('rNumConf').textContent   = num;
   document.getElementById('rMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('rFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('rNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('rFraisConf').textContent = '− ' + res.fees.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('rNetConf').textContent   = res.net.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('rS1').classList.remove('on');
   document.getElementById('rS2').classList.add('on');
   toast('Retrait soumis — admin notifié ✅');
@@ -908,7 +867,7 @@ async function doRetrait(){
    DATA LOADERS
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadTransactions(){
-  const { data } = await supabaseClient.from('transactions').select('*')
+  const { data } = await sb.from('transactions').select('*')
     .eq('user_id', user.id).order('created_at', {ascending:false}).limit(10);
   const el = document.getElementById('txList');
   if(!data?.length){ el.innerHTML = '<div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Aucune transaction</div>'; return; }
@@ -923,52 +882,41 @@ async function loadTransactions(){
 }
 
 async function loadStats(){
-  const { data: gains } = await supabaseClient.from('transactions').select('amount,type')
+  const { data: gains } = await sb.from('transactions').select('amount,type')
     .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral']).eq('status','success');
   const tg = (gains||[]).reduce((s,t) => s+(t.amount||0), 0);
   document.getElementById('statTotalGagne').textContent = tg.toLocaleString('fr-FR');
   document.getElementById('profTotalGagne').textContent = tg.toLocaleString('fr-FR') + ' FCFA';
-
-  const { data: rets } = await supabaseClient.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','success');
+  const { data: rets } = await sb.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','success');
   const tr = (rets||[]).reduce((s,r) => s+(r.amount||0), 0);
   document.getElementById('statRetraits').textContent     = (rets||[]).length;
   document.getElementById('profTotalRetrait').textContent = tr.toLocaleString('fr-FR') + ' FCFA';
-
-  const { data: n1 } = await supabaseClient.from('users').select('id').eq('referred_by', user.id);
+  const { data: n1 } = await sb.from('users').select('id').eq('referred_by', user.id);
   document.getElementById('statFilleuls').textContent = (n1||[]).length;
 }
 
 async function loadDepotBalance(){
-  const { data: deps } = await supabaseClient.from('deposits').select('amount,status').eq('user_id', user.id);
+  const { data: deps } = await sb.from('deposits').select('amount,status').eq('user_id', user.id);
   const td = (deps||[]).filter(d => d.status==='success').reduce((s,d) => s+(d.amount||0), 0);
   document.getElementById('totalDeposeAmt').textContent = td.toLocaleString('fr-FR') + ' FCFA';
   const p = document.getElementById('profTotalDepose'); if(p) p.textContent = td.toLocaleString('fr-FR') + ' FCFA';
-  const { data: rets } = await supabaseClient.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','pending');
+  const { data: rets } = await sb.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','pending');
   const tp = (rets||[]).reduce((s,r) => s+(r.amount||0), 0);
   document.getElementById('retraitsPendingAmt').textContent = tp.toLocaleString('fr-FR') + ' FCFA';
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ✅ MISSIONS — Table completed_missions (persistant, une seule fois à vie)
+   MISSIONS — appelle complete_mission() côté serveur
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadCompletedMissions(){
-  const { data } = await supabaseClient
-    .from('completed_missions')
-    .select('mission_id')
-    .eq('user_id', user.id);
-
+  const { data } = await sb.from('completed_missions').select('mission_id').eq('user_id', user.id);
   completedMissions = new Set();
   (data||[]).forEach(row => {
     const key = String(row.mission_id);
     completedMissions.add(key);
-    // Désactiver visuellement
-    const el = document.getElementById('tM'+key)
-            || document.getElementById('tAaa'+key)
-            || document.getElementById('tAa'+key);
+    const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
     if(el) el.classList.add('done');
   });
-
-  // Mettre à jour le compteur de missions
   document.getElementById('mCount').textContent = completedMissions.size;
 }
 
@@ -976,122 +924,111 @@ async function doMissionLink(id, name, rewardStr, link){
   if(!userData?.is_active){ toast('Compte non activé.'); return; }
   const key = String(id);
 
-  // Double vérification côté base
-  const { data: existing } = await supabaseClient
-    .from('completed_missions')
-    .select('id')
-    .eq('user_id', user.id)
-    .eq('mission_id', key)
-    .maybeSingle();
-
-  if(existing || completedMissions.has(key)){
+  if(completedMissions.has(key)){
     toast('✅ Mission déjà complétée !');
-    const el = document.getElementById('tM'+key) || document.getElementById('tAaa'+key) || document.getElementById('tAa'+key);
-    if(el) el.classList.add('done');
-    return;
+    const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
+    if(el) el.classList.add('done'); return;
   }
 
   if(link && link !== '#') window.open(link, '_blank');
 
-  const gain = parseInt(rewardStr);
-
-  // Insérer dans completed_missions — la contrainte UNIQUE protège côté DB
-  const { error: mErr } = await supabaseClient
-    .from('completed_missions')
-    .insert({ user_id: user.id, mission_id: key, mission_name: name, reward: gain });
-
-  if(mErr){
-    // Erreur de contrainte unique = mission déjà faite (race condition)
-    toast('✅ Mission déjà complétée !'); return;
-  }
-
-  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
-  await supabaseClient.from('transactions').insert({
-    user_id: user.id, type: 'mission', amount: gain, status: 'success',
-    meta: { mission_id: key, mission_name: name }
+  // ✅ Appel sécurisé — le serveur vérifie et crédite
+  const { data: res, error } = await sb.rpc('complete_mission', {
+    p_mission_id:   key,
+    p_mission_name: name,
+    p_reward:       parseInt(rewardStr)
   });
 
-  completedMissions.add(key);
-  bal += gain; updBal();
-  toast('+' + gain + ' FCFA — ' + name);
+  if(error || !res?.success){
+    toast(res?.message || '✅ Mission déjà complétée !');
+    const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
+    if(el) el.classList.add('done');
+    completedMissions.add(key); return;
+  }
 
-  const el = document.getElementById('tM'+key) || document.getElementById('tAaa'+key) || document.getElementById('tAa'+key);
+  completedMissions.add(key);
+  bal += res.gain; updBal();
+  toast('+' + res.gain + ' FCFA — ' + name);
+  const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
   if(el) el.classList.add('done');
   document.getElementById('mCount').textContent = completedMissions.size;
   await loadTransactions();
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   ADS
+   ADS — appelle claim_ad_reward() côté serveur
    ══════════════════════════════════════════════════════════════════════════ */
 async function loadAds(){
   const today = new Date().toISOString().split('T')[0];
-  const { data: ads } = await supabaseClient.from('ads').select('*').eq('is_active', true).order('created_at', {ascending:false});
+  const { data: ads } = await sb.from('ads').select('*').eq('is_active', true).order('created_at', {ascending:false});
   const el = document.getElementById('adsList');
   if(!ads?.length){
     el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0;background:#fff;border-radius:14px;border:1px solid #e2eaf4">Aucune publicité disponible</div>';
     return;
   }
-  const { data: wt } = await supabaseClient.from('transactions').select('meta')
+  const { data: wt } = await sb.from('transactions').select('meta')
     .eq('user_id', user.id).eq('type','ad').gte('created_at', today+'T00:00:00');
   const wids = new Set((wt||[]).map(t => t.meta?.ad_id ? String(t.meta.ad_id) : null).filter(Boolean));
   el.innerHTML = ads.map(ad => {
     const done = wids.has(String(ad.id));
-    return `<div class="task ${done?'done':''}" id="ad-${ad.id}" onclick="watchAd(${ad.id},${ad.duration_seconds},${ad.reward})"><div class="task-ico" style="background:var(--b50)">${ad.icon||'📢'}</div><div class="task-body"><div class="task-title">${ad.title}</div><div class="task-desc">${ad.description||'Regarder '+ad.duration_seconds+'s'}</div></div><div class="task-rew">+${ad.reward} FCFA</div></div>`;
+    return `<div class="task ${done?'done':''}" id="ad-${ad.id}" onclick="watchAd('${ad.id}',${ad.duration_seconds},${ad.reward})"><div class="task-ico" style="background:var(--b50)">${ad.icon||'📢'}</div><div class="task-body"><div class="task-title">${ad.title}</div><div class="task-desc">${ad.description||'Regarder '+ad.duration_seconds+'s'}</div></div><div class="task-rew">+${ad.reward} FCFA</div></div>`;
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   BONUS QUOTIDIEN
-   ══════════════════════════════════════════════════════════════════════════ */
-async function claimBonus(){
-  if(!userData?.is_active){ toast('Compte non activé.'); return; }
-  const today = new Date().toISOString().split('T')[0];
-
-  const { data: existing } = await supabaseClient
-    .from('transactions').select('id')
-    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
-    .gte('created_at', today+'T00:00:00').maybeSingle();
-
-  if(existing){ toast('⏰ Bonus déjà récupéré aujourd\'hui !'); document.getElementById('tBonus').classList.add('done'); return; }
-
-  const gain = 20;
-  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
-  await supabaseClient.from('transactions').insert({ user_id: user.id, type:'bonus', amount: gain, status:'success' });
-  bal += gain; updBal();
-  toast('+' + gain + ' FCFA 🎁 Bonus du jour récupéré !');
-  document.getElementById('tBonus').classList.add('done');
-  await loadTransactions();
-}
-
-async function checkBonusToday(){
-  const today = new Date().toISOString().split('T')[0];
-  const { data: existing } = await supabaseClient
-    .from('transactions').select('id')
-    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
-    .gte('created_at', today+'T00:00:00').maybeSingle();
-  if(existing){ const el = document.getElementById('tBonus'); if(el) el.classList.add('done'); }
-}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   PUBS
-   ══════════════════════════════════════════════════════════════════════════ */
 function watchAd(adId, duration, gain){
   if(!userData?.is_active){ toast('Compte non activé.'); return; }
   const el = document.getElementById('ad-'+adId);
   if(el?.classList.contains('done')){ toast('Déjà regardée aujourd\'hui'); return; }
   toast(`Pub en cours… (${duration}s)`);
   if(el){ el.style.opacity = '0.5'; el.style.pointerEvents = 'none'; }
+
   setTimeout(async () => {
-    await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
-    await supabaseClient.from('transactions').insert({
-      user_id: user.id, type:'ad', amount: gain, status:'success', meta:{ ad_id: adId }
+    // ✅ Le serveur vérifie la vraie récompense et le doublon
+    const { data: res, error } = await sb.rpc('claim_ad_reward', {
+      p_ad_id: adId,
+      p_gain:  gain // envoyé pour info, le serveur utilise sa propre valeur
     });
-    bal += gain; updBal(); toast(`+${gain} FCFA`);
+
+    if(error || !res?.success){
+      toast(res?.message || 'Erreur pub');
+      if(el){ el.style.opacity = ''; el.style.pointerEvents = ''; }
+      return;
+    }
+
+    bal += res.gain; updBal();
+    toast(`+${res.gain} FCFA`);
     if(el) el.classList.add('done');
     document.getElementById('mCount').textContent = parseInt(document.getElementById('mCount').textContent) + 1;
     await loadTransactions();
   }, duration * 1000);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BONUS QUOTIDIEN — appelle claim_bonus_daily() côté serveur
+   ══════════════════════════════════════════════════════════════════════════ */
+async function claimBonus(){
+  if(!userData?.is_active){ toast('Compte non activé.'); return; }
+
+  // ✅ Le serveur vérifie si déjà réclamé aujourd'hui
+  const { data: res, error } = await sb.rpc('claim_bonus_daily');
+
+  if(error || !res?.success){
+    toast(res?.message || '⏰ Bonus déjà récupéré aujourd\'hui !');
+    document.getElementById('tBonus').classList.add('done'); return;
+  }
+
+  bal += res.gain; updBal();
+  toast(`+${res.gain} FCFA 🎁 Bonus du jour récupéré !`);
+  document.getElementById('tBonus').classList.add('done');
+  await loadTransactions();
+}
+
+async function checkBonusToday(){
+  const today = new Date().toISOString().split('T')[0];
+  const { data } = await sb.from('transactions').select('id')
+    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
+    .gte('created_at', today+'T00:00:00').maybeSingle();
+  if(data){ const el = document.getElementById('tBonus'); if(el) el.classList.add('done'); }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -1104,33 +1041,26 @@ function copyLink(){
 }
 
 async function loadAffilTree(){
-  const { data: n1 } = await supabaseClient.from('users')
+  const { data: n1 } = await sb.from('users')
     .select('id,name,ref_code,is_active,created_at').eq('referred_by', user.id);
-
   if(!n1?.length){
     document.getElementById('affilTree').innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Pas encore de filleuls</div>';
     ['afN1Count','afN2Count','afN1Gains','afN2Gains'].forEach(id => document.getElementById(id).textContent = '0');
     return;
   }
-
   let html = '', n2Total = 0, gainsN1 = 0, gainsN2 = 0;
   for(const u1 of n1){
     const date = new Date(u1.created_at).toLocaleDateString('fr-FR');
-    const b1 = u1.is_active
-      ? `<span class="bdg bdg-g">+${BONUS_N1.toLocaleString('fr-FR')} FCFA</span>`
-      : '<span class="bdg bdg-a">En attente</span>';
+    const b1 = u1.is_active ? `<span class="bdg bdg-g">+${BONUS_N1.toLocaleString('fr-FR')} FCFA</span>` : '<span class="bdg bdg-a">En attente</span>';
     if(u1.is_active) gainsN1 += BONUS_N1;
     html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u1.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u1.is_active?'Actif':'En attente'} · ${date} · N1</div></div>${b1}</div>`;
-
-    const { data: n2 } = await supabaseClient.from('users')
+    const { data: n2 } = await sb.from('users')
       .select('id,name,ref_code,is_active,created_at').eq('referred_by', u1.id);
     if(n2?.length){
       html += '<div class="tree-indent">';
       for(const u2 of n2){
         const d2 = new Date(u2.created_at).toLocaleDateString('fr-FR');
-        const b2 = u2.is_active
-          ? `<span class="bdg bdg-g">+${BONUS_N2.toLocaleString('fr-FR')} FCFA</span>`
-          : '<span class="bdg bdg-a">En attente</span>';
+        const b2 = u2.is_active ? `<span class="bdg bdg-g">+${BONUS_N2.toLocaleString('fr-FR')} FCFA</span>` : '<span class="bdg bdg-a">En attente</span>';
         if(u2.is_active) gainsN2 += BONUS_N2;
         html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u2.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u2.is_active?'Actif':'En attente'} · ${d2} · N2</div></div>${b2}</div>`;
         n2Total++;
@@ -1138,7 +1068,6 @@ async function loadAffilTree(){
       html += '</div>';
     }
   }
-
   document.getElementById('affilTree').innerHTML = html;
   document.getElementById('afN1Count').textContent = n1.length;
   document.getElementById('afN2Count').textContent = n2Total;
@@ -1150,7 +1079,7 @@ async function loadAffilTree(){
    INIT
    ══════════════════════════════════════════════════════════════════════════ */
 async function checkUser(){
-  const { data } = await supabaseClient.auth.getUser();
+  const { data } = await sb.auth.getUser();
   if(data?.user){ user = data.user; await loadUser(); }
 }
 checkUser();
