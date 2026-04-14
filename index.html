@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MindCash</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- window.__ENV__ injecté par _middleware.js -->
 </head>
 <body></body>
 </html>
@@ -19,19 +18,29 @@
   --gr50:#F1EFE8;--gr200:#B4B2A9;--gr600:#5F5E5A;
 }
 body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;display:flex;justify-content:center;align-items:flex-start}
+
 #shell{width:100%;max-width:430px;min-height:100vh;background:#f0f4f8;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.site-header{background:var(--b900);padding:11px 16px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--b600);flex-shrink:0;position:sticky;top:0;z-index:100}
+
+.site-header{
+  background:var(--b900);padding:11px 16px;
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:2px solid var(--b600);flex-shrink:0;position:sticky;top:0;z-index:100
+}
 .site-header-name{color:#fff;font-size:19px;font-weight:900;letter-spacing:2px;display:flex;align-items:center;gap:8px}
 .site-header-name span{font-size:22px}
+
 .copyright{background:var(--b900);padding:9px 0;text-align:center;font-size:11px;color:var(--b200);flex-shrink:0}
 .copyright b{color:#fff}
+
 .scr{display:none;flex-direction:column;flex:1}
 .scr.on{display:flex}
 #sAuth{background:var(--b900);align-items:center;justify-content:center;padding:2rem}
+
 .logo-wrap{text-align:center;margin-bottom:2rem}
 .logo-ico{width:68px;height:68px;background:var(--b400);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 12px}
 .logo-wrap h1{color:#fff;font-size:24px;font-weight:600;letter-spacing:-0.5px}
 .logo-wrap p{color:var(--b200);font-size:13px;margin-top:3px}
+
 .auth-card{background:#fff;border-radius:18px;padding:1.5rem;width:100%;max-width:340px}
 .tabs{display:flex;background:#f0f4f8;border-radius:10px;padding:3px;gap:3px;margin-bottom:1.25rem}
 .tab{flex:1;padding:8px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--gr600)}
@@ -46,12 +55,14 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .pass-match-msg{font-size:11px;margin-top:4px;display:none}
 .pass-match-msg.ok{color:var(--g600);display:block}
 .pass-match-msg.err{color:var(--r600);display:block}
+
 .btn-main{width:100%;padding:12px;background:var(--b600);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}
 .btn-main:hover{background:var(--b800)}
 .btn-main.danger{background:var(--r600)}
 .btn-main:disabled{background:#b0b8c9;cursor:not-allowed;opacity:0.85}
 .btn-sec{width:100%;margin-top:8px;padding:11px;background:none;border:1px solid #dde4ee;border-radius:12px;cursor:pointer;font-size:13px;color:var(--gr600)}
 .hint-text{color:var(--b200);font-size:12px;text-align:center;margin-top:1rem}
+
 #sActivate{background:var(--b900);align-items:center;justify-content:center;padding:2rem}
 .act-card{background:#fff;border-radius:18px;padding:1.5rem;width:100%;max-width:340px;text-align:center}
 .act-ico{width:64px;height:64px;background:var(--am50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px}
@@ -60,12 +71,14 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .act-info{background:var(--b50);border-radius:10px;padding:12px;margin-bottom:1.25rem;font-size:13px;color:var(--b800);text-align:left}
 .act-info div{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #dde4ee}
 .act-info div:last-child{border-bottom:none}
+
 .topbar{background:var(--b800);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .topbar-info h2{color:#fff;font-size:15px;font-weight:600}
 .topbar-info p{color:var(--b200);font-size:11px;margin-top:1px}
 .topbar-right{display:flex;align-items:center;gap:8px}
 .avatar{width:36px;height:36px;border-radius:50%;background:var(--b400);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600}
 .quit-btn{font-size:11px;color:var(--b100);background:rgba(255,255,255,0.12);border:none;border-radius:6px;padding:4px 9px;cursor:pointer}
+
 .bal-zone{background:var(--b800);padding:0 16px 16px}
 .bal-card{background:var(--b600);border-radius:16px;padding:1.25rem;text-align:center}
 .bal-lbl{color:var(--b100);font-size:12px;margin-bottom:5px}
@@ -79,23 +92,28 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .qa-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:12px;padding:10px 8px;color:#fff;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:center}
 .qa-btn:hover{background:rgba(255,255,255,0.25)}
 .qa-ico{font-size:16px}
+
 .content{flex:1;padding:14px;overflow-y:auto;padding-bottom:76px}
 .pg{display:none}.pg.on{display:block}
 .sec-title{font-size:11px;font-weight:600;color:var(--gr600);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:10px}
+
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 .stat{background:#fff;border:1px solid #e2eaf4;border-radius:12px;padding:12px}
 .stat .lbl{font-size:11px;color:var(--gr600);margin-bottom:4px}
 .stat .val{font-size:22px;font-weight:700;color:var(--b800)}
+
 .bdg{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;margin-top:4px;font-weight:500}
 .bdg-g{background:var(--g50);color:var(--g800)}
 .bdg-b{background:var(--b50);color:var(--b800)}
 .bdg-a{background:var(--am50);color:var(--am600)}
 .bdg-r{background:var(--r50);color:var(--r600)}
+
 .card{background:#fff;border:1px solid #e2eaf4;border-radius:14px;padding:0 14px;margin-bottom:12px}
 .row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #f0f4f8;font-size:13px}
 .row:last-child{border-bottom:none}
 .row-sub{font-size:11px;color:var(--gr600);margin-top:2px}
 .row-val{font-weight:600;color:#111}
+
 .task{background:#fff;border:1px solid #e2eaf4;border-radius:14px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer}
 .task:hover{border-color:var(--b400)}
 .task-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
@@ -106,29 +124,34 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .pbar{background:#e8eff8;border-radius:4px;height:5px;margin-top:6px}
 .pfill{background:var(--b400);border-radius:4px;height:5px}
 .task.done{opacity:0.6;pointer-events:none}
+
 .bnav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e2eaf4;display:flex;padding:6px 0 2px;z-index:50;flex-shrink:0}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:4px;border:none;background:transparent}
 .ni-ico{font-size:20px}
 .ni-lbl{font-size:10px;color:var(--gr600);font-weight:500}
 .ni.on .ni-lbl{color:var(--b600)}
+
 .moverlay{display:none;position:absolute;inset:0;background:rgba(4,44,83,0.55);z-index:200;align-items:flex-end}
 .moverlay.on{display:flex}
 .mbox{background:#fff;border-radius:22px 22px 0 0;width:100%;padding:1.5rem;max-height:90vh;overflow-y:auto}
 .mhandle{width:36px;height:4px;background:#dde4ee;border-radius:2px;margin:0 auto 1.25rem}
 .mtitle{font-size:17px;font-weight:700;color:var(--b800);margin-bottom:1.25rem}
 .step{display:none}.step.on{display:block}
+
 .info-box{background:#f8fafc;border-radius:12px;padding:12px;margin-bottom:14px}
 .i-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eef2f8;font-size:13px}
 .i-row:last-child{border-bottom:none}
 .i-lbl{color:var(--gr600)}
 .i-val{font-weight:600;color:#111}
 .suc-ico{width:58px;height:58px;background:var(--g50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px}
+
 .frais-box{background:var(--am50);border:1px solid #f5d598;border-radius:12px;padding:11px 13px;margin-bottom:12px}
 .frais-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0}
 .frais-lbl{color:var(--am600)}
 .frais-val{font-weight:700;color:var(--am600)}
 .frais-net-lbl{color:var(--g800);font-weight:700;font-size:14px}
 .frais-net-val{font-weight:700;color:var(--g800);font-size:15px}
+
 .ussd-box{background:#042C53;border-radius:14px;padding:16px;margin-bottom:16px}
 .ussd-title{color:var(--b100);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;text-align:center}
 .ussd-steps{color:#fff;font-size:13px;line-height:2.3}
@@ -136,24 +159,35 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 .ussd-timer-wrap{margin:16px 0 8px;text-align:center}
 .ussd-timer{font-size:42px;font-weight:900;color:#FFCC00;letter-spacing:-2px}
 .ussd-timer-lbl{font-size:11px;color:var(--b200);margin-top:4px}
+
 .mtn-badge{background:#FFCC00;color:#000;border-radius:10px;padding:10px 16px;font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
 .lvl-badge{display:inline-flex;align-items:center;gap:5px;background:var(--b50);border:1px solid #c8ddf5;border-radius:20px;padding:3px 10px;font-size:12px;color:var(--b800);font-weight:600}
-.nb-depot{background:linear-gradient(135deg,#FFF3CD,#FFE08A);border:2px solid #F5A623;border-radius:12px;padding:11px 14px;margin-bottom:14px;font-size:13px;color:#7A4F00;font-weight:600;line-height:1.5;box-shadow:0 2px 8px rgba(245,166,35,0.25);display:flex;align-items:flex-start;gap:8px}
+
+.nb-depot{
+  background:linear-gradient(135deg,#FFF3CD,#FFE08A);
+  border:2px solid #F5A623;border-radius:12px;padding:11px 14px;margin-bottom:14px;
+  font-size:13px;color:#7A4F00;font-weight:600;line-height:1.5;
+  box-shadow:0 2px 8px rgba(245,166,35,0.25);display:flex;align-items:flex-start;gap:8px
+}
 .nb-depot .nb-icon{font-size:18px;flex-shrink:0;margin-top:1px}
 .nb-depot .nb-name{background:#F5A623;color:#fff;border-radius:6px;padding:1px 8px;font-weight:800;letter-spacing:0.3px;font-size:14px;display:inline-block}
+
 .tree-node{background:var(--b50);border:1px solid #c8ddf5;border-radius:12px;padding:10px 13px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
 .tree-indent{margin-left:20px;border-left:2px solid #c8ddf5;padding-left:12px;margin-bottom:6px}
+
 #toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:var(--b900);color:#fff;padding:10px 22px;border-radius:20px;font-size:13px;font-weight:500;display:none;z-index:999;white-space:nowrap;pointer-events:none;max-width:90vw;text-align:center}
+
 .err-box{background:var(--r50);border:1px solid #f5c6c6;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;color:var(--r600);text-align:center;line-height:1.6}
 .err-box strong{display:block;font-size:15px;margin-bottom:4px}
 </style>
 
 <div id="shell">
+
 <div class="site-header">
   <div class="site-header-name"><span>💸</span> MIND CASH</div>
 </div>
 
-<!-- AUTH -->
+<!-- ══ AUTH ══════════════════════════════════════════════════════════════ -->
 <div id="sAuth" class="scr on">
   <div class="logo-wrap">
     <div class="logo-ico">💸</div>
@@ -165,11 +199,15 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <button class="tab on" onclick="swTab('login')">Connexion</button>
       <button class="tab" onclick="swTab('reg')">Inscription</button>
     </div>
+
+    <!-- FORMULAIRE CONNEXION -->
     <div class="frm on" id="fLogin">
       <div class="fld"><label>Téléphone</label><input type="text" placeholder="0XXXXXXXXX" id="lPhone"></div>
       <div class="fld"><label>Mot de passe</label><input type="password" placeholder="••••••••" id="lPass"></div>
       <button class="btn-main" onclick="doLogin()">Se connecter</button>
     </div>
+
+    <!-- FORMULAIRE INSCRIPTION -->
     <div class="frm" id="fReg">
       <div class="fld"><label>Nom complet</label><input type="text" placeholder="Jean Dupont" id="rName"></div>
       <div class="fld"><label>Téléphone</label><input type="tel" placeholder="0XXXXXXXXX" id="rPhone"></div>
@@ -189,7 +227,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
   <p class="hint-text">Un dépôt minimum de 5 000 FCFA est requis pour activer votre compte</p>
 </div>
 
-<!-- ACTIVATION -->
+<!-- ══ ACTIVATION ════════════════════════════════════════════════════════ -->
 <div id="sActivate" class="scr">
   <div class="logo-wrap" style="margin-top:2rem">
     <div class="logo-ico">💸</div>
@@ -210,11 +248,12 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
   </div>
 </div>
 
-<!-- MODAL DEPOT ACTIVATION -->
+<!-- ══ MODAL DEPOT ACTIVATION ════════════════════════════════════════════ -->
 <div class="moverlay" id="modActivate">
   <div class="mbox">
     <div class="mhandle"></div>
     <div class="mtitle">🔓 Dépôt d'activation</div>
+
     <div class="step on" id="aS1">
       <div style="text-align:center;margin-bottom:14px">
         <div class="mtn-badge">🟡 MTN MoMo</div>
@@ -222,8 +261,11 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       </div>
       <div class="nb-depot">
         <span class="nb-icon">⚠️</span>
-        <div><span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#7A4F00">NB —</span>
-        Le nom MTN MoMo qui doit apparaître lors du paiement est : <span class="nb-name">CECILE CELINE</span></div>
+        <div>
+          <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#7A4F00">NB —</span>
+          Le nom MTN MoMo qui doit apparaître lors du paiement est :
+          <span class="nb-name">CECILE CELINE</span>
+        </div>
       </div>
       <div style="background:var(--am50);border-radius:10px;padding:10px 13px;margin-bottom:14px;font-size:13px;color:var(--am600)">
         Montant minimum : <strong>5 000 FCFA</strong>
@@ -233,6 +275,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <button class="btn-main" id="aBtnCreer" onclick="aCreerDepot()">Créer le dépôt</button>
       <button class="btn-sec" onclick="fermerModActivate()">Annuler</button>
     </div>
+
     <div class="step" id="aS2">
       <div style="text-align:center;margin-bottom:12px">
         <div style="font-size:15px;font-weight:700;color:var(--b800)">⏳ Dépôt en cours de création</div>
@@ -257,9 +300,12 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
           <div class="ussd-timer-lbl">Temps restant avant confirmation</div>
         </div>
       </div>
-      <button class="btn-main" id="aBtnConfirm" disabled onclick="aConfirmerPaiement()">🔒 Attendez la fin du compte à rebours…</button>
+      <button class="btn-main" id="aBtnConfirm" disabled onclick="aConfirmerPaiement()">
+        🔒 Attendez la fin du compte à rebours…
+      </button>
       <button class="btn-sec" onclick="fermerModActivate()">Annuler</button>
     </div>
+
     <div class="step" id="aS3">
       <div class="suc-ico">⏳</div>
       <p style="text-align:center;font-weight:700;font-size:16px;color:var(--b800);margin-bottom:6px">Dépôt soumis !</p>
@@ -275,7 +321,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
   </div>
 </div>
 
-<!-- ÉCRAN PRINCIPAL -->
+<!-- ══ ÉCRAN PRINCIPAL ════════════════════════════════════════════════════ -->
 <div id="sMain" class="scr">
   <div class="topbar">
     <div class="topbar-info">
@@ -302,7 +348,9 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       </div>
     </div>
   </div>
+
   <div class="content">
+    <!-- Page Accueil -->
     <div class="pg on" id="pgHome">
       <div class="stats">
         <div class="stat"><div class="lbl">Total gagné</div><div class="val" id="statTotalGagne">0</div><span class="bdg bdg-g">FCFA</span></div>
@@ -315,6 +363,8 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
         <div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Chargement...</div>
       </div>
     </div>
+
+    <!-- Page Tâches -->
     <div class="pg" id="pgTaches">
       <div class="sec-title">Bonus quotidien</div>
       <div class="task" id="tBonus" onclick="claimBonus()">
@@ -326,8 +376,10 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
         </div>
         <div class="task-rew">+20 FCFA</div>
       </div>
+
       <div class="sec-title" style="margin-top:14px">Publicités</div>
       <div id="adsList"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div></div>
+
       <div class="sec-title" style="margin-top:14px">Missions spéciales</div>
       <div class="task" id="tM1" onclick="doMissionLink(1,'Canal Telegram','50','https://t.me/+z_-7HKMIAhU2Nzlk')">
         <div class="task-ico" style="background:var(--b50)">📋</div>
@@ -356,6 +408,8 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       </div>
       <div id="adminTasks"></div>
     </div>
+
+    <!-- Page Parrainage -->
     <div class="pg" id="pgAffil">
       <div class="sec-title">Mon lien de parrainage</div>
       <div onclick="copyLink()" style="background:var(--b50);border:1px solid #c8ddf5;border-radius:12px;padding:13px;font-size:13px;color:var(--b800);word-break:break-all;margin-bottom:12px;cursor:pointer">
@@ -389,6 +443,8 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <div class="sec-title">Réseau de parrainage</div>
       <div id="affilTree"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div></div>
     </div>
+
+    <!-- Page Profil -->
     <div class="pg" id="pgProfil">
       <div style="text-align:center;margin-bottom:1.5rem">
         <div style="width:72px;height:72px;border-radius:50%;background:var(--b600);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:700;margin:0 auto 10px" id="profAvatar">—</div>
@@ -406,6 +462,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
       <button class="btn-main danger" style="margin-top:12px" onclick="doLogout()">Se déconnecter</button>
     </div>
   </div>
+
   <div class="bnav">
     <button class="ni on" id="ni-home" onclick="showPg('Home')"><span class="ni-ico">🏠</span><span class="ni-lbl">Accueil</span></button>
     <button class="ni" id="ni-taches" onclick="showPg('Taches')"><span class="ni-ico">✅</span><span class="ni-lbl">Tâches</span></button>
@@ -414,7 +471,7 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
   </div>
 </div>
 
-<!-- MODAL RETRAIT -->
+<!-- ══ MODAL RETRAIT ══════════════════════════════════════════════════════ -->
 <div class="moverlay" id="modRetrait">
   <div class="mbox">
     <div class="mhandle"></div>
@@ -460,5 +517,641 @@ body{font-family:system-ui,sans-serif;background:#f0f4f8;min-height:100vh;displa
 <div id="toast"></div>
 </div>
 
-<!-- Le script est dans un fichier séparé app.js -->
-<script src="app.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   CONFIG
+   ══════════════════════════════════════════════════════════════════════════ */
+const _ENV = window.__ENV__ || {};
+const SUPABASE_URL       = _ENV.SUPABASE_URL       || '';
+const SUPABASE_KEY       = _ENV.SUPABASE_KEY       || '';
+const TELEGRAM_BOT_TOKEN = _ENV.TELEGRAM_BOT_TOKEN || '';
+const TELEGRAM_CHAT_ID   = _ENV.TELEGRAM_CHAT_ID   || '';
+
+if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables manquantes.');
+
+const DEPOT_MIN     = 5000;
+const RETRAIT_MIN   = 4450;
+const FRAIS_PERCENT = 5;
+const TIMER_SEC     = 30;
+const BONUS_N1      = 2050;
+const BONUS_N2      = 750;
+const DEPOT_H_DEBUT   = 6;
+const DEPOT_H_FIN     = 22;
+const RETRAIT_H_DEBUT = 7;
+const RETRAIT_H_FIN   = 17;
+const RETRAIT_JOURS   = [1,2,3,4,5];
+const JOURS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let user = null, userData = null, bal = 0;
+let completedMissions = new Set();
+let aTimerIv = null;
+let pendingDepotNum = '', pendingDepotMt = 0;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════════════════════════════════════ */
+let toastIv = null;
+function toast(msg, dur = 3500){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display = 'block';
+  clearTimeout(toastIv);
+  toastIv = setTimeout(() => t.style.display = 'none', dur);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TELEGRAM
+   ══════════════════════════════════════════════════════════════════════════ */
+async function sendTG(text){
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+  try {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode:'HTML' })
+    });
+  } catch(e){ console.warn('TG error:', e); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HORAIRES
+   ══════════════════════════════════════════════════════════════════════════ */
+function depotOuvert(){
+  const h = new Date().getHours();
+  return h >= DEPOT_H_DEBUT && h < DEPOT_H_FIN;
+}
+function retraitOuvert(){
+  const now = new Date(), h = now.getHours(), j = now.getDay();
+  return RETRAIT_JOURS.includes(j) && h >= RETRAIT_H_DEBUT && h < RETRAIT_H_FIN;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   AUTH — Confirmation mot de passe
+   ══════════════════════════════════════════════════════════════════════════ */
+function swTab(id){
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.frm').forEach(f => f.classList.remove('on'));
+  if(id === 'login'){
+    document.querySelector('.tab:first-child').classList.add('on');
+    document.getElementById('fLogin').classList.add('on');
+  } else {
+    document.querySelector('.tab:last-child').classList.add('on');
+    document.getElementById('fReg').classList.add('on');
+  }
+}
+
+function checkPassMatch(){
+  const p1  = document.getElementById('rPass').value;
+  const p2  = document.getElementById('rPassConfirm').value;
+  const msg = document.getElementById('passMatchMsg');
+  const i1  = document.getElementById('rPass');
+  const i2  = document.getElementById('rPassConfirm');
+
+  if(!p2){ msg.className = 'pass-match-msg'; msg.textContent = ''; return false; }
+
+  if(p1 === p2){
+    msg.className = 'pass-match-msg ok';
+    msg.textContent = '✅ Les mots de passe correspondent';
+    i2.className = 'input-ok';
+    i1.className = 'input-ok';
+    return true;
+  } else {
+    msg.className = 'pass-match-msg err';
+    msg.textContent = '❌ Les mots de passe ne correspondent pas';
+    i2.className = 'input-error';
+    i1.className = '';
+    return false;
+  }
+}
+
+const _ref = new URLSearchParams(window.location.search).get('ref');
+if(_ref) document.addEventListener('DOMContentLoaded', () => {
+  const r = document.getElementById('rRef');
+  if(r){ r.value = _ref; r.readOnly = true; r.style.background = '#eee'; r.style.cursor = 'not-allowed'; }
+});
+
+async function doRegister(){
+  const name  = document.getElementById('rName').value.trim();
+  const phone = document.getElementById('rPhone').value.trim();
+  const pass  = document.getElementById('rPass').value;
+  const pconf = document.getElementById('rPassConfirm').value;
+  const ref   = document.getElementById('rRef').value.trim() || null;
+
+  if(!name || !phone || !pass || !pconf){ toast('Remplis tous les champs obligatoires'); return; }
+  if(pass !== pconf){ toast('❌ Les mots de passe ne correspondent pas'); document.getElementById('rPassConfirm').focus(); return; }
+  if(pass.length < 6){ toast('Le mot de passe doit faire au moins 6 caractères'); return; }
+
+  const { data, error } = await supabaseClient.auth.signUp({ email: phone+'@mindcash.app', password: pass });
+  if(error){ toast(error.message); return; }
+
+  let referredBy = null;
+  if(ref){
+    const { data: ru } = await supabaseClient.from('users').select('id').eq('ref_code', ref).single();
+    if(ru?.id) referredBy = ru.id; else toast('Code parrain invalide');
+  }
+
+  const refCode = 'MC-' + Math.floor(100000 + Math.random()*899999);
+  const { error: ie } = await supabaseClient.from('users').insert({
+    id: data.user.id, name, phone, balance: 0, is_active: false, ref_code: refCode, referred_by: referredBy
+  });
+  if(ie){ toast(ie.message); return; }
+  toast('✅ Compte créé ! Connectez-vous.'); swTab('login');
+}
+
+async function doLogin(){
+  const phone = document.getElementById('lPhone').value.trim();
+  const pass  = document.getElementById('lPass').value;
+  const { data, error } = await supabaseClient.auth.signInWithPassword({ email: phone+'@mindcash.app', password: pass });
+  if(error){ toast(error.message); return; }
+  user = data.user; await loadUser();
+}
+
+async function doLogout(){
+  await supabaseClient.auth.signOut();
+  ['sMain','sActivate'].forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById('sAuth').classList.add('on');
+  document.getElementById('modActivate').classList.remove('on');
+  resetModActivate();
+  user = null; userData = null; bal = 0; completedMissions = new Set();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LOAD USER
+   ══════════════════════════════════════════════════════════════════════════ */
+async function loadUser(){
+  const { data, error } = await supabaseClient.from('users').select('*').eq('id', user.id).single();
+  if(error || !data){ toast('Erreur chargement profil'); return; }
+  userData = data; bal = data.balance || 0;
+  document.getElementById('sAuth').classList.remove('on');
+
+  if(!data.is_active){
+    document.getElementById('sMain').classList.remove('on');
+    document.getElementById('sActivate').classList.add('on');
+    return;
+  }
+
+  document.getElementById('sActivate').classList.remove('on');
+  document.getElementById('sMain').classList.add('on');
+  const btnD = document.getElementById('btnDepotMain');
+  if(btnD) btnD.style.display = 'none';
+
+  updBal(); setUserUI(data.name, data.phone, data.ref_code, data.is_active);
+  await Promise.all([loadTransactions(), loadStats(), loadAffilTree(), loadDepotBalance(), loadAds(), loadCompletedMissions()]);
+  await checkBonusToday();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   UI HELPERS
+   ══════════════════════════════════════════════════════════════════════════ */
+function updBal(){
+  document.getElementById('balAmt').innerHTML = bal.toLocaleString('fr-FR') + ' <span style="font-size:17px;font-weight:400">FCFA</span>';
+  const p = document.getElementById('profBal'); if(p) p.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
+  const s = document.getElementById('soldeDispo'); if(s) s.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
+}
+
+function setUserUI(name, phone, refCode, isActive){
+  const ini = name.split(' ').map(w => w[0]||'').join('').toUpperCase().slice(0,2);
+  document.getElementById('uName').textContent      = name.split(' ')[0];
+  document.getElementById('uAvatar').textContent    = ini;
+  document.getElementById('profAvatar').textContent = ini;
+  document.getElementById('profName').textContent   = name;
+  document.getElementById('profPhone').textContent  = phone;
+  document.getElementById('refCode').textContent    = refCode || '—';
+  document.getElementById('uID').textContent        = refCode || '—';
+  const sEl = document.getElementById('uStatus'), pEl = document.getElementById('profStatus');
+  if(isActive){
+    sEl.textContent = 'actif'; sEl.style.color = '#7fc97f';
+    pEl.innerHTML = '<span class="bdg bdg-g">Actif</span>';
+  } else {
+    sEl.textContent = 'inactif'; sEl.style.color = '#e24b4a';
+    pEl.innerHTML = '<span class="bdg bdg-r">Inactif</span>';
+  }
+}
+
+function showPg(id){
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  document.getElementById('pg'+id).classList.add('on');
+  document.getElementById('ni-'+id.toLowerCase()).classList.add('on');
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DÉPÔT D'ACTIVATION
+   ══════════════════════════════════════════════════════════════════════════ */
+function ouvrirDepotActivation(){
+  if(userData && userData.is_active){ toast('✅ Votre compte est déjà actif.'); return; }
+  if(!depotOuvert()){ toast(`⏰ Dépôts fermés ! Ouverts de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`); return; }
+  document.getElementById('modActivate').classList.add('on');
+}
+
+function fermerModActivate(){
+  document.getElementById('modActivate').classList.remove('on');
+  resetModActivate();
+}
+
+function resetModActivate(){
+  document.querySelectorAll('[id^="aS"]').forEach(s => s.classList.remove('on'));
+  const s1 = document.getElementById('aS1'); if(s1) s1.classList.add('on');
+  if(aTimerIv){ clearInterval(aTimerIv); aTimerIv = null; }
+  pendingDepotNum = ''; pendingDepotMt = 0;
+}
+
+async function aCreerDepot(){
+  const num = document.getElementById('aNum').value.trim();
+  const mt  = parseInt(document.getElementById('aMt').value);
+  if(!num || !mt || isNaN(mt)){ toast('Remplis tous les champs'); return; }
+  if(mt < DEPOT_MIN){ toast(`Minimum ${DEPOT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+
+  const btn = document.getElementById('aBtnCreer');
+  btn.disabled = true; btn.textContent = 'Création en cours…';
+
+  try {
+    const { data: dep, error: depErr } = await supabaseClient
+      .from('deposits')
+      .insert({ user_id: user.id, number: num, operator: 'MTN MoMo', amount: mt, status: 'pending', is_activation: true })
+      .select('id').single();
+
+    if(depErr){ toast('Erreur : ' + depErr.message); btn.disabled = false; btn.textContent = 'Créer le dépôt'; return; }
+
+    await supabaseClient.from('transactions').insert({
+      user_id: user.id, type: 'deposit', amount: mt, status: 'pending',
+      meta: { activation: true, deposit_id: dep?.id }
+    });
+
+    pendingDepotNum = num; pendingDepotMt = mt;
+    document.getElementById('aS1').classList.remove('on');
+    document.getElementById('aS2').classList.add('on');
+    aTimerIv = lancerTimer('aTimerDisplay', 'aBtnConfirm', TIMER_SEC);
+    toast('Dépôt enregistré — suivez les instructions MTN MoMo');
+  } catch(e){
+    toast('Erreur inattendue. Réessayez.');
+    btn.disabled = false; btn.textContent = 'Créer le dépôt';
+  }
+}
+
+async function aConfirmerPaiement(){
+  if(aTimerIv){ clearInterval(aTimerIv); aTimerIv = null; }
+  document.getElementById('aNumConf').textContent = pendingDepotNum;
+  document.getElementById('aMtConf').textContent  = pendingDepotMt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('aS2').classList.remove('on');
+  document.getElementById('aS3').classList.add('on');
+
+  await sendTG(
+    `🔔 <b>DÉPÔT D'ACTIVATION EN ATTENTE</b>\n\n` +
+    `👤 Utilisateur : <b>${userData.name}</b>\n` +
+    `📞 Téléphone : ${userData.phone}\n` +
+    `🆔 Ref : ${userData.ref_code}\n` +
+    `💰 Montant : <b>${pendingDepotMt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `📱 Opérateur : MTN MoMo\n` +
+    `📲 Numéro MoMo : ${pendingDepotNum}\n` +
+    `🏷️ Type : Activation de compte\n\n` +
+    `✅ Vérifiez et validez ce dépôt depuis le tableau de bord admin.`
+  );
+  toast("Paiement confirmé — l'admin va activer votre compte !");
+}
+
+function lancerTimer(displayId, btnId, seconds){
+  let rem = seconds;
+  const display = document.getElementById(displayId);
+  const btn     = document.getElementById(btnId);
+  if(!display || !btn) return null;
+  btn.disabled = true;
+  btn.textContent = '🔒 Attendez la fin du compte à rebours…';
+  function tick(){
+    const m = Math.floor(rem / 60), s = rem % 60;
+    display.textContent = m + ':' + String(s).padStart(2, '0');
+    if(rem <= 0){ clearInterval(iv); btn.disabled = false; btn.textContent = '✅ Confirmer le paiement'; }
+    rem--;
+  }
+  tick();
+  const iv = setInterval(tick, 1000);
+  return iv;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RETRAIT
+   ══════════════════════════════════════════════════════════════════════════ */
+function ouvrirRetrait(){
+  if(!retraitOuvert()){
+    const j = JOURS_FR[new Date().getDay()];
+    toast(`⏰ Retraits fermés ! Lun–Ven ${RETRAIT_H_DEBUT}h–${RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
+    return;
+  }
+  document.getElementById('modRetrait').classList.add('on');
+}
+
+function fermerRetrait(){
+  document.getElementById('modRetrait').classList.remove('on');
+  document.getElementById('rS1').classList.add('on');
+  document.getElementById('rS2').classList.remove('on');
+  document.getElementById('fraisBox').style.display = 'none';
+  document.getElementById('rMt').value = '';
+  document.getElementById('rNum').value = '';
+}
+
+function updateFrais(){
+  const mt = parseInt(document.getElementById('rMt').value);
+  const box = document.getElementById('fraisBox');
+  if(!mt || mt < 1){ box.style.display = 'none'; return; }
+  const frais = Math.round(mt * FRAIS_PERCENT / 100), net = mt - frais;
+  document.getElementById('fraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('fraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('fraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
+  box.style.display = 'block';
+}
+
+async function doRetrait(){
+  if(!retraitOuvert()){ toast('⏰ Retraits fermés !'); return; }
+  const num = document.getElementById('rNum').value.trim();
+  const mt  = parseInt(document.getElementById('rMt').value);
+  if(!num){ toast('Entre ton numéro MTN MoMo'); return; }
+  if(!mt || isNaN(mt)){ toast('Entre un montant valide'); return; }
+  if(mt > bal){ toast('Solde insuffisant'); return; }
+  if(mt < RETRAIT_MIN){ toast(`Minimum ${RETRAIT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+
+  const frais = Math.round(mt * FRAIS_PERCENT / 100), net = mt - frais;
+
+  const { data: wd, error: wErr } = await supabaseClient
+    .from('withdrawals')
+    .insert({ user_id: user.id, number: num, operator: 'MTN MoMo', amount: mt, status: 'pending', fees: frais, net_amount: net })
+    .select('id').single();
+
+  if(wErr){ toast('Erreur retrait : ' + wErr.message); return; }
+
+  await supabaseClient.from('transactions').insert({
+    user_id: user.id, type: 'withdraw', amount: mt, status: 'pending',
+    meta: { fees: frais, net_amount: net, withdrawal_id: wd?.id }
+  });
+
+  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: -mt });
+  bal -= mt; updBal();
+
+  await sendTG(
+    `💳 <b>DEMANDE DE RETRAIT</b>\n\n` +
+    `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
+    `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `💸 Frais (${FRAIS_PERCENT}%) : ${frais.toLocaleString('fr-FR')} FCFA\n` +
+    `✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
+  );
+
+  document.getElementById('rNumConf').textContent   = num;
+  document.getElementById('rMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('rFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('rNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('rS1').classList.remove('on');
+  document.getElementById('rS2').classList.add('on');
+  toast('Retrait soumis — admin notifié ✅');
+  await Promise.all([loadTransactions(), loadStats(), loadDepotBalance()]);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DATA LOADERS
+   ══════════════════════════════════════════════════════════════════════════ */
+async function loadTransactions(){
+  const { data } = await supabaseClient.from('transactions').select('*')
+    .eq('user_id', user.id).order('created_at', {ascending:false}).limit(10);
+  const el = document.getElementById('txList');
+  if(!data?.length){ el.innerHTML = '<div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Aucune transaction</div>'; return; }
+  const lbl = { deposit:'Dépôt', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardée', mission:'Mission', referral:'Parrainage' };
+  el.innerHTML = data.map(tx => {
+    const pos  = tx.type !== 'withdraw';
+    const date = new Date(tx.created_at).toLocaleDateString('fr-FR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    const cls  = tx.status==='success'?'bdg-g':tx.status==='pending'?'bdg-a':'bdg-r';
+    const stxt = tx.status==='success'?'Validé':tx.status==='pending'?'En attente':'Échoué';
+    return `<div class="row"><div><div style="font-weight:600;font-size:13px">${lbl[tx.type]||tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos?'var(--g600)':'var(--r600)'};font-weight:700">${pos?'+':'−'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
+  }).join('');
+}
+
+async function loadStats(){
+  const { data: gains } = await supabaseClient.from('transactions').select('amount,type')
+    .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral']).eq('status','success');
+  const tg = (gains||[]).reduce((s,t) => s+(t.amount||0), 0);
+  document.getElementById('statTotalGagne').textContent = tg.toLocaleString('fr-FR');
+  document.getElementById('profTotalGagne').textContent = tg.toLocaleString('fr-FR') + ' FCFA';
+
+  const { data: rets } = await supabaseClient.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','success');
+  const tr = (rets||[]).reduce((s,r) => s+(r.amount||0), 0);
+  document.getElementById('statRetraits').textContent     = (rets||[]).length;
+  document.getElementById('profTotalRetrait').textContent = tr.toLocaleString('fr-FR') + ' FCFA';
+
+  const { data: n1 } = await supabaseClient.from('users').select('id').eq('referred_by', user.id);
+  document.getElementById('statFilleuls').textContent = (n1||[]).length;
+}
+
+async function loadDepotBalance(){
+  const { data: deps } = await supabaseClient.from('deposits').select('amount,status').eq('user_id', user.id);
+  const td = (deps||[]).filter(d => d.status==='success').reduce((s,d) => s+(d.amount||0), 0);
+  document.getElementById('totalDeposeAmt').textContent = td.toLocaleString('fr-FR') + ' FCFA';
+  const p = document.getElementById('profTotalDepose'); if(p) p.textContent = td.toLocaleString('fr-FR') + ' FCFA';
+  const { data: rets } = await supabaseClient.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','pending');
+  const tp = (rets||[]).reduce((s,r) => s+(r.amount||0), 0);
+  document.getElementById('retraitsPendingAmt').textContent = tp.toLocaleString('fr-FR') + ' FCFA';
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ✅ MISSIONS — Table completed_missions (persistant, une seule fois à vie)
+   ══════════════════════════════════════════════════════════════════════════ */
+async function loadCompletedMissions(){
+  const { data } = await supabaseClient
+    .from('completed_missions')
+    .select('mission_id')
+    .eq('user_id', user.id);
+
+  completedMissions = new Set();
+  (data||[]).forEach(row => {
+    const key = String(row.mission_id);
+    completedMissions.add(key);
+    // Désactiver visuellement
+    const el = document.getElementById('tM'+key)
+            || document.getElementById('tAaa'+key)
+            || document.getElementById('tAa'+key);
+    if(el) el.classList.add('done');
+  });
+
+  // Mettre à jour le compteur de missions
+  document.getElementById('mCount').textContent = completedMissions.size;
+}
+
+async function doMissionLink(id, name, rewardStr, link){
+  if(!userData?.is_active){ toast('Compte non activé.'); return; }
+  const key = String(id);
+
+  // Double vérification côté base
+  const { data: existing } = await supabaseClient
+    .from('completed_missions')
+    .select('id')
+    .eq('user_id', user.id)
+    .eq('mission_id', key)
+    .maybeSingle();
+
+  if(existing || completedMissions.has(key)){
+    toast('✅ Mission déjà complétée !');
+    const el = document.getElementById('tM'+key) || document.getElementById('tAaa'+key) || document.getElementById('tAa'+key);
+    if(el) el.classList.add('done');
+    return;
+  }
+
+  if(link && link !== '#') window.open(link, '_blank');
+
+  const gain = parseInt(rewardStr);
+
+  // Insérer dans completed_missions — la contrainte UNIQUE protège côté DB
+  const { error: mErr } = await supabaseClient
+    .from('completed_missions')
+    .insert({ user_id: user.id, mission_id: key, mission_name: name, reward: gain });
+
+  if(mErr){
+    // Erreur de contrainte unique = mission déjà faite (race condition)
+    toast('✅ Mission déjà complétée !'); return;
+  }
+
+  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
+  await supabaseClient.from('transactions').insert({
+    user_id: user.id, type: 'mission', amount: gain, status: 'success',
+    meta: { mission_id: key, mission_name: name }
+  });
+
+  completedMissions.add(key);
+  bal += gain; updBal();
+  toast('+' + gain + ' FCFA — ' + name);
+
+  const el = document.getElementById('tM'+key) || document.getElementById('tAaa'+key) || document.getElementById('tAa'+key);
+  if(el) el.classList.add('done');
+  document.getElementById('mCount').textContent = completedMissions.size;
+  await loadTransactions();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ADS
+   ══════════════════════════════════════════════════════════════════════════ */
+async function loadAds(){
+  const today = new Date().toISOString().split('T')[0];
+  const { data: ads } = await supabaseClient.from('ads').select('*').eq('is_active', true).order('created_at', {ascending:false});
+  const el = document.getElementById('adsList');
+  if(!ads?.length){
+    el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0;background:#fff;border-radius:14px;border:1px solid #e2eaf4">Aucune publicité disponible</div>';
+    return;
+  }
+  const { data: wt } = await supabaseClient.from('transactions').select('meta')
+    .eq('user_id', user.id).eq('type','ad').gte('created_at', today+'T00:00:00');
+  const wids = new Set((wt||[]).map(t => t.meta?.ad_id ? String(t.meta.ad_id) : null).filter(Boolean));
+  el.innerHTML = ads.map(ad => {
+    const done = wids.has(String(ad.id));
+    return `<div class="task ${done?'done':''}" id="ad-${ad.id}" onclick="watchAd(${ad.id},${ad.duration_seconds},${ad.reward})"><div class="task-ico" style="background:var(--b50)">${ad.icon||'📢'}</div><div class="task-body"><div class="task-title">${ad.title}</div><div class="task-desc">${ad.description||'Regarder '+ad.duration_seconds+'s'}</div></div><div class="task-rew">+${ad.reward} FCFA</div></div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BONUS QUOTIDIEN
+   ══════════════════════════════════════════════════════════════════════════ */
+async function claimBonus(){
+  if(!userData?.is_active){ toast('Compte non activé.'); return; }
+  const today = new Date().toISOString().split('T')[0];
+
+  const { data: existing } = await supabaseClient
+    .from('transactions').select('id')
+    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
+    .gte('created_at', today+'T00:00:00').maybeSingle();
+
+  if(existing){ toast('⏰ Bonus déjà récupéré aujourd\'hui !'); document.getElementById('tBonus').classList.add('done'); return; }
+
+  const gain = 20;
+  await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
+  await supabaseClient.from('transactions').insert({ user_id: user.id, type:'bonus', amount: gain, status:'success' });
+  bal += gain; updBal();
+  toast('+' + gain + ' FCFA 🎁 Bonus du jour récupéré !');
+  document.getElementById('tBonus').classList.add('done');
+  await loadTransactions();
+}
+
+async function checkBonusToday(){
+  const today = new Date().toISOString().split('T')[0];
+  const { data: existing } = await supabaseClient
+    .from('transactions').select('id')
+    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
+    .gte('created_at', today+'T00:00:00').maybeSingle();
+  if(existing){ const el = document.getElementById('tBonus'); if(el) el.classList.add('done'); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PUBS
+   ══════════════════════════════════════════════════════════════════════════ */
+function watchAd(adId, duration, gain){
+  if(!userData?.is_active){ toast('Compte non activé.'); return; }
+  const el = document.getElementById('ad-'+adId);
+  if(el?.classList.contains('done')){ toast('Déjà regardée aujourd\'hui'); return; }
+  toast(`Pub en cours… (${duration}s)`);
+  if(el){ el.style.opacity = '0.5'; el.style.pointerEvents = 'none'; }
+  setTimeout(async () => {
+    await supabaseClient.rpc('increment_balance', { uid: user.id, amount: gain });
+    await supabaseClient.from('transactions').insert({
+      user_id: user.id, type:'ad', amount: gain, status:'success', meta:{ ad_id: adId }
+    });
+    bal += gain; updBal(); toast(`+${gain} FCFA`);
+    if(el) el.classList.add('done');
+    document.getElementById('mCount').textContent = parseInt(document.getElementById('mCount').textContent) + 1;
+    await loadTransactions();
+  }, duration * 1000);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PARRAINAGE
+   ══════════════════════════════════════════════════════════════════════════ */
+function copyLink(){
+  if(!userData?.is_active){ toast('Activez votre compte avant de parrainer'); return; }
+  navigator.clipboard.writeText('https://cashmind.pages.dev/?ref=' + userData.ref_code)
+    .then(() => toast('Lien copié ! 🔗')).catch(() => toast('Copie échouée'));
+}
+
+async function loadAffilTree(){
+  const { data: n1 } = await supabaseClient.from('users')
+    .select('id,name,ref_code,is_active,created_at').eq('referred_by', user.id);
+
+  if(!n1?.length){
+    document.getElementById('affilTree').innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Pas encore de filleuls</div>';
+    ['afN1Count','afN2Count','afN1Gains','afN2Gains'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+
+  let html = '', n2Total = 0, gainsN1 = 0, gainsN2 = 0;
+  for(const u1 of n1){
+    const date = new Date(u1.created_at).toLocaleDateString('fr-FR');
+    const b1 = u1.is_active
+      ? `<span class="bdg bdg-g">+${BONUS_N1.toLocaleString('fr-FR')} FCFA</span>`
+      : '<span class="bdg bdg-a">En attente</span>';
+    if(u1.is_active) gainsN1 += BONUS_N1;
+    html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u1.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u1.is_active?'Actif':'En attente'} · ${date} · N1</div></div>${b1}</div>`;
+
+    const { data: n2 } = await supabaseClient.from('users')
+      .select('id,name,ref_code,is_active,created_at').eq('referred_by', u1.id);
+    if(n2?.length){
+      html += '<div class="tree-indent">';
+      for(const u2 of n2){
+        const d2 = new Date(u2.created_at).toLocaleDateString('fr-FR');
+        const b2 = u2.is_active
+          ? `<span class="bdg bdg-g">+${BONUS_N2.toLocaleString('fr-FR')} FCFA</span>`
+          : '<span class="bdg bdg-a">En attente</span>';
+        if(u2.is_active) gainsN2 += BONUS_N2;
+        html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u2.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u2.is_active?'Actif':'En attente'} · ${d2} · N2</div></div>${b2}</div>`;
+        n2Total++;
+      }
+      html += '</div>';
+    }
+  }
+
+  document.getElementById('affilTree').innerHTML = html;
+  document.getElementById('afN1Count').textContent = n1.length;
+  document.getElementById('afN2Count').textContent = n2Total;
+  document.getElementById('afN1Gains').textContent = gainsN1.toLocaleString('fr-FR');
+  document.getElementById('afN2Gains').textContent = gainsN2.toLocaleString('fr-FR');
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   INIT
+   ══════════════════════════════════════════════════════════════════════════ */
+async function checkUser(){
+  const { data } = await supabaseClient.auth.getUser();
+  if(data?.user){ user = data.user; await loadUser(); }
+}
+checkUser();
+</script>
