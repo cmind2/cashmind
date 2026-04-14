@@ -564,15 +564,13 @@ function toast(msg, dur = 3500){
    TELEGRAM (notification admin uniquement — pas de logique métier)
    ══════════════════════════════════════════════════════════════════════════ */
 async function sendTG(text){
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   try {
-    await fetch('/api/send-tg', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text })
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode:'HTML' })
     });
-  } catch(e){
-    console.warn('TG error:', e);
-  }
+  } catch(e){ console.warn('TG error:', e); }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
