@@ -9,25 +9,16 @@
 <body></body>
 </html>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     STYLES — THÈME VERT
-     ══════════════════════════════════════════════════════════════════════ -->
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Palette verte principale */
   --b50:  #E8F5E9; --b100: #C8E6C9; --b200: #A5D6A7;
   --b400: #4CAF50; --b600: #2E7D32; --b800: #1B5E20; --b900: #0A3D0A;
-  /* Succès (vert clair) */
   --g50:  #F1F8E9; --g600: #558B2F; --g800: #33691E;
-  /* Ambre */
   --am50: #FAEEDA; --am600: #854F0B;
-  /* Rouge */
   --r50:  #FCEBEB; --r600: #A32D2D;
-  /* Gris */
   --gr50: #F1EFE8; --gr200: #B4B2A9; --gr600: #5F5E5A;
-  /* Primaires */
   --primary: #43A047; --primary-dark: #2E7D32;
   --secondary: #81C784;
   --bg: #F1F8F1; --card: #ffffff;
@@ -42,14 +33,12 @@ body {
   align-items: flex-start;
 }
 
-/* ── Shell ── */
 #shell {
   width: 100%; max-width: 430px; min-height: 100vh;
   background: var(--bg); position: relative;
   overflow: hidden; display: flex; flex-direction: column;
 }
 
-/* ── Header ── */
 .site-header {
   background: var(--b900); padding: 11px 16px;
   display: flex; align-items: center; justify-content: center;
@@ -62,18 +51,15 @@ body {
 }
 .site-header-name span { font-size: 22px; }
 
-/* ── Copyright ── */
 .copyright {
   background: var(--b900); padding: 9px 0;
   text-align: center; font-size: 11px; color: var(--b200); flex-shrink: 0;
 }
 .copyright b { color: #fff; }
 
-/* ── Screens ── */
 .scr { display: none; flex-direction: column; flex: 1; }
 .scr.on { display: flex; }
 
-/* ── Auth Screen ── */
 #sAuth {
   background: var(--b900);
   align-items: center; justify-content: center; padding: 2rem;
@@ -126,7 +112,6 @@ body {
 
 .hint-text { color: var(--b200); font-size: 12px; text-align: center; margin-top: 1rem; }
 
-/* ── Activation Screen ── */
 #sActivate {
   background: var(--b900);
   align-items: center; justify-content: center; padding: 2rem;
@@ -152,7 +137,6 @@ body {
 }
 .act-info div:last-child { border-bottom: none; }
 
-/* ── Buttons ── */
 .btn-main {
   width: 100%; padding: 12px; background: var(--b600); color: #fff;
   border: none; border-radius: 12px; font-size: 15px; font-weight: 600;
@@ -167,7 +151,6 @@ body {
   cursor: pointer; font-size: 13px; color: var(--gr600);
 }
 
-/* ── Topbar ── */
 .topbar {
   background: var(--b800); padding: 14px 16px;
   display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
@@ -186,7 +169,6 @@ body {
   border-radius: 6px; padding: 4px 9px; cursor: pointer;
 }
 
-/* ── Balance Zone ── */
 .bal-zone { background: var(--b800); padding: 0 16px 16px; }
 .bal-card {
   background: var(--b600); border-radius: 16px;
@@ -219,7 +201,6 @@ body {
 .qa-btn:hover { background: rgba(255,255,255,0.25); }
 .qa-ico { font-size: 16px; }
 
-/* ── Content & Pages ── */
 .content {
   flex: 1; padding: 14px; overflow-y: auto; padding-bottom: 76px;
 }
@@ -230,7 +211,6 @@ body {
   text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 10px;
 }
 
-/* ── Stats ── */
 .stats {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 8px; margin-bottom: 14px;
@@ -242,7 +222,6 @@ body {
 .stat .lbl { font-size: 11px; color: var(--gr600); margin-bottom: 4px; }
 .stat .val { font-size: 22px; font-weight: 700; color: var(--b800); }
 
-/* ── Badges ── */
 .bdg {
   display: inline-block; font-size: 10px; padding: 2px 8px;
   border-radius: 20px; margin-top: 4px; font-weight: 500;
@@ -252,7 +231,6 @@ body {
 .bdg-a { background: var(--am50); color: var(--am600); }
 .bdg-r { background: var(--r50);  color: var(--r600);  }
 
-/* ── Cards & Rows ── */
 .card {
   background: #fff; border: 1px solid #c8e6c9;
   border-radius: 14px; padding: 0 14px; margin-bottom: 12px;
@@ -265,7 +243,6 @@ body {
 .row-sub  { font-size: 11px; color: var(--gr600); margin-top: 2px; }
 .row-val  { font-weight: 600; color: #111; }
 
-/* ── Tasks ── */
 .task {
   background: #fff; border: 1px solid #c8e6c9; border-radius: 14px;
   padding: 12px 14px; margin-bottom: 8px;
@@ -281,7 +258,6 @@ body {
 .pbar             { background: #e8f5e8; border-radius: 4px; height: 5px; margin-top: 6px; }
 .pfill            { background: var(--b400); border-radius: 4px; height: 5px; }
 
-/* ── Bottom Nav ── */
 .bnav {
   position: sticky; bottom: 0; background: #fff;
   border-top: 1px solid #c8e6c9; display: flex;
@@ -296,7 +272,6 @@ body {
 .ni-lbl           { font-size: 10px; color: var(--gr600); font-weight: 500; }
 .ni.on .ni-lbl    { color: var(--b600); }
 
-/* ── Modals / Overlays ── */
 .moverlay {
   display: none; position: absolute; inset: 0;
   background: rgba(10,61,10,0.55); z-index: 200; align-items: flex-end;
@@ -314,7 +289,6 @@ body {
 .step     { display: none; }
 .step.on  { display: block; }
 
-/* ── Info / Success boxes ── */
 .info-box { background: #f8fcf8; border-radius: 12px; padding: 12px; margin-bottom: 14px; }
 .i-row {
   display: flex; justify-content: space-between;
@@ -329,7 +303,6 @@ body {
   font-size: 26px; margin: 0 auto 12px;
 }
 
-/* ── Frais box ── */
 .frais-box {
   background: var(--am50); border: 1px solid #f5d598;
   border-radius: 12px; padding: 11px 13px; margin-bottom: 12px;
@@ -340,7 +313,6 @@ body {
 .frais-net-lbl { color: var(--g800); font-weight: 700; font-size: 14px; }
 .frais-net-val { font-weight: 700; color: var(--g800); font-size: 15px; }
 
-/* ── USSD box ── */
 .ussd-box {
   background: var(--b900); border-radius: 14px; padding: 16px; margin-bottom: 16px;
 }
@@ -358,7 +330,6 @@ body {
 .ussd-timer      { font-size: 42px; font-weight: 900; color: #AAFF55; letter-spacing: -2px; }
 .ussd-timer-lbl  { font-size: 11px; color: var(--b200); margin-top: 4px; }
 
-/* ── Badges spéciaux ── */
 .mtn-badge {
   background: #FFCC00; color: #000; border-radius: 10px;
   padding: 10px 16px; font-size: 15px; font-weight: 700;
@@ -371,7 +342,6 @@ body {
   font-size: 12px; color: var(--b800); font-weight: 600;
 }
 
-/* ── NB Dépôt ── */
 .nb-depot {
   background: linear-gradient(135deg,#FFF3CD,#FFE08A);
   border: 2px solid #F5A623; border-radius: 12px; padding: 11px 14px;
@@ -386,7 +356,6 @@ body {
   font-size: 14px; display: inline-block;
 }
 
-/* ── Bannière boutique non-activé ── */
 .shop-notice {
   background: linear-gradient(135deg, var(--b50), #E8F5E9);
   border: 1px solid var(--b200); border-radius: 14px;
@@ -397,7 +366,6 @@ body {
 .shop-notice .sn-ico { font-size: 22px; flex-shrink: 0; }
 .shop-notice strong { display: block; font-size: 14px; margin-bottom: 3px; }
 
-/* ── Arbre parrainage ── */
 .tree-node {
   background: var(--b50); border: 1px solid #a5d6a7; border-radius: 12px;
   padding: 10px 13px; margin-bottom: 6px;
@@ -408,7 +376,6 @@ body {
   padding-left: 12px; margin-bottom: 6px;
 }
 
-/* ── Toast ── */
 #toast {
   position: fixed; bottom: 88px; left: 50%; transform: translateX(-50%);
   background: var(--b900); color: #fff; padding: 10px 22px;
@@ -417,24 +384,126 @@ body {
   pointer-events: none; max-width: 90vw; text-align: center;
 }
 
-/* ── Error box ── */
 .err-box {
   background: var(--r50); border: 1px solid #f5c6c6; border-radius: 12px;
   padding: 14px; margin-bottom: 14px; font-size: 13px;
   color: var(--r600); text-align: center; line-height: 1.6;
 }
 .err-box strong { display: block; font-size: 15px; margin-bottom: 4px; }
+
+/* ══ MODAL BIENVENUE ══ */
+.welcome-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,61,10,0.7); z-index: 1000;
+  align-items: center; justify-content: center; padding: 16px;
+}
+.welcome-overlay.on { display: flex; }
+.welcome-box {
+  background: #fff; border-radius: 22px; padding: 0;
+  width: 100%; max-width: 390px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.welcome-header {
+  background: var(--b900); padding: 24px 20px 20px;
+  text-align: center;
+}
+.welcome-logo {
+  width: 60px; height: 60px; background: var(--b400); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin: 0 auto 12px;
+}
+.welcome-header h2 { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: 1px; }
+.welcome-header p  { color: var(--b200); font-size: 12px; margin-top: 4px; }
+.welcome-body { padding: 20px; }
+.welcome-section {
+  background: var(--b50); border: 1px solid #c8e6c9; border-radius: 14px;
+  padding: 14px; margin-bottom: 12px;
+}
+.welcome-section h3 {
+  font-size: 13px; font-weight: 700; color: var(--b800);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.welcome-feature {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 7px 0; border-bottom: 1px solid #d4edda; font-size: 12px; color: #333;
+}
+.welcome-feature:last-child { border-bottom: none; padding-bottom: 0; }
+.welcome-feature .wf-ico { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.welcome-feature strong { display: block; font-weight: 600; color: var(--b800); margin-bottom: 1px; }
+.welcome-feature span { color: var(--gr600); line-height: 1.4; }
+.welcome-badge {
+  background: var(--b600); color: #fff; border-radius: 20px;
+  padding: 3px 10px; font-size: 11px; font-weight: 700;
+}
+.welcome-footer { padding: 0 20px 20px; }
+.welcome-footer .btn-main { font-size: 15px; padding: 14px; border-radius: 14px; }
+.welcome-footer .btn-main:hover { background: var(--b900); }
+
+/* ══ PARRAINAGE masqué ══ */
+.affil-locked {
+  background: linear-gradient(135deg, #f8fcf8, #e8f5e9);
+  border: 2px dashed #a5d6a7; border-radius: 14px;
+  padding: 28px 20px; text-align: center; margin-bottom: 16px;
+}
+.affil-locked .lock-ico { font-size: 40px; margin-bottom: 12px; }
+.affil-locked h3 { font-size: 16px; font-weight: 700; color: var(--b800); margin-bottom: 8px; }
+.affil-locked p { font-size: 13px; color: var(--gr600); line-height: 1.6; margin-bottom: 14px; }
 </style>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     HTML
-     ══════════════════════════════════════════════════════════════════════ -->
 <div id="shell">
 
-  <!-- ── En-tête ── -->
   <div class="site-header">
     <div class="site-header-name"><span>💸</span> MIND CASH</div>
   </div>
+
+<!-- ══ MODAL BIENVENUE ══ -->
+<div class="welcome-overlay" id="modWelcome">
+  <div class="welcome-box">
+    <div class="welcome-header">
+      <div class="welcome-logo">💸</div>
+      <h2>MIND CASH</h2>
+      <p>Bienvenue sur votre plateforme de gains</p>
+    </div>
+    <div class="welcome-footer" style="padding:16px 20px 12px">
+      <button class="btn-main" onclick="fermerWelcome()">✅ Commencer maintenant</button>
+    </div>
+    <div class="welcome-body" style="padding:0 20px 20px">
+
+      <div class="welcome-section">
+        <h3>🚀 Mind Cash en bref</h3>
+        <div class="welcome-feature">
+          <span class="wf-ico">💰</span>
+          <div><strong>Tâches & publicités</strong><span>Gagnez des FCFA chaque jour en quelques clics.</span></div>
+        </div>
+        <div class="welcome-feature">
+          <span class="wf-ico">👥</span>
+          <div><strong>Parrainage 2 niveaux</strong><span><b>2 050 FCFA</b> par filleul direct · <b>750 FCFA</b> indirect.</span></div>
+        </div>
+        <div class="welcome-feature">
+          <span class="wf-ico">💳</span>
+          <div><strong>Retrait MTN MoMo</strong><span>Minimum <b>4 450 FCFA</b> · Activation dès <b>5 000 FCFA</b>.</span></div>
+        </div>
+      </div>
+
+      <!-- SECTION WHATSAPP -->
+      <div class="welcome-section" style="background:#E8F5E9;border-color:#A5D6A7">
+        <h3 style="color:#1B5E20">💬 Communauté officielle</h3>
+        <div class="welcome-feature">
+          <span class="wf-ico">🟢</span>
+          <div><strong style="color:#2E7D32">Groupe WhatsApp</strong><span>Annonces, astuces et support en temps réel.</span></div>
+        </div>
+        <a href="https://chat.whatsapp.com/DXh5m7VNUAIE1DOOgt1sHo?mode=gi_t" target="_blank"
+           style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;
+                  background:#25D366;color:#fff;border-radius:12px;padding:10px;font-size:14px;
+                  font-weight:700;text-decoration:none">
+          <span style="font-size:17px">💬</span> Rejoindre le groupe WhatsApp
+        </a>
+      </div>
+
+      <button class="btn-sec" onclick="fermerWelcome()" style="border-color:var(--b400);color:var(--b600)">✖ Fermer</button>
+    </div>
+  </div>
+</div>
 
   <!-- ÉCRAN AUTH -->
   <div id="sAuth" class="scr on">
@@ -448,13 +517,11 @@ body {
         <button class="tab on" onclick="swTab('login')">Connexion</button>
         <button class="tab"    onclick="swTab('reg')">Inscription</button>
       </div>
-      <!-- Connexion -->
       <div class="frm on" id="fLogin">
         <div class="fld"><label>Téléphone</label><input type="text" placeholder="0XXXXXXXXX" id="lPhone"></div>
         <div class="fld"><label>Mot de passe</label><input type="password" placeholder="••••••••" id="lPass"></div>
         <button class="btn-main" onclick="doLogin()">Se connecter</button>
       </div>
-      <!-- Inscription -->
       <div class="frm" id="fReg">
         <div class="fld"><label>Nom complet</label><input type="text" placeholder="Jean Dupont" id="rName"></div>
         <div class="fld"><label>Téléphone</label><input type="tel" placeholder="0XXXXXXXXX" id="rPhone"></div>
@@ -491,18 +558,14 @@ body {
         <div><span>Activation</span><strong>Après validation admin</strong></div>
       </div>
       <button class="btn-main" onclick="ouvrirDepotActivation()">💳 Faire le dépôt d'activation</button>
-      <!-- ✅ Bouton Boutique accessible même sans activation -->
       <button class="btn-sec" style="border-color:var(--b400);color:var(--b600);font-weight:600;margin-top:8px" onclick="ouvrirBoutiquePublique()">🛒 Accéder à la boutique</button>
       <button class="btn-sec"  onclick="doLogout()">Se déconnecter</button>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════════════════════════════════
-       ÉCRAN PRINCIPAL
-       ════════════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════ ÉCRAN PRINCIPAL ══════════════ -->
   <div id="sMain" class="scr">
 
-    <!-- Topbar -->
     <div class="topbar">
       <div class="topbar-info">
         <h2>Bonjour, <span id="uName">—</span> 👋</h2>
@@ -514,7 +577,6 @@ body {
       </div>
     </div>
 
-    <!-- Solde -->
     <div class="bal-zone">
       <div class="bal-card">
         <div class="bal-lbl">Solde disponible</div>
@@ -538,11 +600,11 @@ body {
           <button class="qa-btn" id="btnDepotMain" onclick="ouvrirDepotActivation()"><span class="qa-ico">📥</span> Dépôt</button>
           <button class="qa-btn" onclick="ouvrirRetrait()"><span class="qa-ico">💳</span> Retrait</button>
           <button class="qa-btn" onclick="openShopDeposit()"><span class="qa-ico">🛒</span> Recharger boutique</button>
+          <button class="qa-btn" onclick="openShopWithdraw()"><span class="qa-ico">💸</span> Retrait boutique</button>
         </div>
       </div>
     </div>
 
-    <!-- Contenu des pages -->
     <div class="content">
 
       <!-- Page Accueil -->
@@ -606,18 +668,27 @@ body {
         <div id="adminTasks"></div>
       </div>
 
-      <!-- ════════════════════════════════════════════════════════════════
-           Page Boutique — ACCESSIBLE À TOUS
-           ════════════════════════════════════════════════════════════════ -->
+      <!-- ══ Page Boutique — ACCESSIBLE À TOUS ══ -->
       <div class="pg" id="pgShop">
         <div class="sec-title">🛒 Boutique</div>
 
-        <!-- Bannière d'info pour comptes non-activés -->
         <div class="shop-notice" id="shopNoticeInactive" style="display:none">
           <span class="sn-ico">ℹ️</span>
           <div>
             <strong>Compte non activé</strong>
-            Vous pouvez voir les produits, mais l'achat requiert un compte actif (dépôt de 5 000 FCFA).
+            Vous pouvez acheter et vendre des produits en rechargeant votre solde boutique (min. 500 FCFA).
+          </div>
+        </div>
+
+        <!-- Solde boutique affiché dans la shop -->
+        <div id="shopBalCard" style="background:var(--b600);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="color:var(--b100);font-size:11px;margin-bottom:2px">Solde boutique</div>
+            <div style="color:#fff;font-size:22px;font-weight:700" id="shopBalDisplay">0 FCFA</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button onclick="openShopDeposit()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer">📥 Recharger</button>
+            <button onclick="openShopWithdraw()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer">💸 Retirer</button>
           </div>
         </div>
 
@@ -628,38 +699,50 @@ body {
 
       <!-- Page Parrainage -->
       <div class="pg" id="pgAffil">
-        <div class="sec-title">Mon lien de parrainage</div>
-        <div onclick="copyLink()" style="background:var(--b50);border:1px solid #a5d6a7;border-radius:12px;padding:13px;font-size:13px;color:var(--b800);word-break:break-all;margin-bottom:12px;cursor:pointer">
-          https://cashmind.pages.dev/?ref=<span id="refCode">—</span>
-          <div style="font-size:11px;margin-top:4px;color:var(--b600);font-weight:600">👆 Appuyer pour copier</div>
+
+        <!-- Zone verrouillée pour les non-activés -->
+        <div class="affil-locked" id="affilLocked" style="display:none">
+          <div class="lock-ico">🔒</div>
+          <h3>Parrainage verrouillé</h3>
+          <p>Le parrainage est réservé aux comptes activés. Effectuez un dépôt de <strong>5 000 FCFA</strong> pour débloquer cette fonctionnalité et commencer à gagner des commissions.</p>
+          <button class="btn-main" style="max-width:220px;margin:0 auto" onclick="ouvrirDepotActivation()">🔓 Activer mon compte</button>
         </div>
-        <div style="background:#fff;border:1px solid #c8e6c9;border-radius:14px;padding:12px 14px;margin-bottom:14px">
-          <div style="font-size:13px;font-weight:600;color:var(--b800);margin-bottom:10px">Structure de rémunération</div>
-          <div style="display:flex;gap:8px;margin-bottom:8px">
-            <div style="flex:1;background:var(--b50);border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:var(--b600);font-weight:600">NIVEAU 1</div>
-              <div style="font-size:20px;font-weight:700;color:var(--b800);margin:4px 0">2 050 FCFA</div>
-              <div style="font-size:11px;color:var(--b600)">Par filleul direct</div>
+
+        <!-- Zone parrainage active -->
+        <div id="affilContent">
+          <div class="sec-title">Mon lien de parrainage</div>
+          <div onclick="copyLink()" style="background:var(--b50);border:1px solid #a5d6a7;border-radius:12px;padding:13px;font-size:13px;color:var(--b800);word-break:break-all;margin-bottom:12px;cursor:pointer">
+            https://cashmind.pages.dev/?ref=<span id="refCode">—</span>
+            <div style="font-size:11px;margin-top:4px;color:var(--b600);font-weight:600">👆 Appuyer pour copier</div>
+          </div>
+          <div style="background:#fff;border:1px solid #c8e6c9;border-radius:14px;padding:12px 14px;margin-bottom:14px">
+            <div style="font-size:13px;font-weight:600;color:var(--b800);margin-bottom:10px">Structure de rémunération</div>
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <div style="flex:1;background:var(--b50);border-radius:10px;padding:10px;text-align:center">
+                <div style="font-size:11px;color:var(--b600);font-weight:600">NIVEAU 1</div>
+                <div style="font-size:20px;font-weight:700;color:var(--b800);margin:4px 0">2 050 FCFA</div>
+                <div style="font-size:11px;color:var(--b600)">Par filleul direct</div>
+              </div>
+              <div style="flex:1;background:var(--am50);border-radius:10px;padding:10px;text-align:center">
+                <div style="font-size:11px;color:var(--am600);font-weight:600">NIVEAU 2</div>
+                <div style="font-size:20px;font-weight:700;color:var(--am600);margin:4px 0">750 FCFA</div>
+                <div style="font-size:11px;color:var(--am600)">Par filleul indirect</div>
+              </div>
             </div>
-            <div style="flex:1;background:var(--am50);border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:11px;color:var(--am600);font-weight:600">NIVEAU 2</div>
-              <div style="font-size:20px;font-weight:700;color:var(--am600);margin:4px 0">750 FCFA</div>
-              <div style="font-size:11px;color:var(--am600)">Par filleul indirect</div>
+            <div style="font-size:12px;color:var(--gr600);background:#f8fcf8;border-radius:8px;padding:8px">
+              Les gains sont crédités automatiquement quand votre filleul active son compte.
             </div>
           </div>
-          <div style="font-size:12px;color:var(--gr600);background:#f8fcf8;border-radius:8px;padding:8px">
-            Les gains sont crédités automatiquement quand votre filleul active son compte.
+          <div class="stats" style="margin-bottom:14px">
+            <div class="stat"><div class="lbl">Filleuls N1</div><div class="val" id="afN1Count">0</div><span class="bdg bdg-b">directs</span></div>
+            <div class="stat"><div class="lbl">Filleuls N2</div><div class="val" id="afN2Count">0</div><span class="bdg bdg-a">indirects</span></div>
+            <div class="stat"><div class="lbl">Gains N1</div><div class="val" id="afN1Gains">0</div><span class="bdg bdg-g">FCFA</span></div>
+            <div class="stat"><div class="lbl">Gains N2</div><div class="val" id="afN2Gains">0</div><span class="bdg bdg-a">FCFA</span></div>
           </div>
-        </div>
-        <div class="stats" style="margin-bottom:14px">
-          <div class="stat"><div class="lbl">Filleuls N1</div><div class="val" id="afN1Count">0</div><span class="bdg bdg-b">directs</span></div>
-          <div class="stat"><div class="lbl">Filleuls N2</div><div class="val" id="afN2Count">0</div><span class="bdg bdg-a">indirects</span></div>
-          <div class="stat"><div class="lbl">Gains N1</div><div class="val" id="afN1Gains">0</div><span class="bdg bdg-g">FCFA</span></div>
-          <div class="stat"><div class="lbl">Gains N2</div><div class="val" id="afN2Gains">0</div><span class="bdg bdg-a">FCFA</span></div>
-        </div>
-        <div class="sec-title">Réseau de parrainage</div>
-        <div id="affilTree">
-          <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
+          <div class="sec-title">Réseau de parrainage</div>
+          <div id="affilTree">
+            <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
+          </div>
         </div>
       </div>
 
@@ -681,9 +764,8 @@ body {
         <button class="btn-main danger" style="margin-top:12px" onclick="doLogout()">Se déconnecter</button>
       </div>
 
-    </div><!-- /content -->
+    </div>
 
-    <!-- Bottom Nav -->
     <div class="bnav">
       <button class="ni on" id="ni-home"   onclick="showPg('Home')">  <span class="ni-ico">🏠</span><span class="ni-lbl">Accueil</span></button>
       <button class="ni"    id="ni-taches" onclick="showPg('Taches')"><span class="ni-ico">✅</span><span class="ni-lbl">Tâches</span></button>
@@ -692,7 +774,7 @@ body {
       <button class="ni"    id="ni-profil" onclick="showPg('Profil')"><span class="ni-ico">👤</span><span class="ni-lbl">Profil</span></button>
     </div>
 
-  </div><!-- /sMain -->
+  </div>
 
   <!-- MODAL DÉPÔT D'ACTIVATION -->
   <div class="moverlay" id="modActivate">
@@ -806,28 +888,115 @@ body {
     </div>
   </div>
 
-  <!-- MODAL DÉPÔT BOUTIQUE -->
+  <!-- ══ MODAL DÉPÔT BOUTIQUE (identique au dépôt principal, min 500 FCFA) ══ -->
   <div class="moverlay" id="modShopDeposit">
     <div class="mbox">
       <div class="mhandle"></div>
       <div class="mtitle">🛒 Recharge boutique</div>
-      <div class="fld"><label>Numéro MTN</label><input type="tel" placeholder="0XXXXXXXXX" id="sdNum"></div>
-      <div class="fld"><label>Montant (FCFA)</label><input type="number" placeholder="2500" id="sdMt"></div>
-      <button class="btn-main" onclick="createShopDeposit()">Valider</button>
-      <button class="btn-sec"  onclick="document.getElementById('modShopDeposit').classList.remove('on')">Annuler</button>
+      <div class="step on" id="sdS1">
+        <div style="text-align:center;margin-bottom:14px">
+          <div class="mtn-badge">🟡 MTN MoMo</div>
+          <p style="font-size:13px;color:var(--gr600)">Seul MTN Mobile Money est accepté.</p>
+        </div>
+        <div class="nb-depot">
+          <span class="nb-icon">⚠️</span>
+          <div>
+            <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#7A4F00">NB —</span>
+            Le nom MTN MoMo qui doit apparaître lors du paiement est :
+            <span class="nb-name">CECILE CELINE</span>
+          </div>
+        </div>
+        <div style="background:var(--am50);border-radius:10px;padding:10px 13px;margin-bottom:14px;font-size:13px;color:var(--am600)">
+          Montant minimum : <strong>500 FCFA</strong>
+        </div>
+        <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="sdNum"></div>
+        <div class="fld"><label>Montant (FCFA)</label><input type="number" placeholder="500" min="500" id="sdMt"></div>
+        <button class="btn-main" id="sdBtnCreer" onclick="sdCreerDepot()">Créer le dépôt</button>
+        <button class="btn-sec" onclick="fermerShopDeposit()">Annuler</button>
+      </div>
+      <div class="step" id="sdS2">
+        <div style="text-align:center;margin-bottom:12px">
+          <div style="font-size:15px;font-weight:700;color:var(--b800)">⏳ Dépôt en cours de création</div>
+          <div style="font-size:12px;color:var(--gr600);margin-top:4px">Suivez les étapes ci-dessous sur votre téléphone</div>
+        </div>
+        <div class="nb-depot" style="margin-bottom:12px">
+          <span class="nb-icon">⚠️</span>
+          <div>Le nom MTN MoMo qui doit apparaître est : <span class="nb-name">CECILE CELINE</span></div>
+        </div>
+        <div class="ussd-box">
+          <div class="ussd-title">📱 Comment payer avec MTN MoMo</div>
+          <div class="ussd-steps">
+            1. Composez <span class="ussd-code">*105#</span> sur votre téléphone<br>
+            2. Choisissez l'option <span class="ussd-code">6</span><br>
+            3. Entrez le code : <span class="ussd-code">168694</span><br>
+            4. Entrez le montant : <span class="ussd-code" id="sdUssdMt">500</span><br>
+            5. Raison : <span class="ussd-code">recharge boutique</span><br>
+            6. Confirmez avec votre code secret MTN
+          </div>
+          <div class="ussd-timer-wrap">
+            <div class="ussd-timer" id="sdTimerDisplay">2:00</div>
+            <div class="ussd-timer-lbl">Temps restant avant confirmation</div>
+          </div>
+        </div>
+        <button class="btn-main" id="sdBtnConfirm" disabled onclick="sdConfirmerPaiement()">
+          🔒 Attendez la fin du compte à rebours…
+        </button>
+        <button class="btn-sec" onclick="fermerShopDeposit()">Annuler</button>
+      </div>
+      <div class="step" id="sdS3">
+        <div class="suc-ico">⏳</div>
+        <p style="text-align:center;font-weight:700;font-size:16px;color:var(--b800);margin-bottom:6px">Recharge soumise !</p>
+        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">L'administrateur va valider et créditer votre solde boutique sous peu.</p>
+        <div class="info-box">
+          <div class="i-row"><span class="i-lbl">Opérateur</span><span class="i-val">MTN MoMo</span></div>
+          <div class="i-row"><span class="i-lbl">Numéro</span><span class="i-val" id="sdNumConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Montant</span><span class="i-val" id="sdMtConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Statut</span><span class="i-val"><span class="bdg bdg-a">En attente de validation</span></span></div>
+        </div>
+        <button class="btn-main" onclick="fermerShopDeposit()">Fermer</button>
+      </div>
     </div>
   </div>
 
-  <!-- MODAL RETRAIT BOUTIQUE -->
+  <!-- ══ MODAL RETRAIT BOUTIQUE (identique au retrait principal, min 2500 FCFA) ══ -->
   <div class="moverlay" id="modShopWithdraw">
     <div class="mbox">
       <div class="mhandle"></div>
       <div class="mtitle">💸 Retrait boutique</div>
-      <div class="fld"><label>Numéro MTN</label><input type="tel" placeholder="0XXXXXXXXX" id="swNum"></div>
-      <div class="fld"><label>Montant (FCFA)</label><input type="number" placeholder="2500" id="swMt" oninput="calcShopFees()"></div>
-      <div id="swFeesBox" style="display:none;background:var(--am50);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--am600)"></div>
-      <button class="btn-main" onclick="doShopWithdraw()">Retirer</button>
-      <button class="btn-sec"  onclick="document.getElementById('modShopWithdraw').classList.remove('on')">Annuler</button>
+      <div class="step on" id="swS1">
+        <div style="text-align:center;margin-bottom:14px">
+          <div class="mtn-badge">🟡 MTN MoMo</div>
+          <p style="font-size:12px;color:var(--gr600)">Retraits du <b>lundi au vendredi, 7h–17h</b></p>
+        </div>
+        <div style="background:var(--b50);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--b800)">
+          Solde boutique : <strong id="shopSoldeDispo">0 FCFA</strong> &nbsp;·&nbsp; Minimum : <strong>2 500 FCFA</strong>
+        </div>
+        <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="swNum"></div>
+        <div class="fld"><label>Montant à retirer (FCFA)</label><input type="number" placeholder="2500" id="swMt" oninput="updateShopFrais()"></div>
+        <div class="frais-box" id="shopFraisBox" style="display:none">
+          <div class="frais-row"><span class="frais-lbl">Montant demandé</span><span class="frais-val" id="shopFraisMtBrut">—</span></div>
+          <div class="frais-row"><span class="frais-lbl">Frais (5%)</span><span class="frais-val" id="shopFraisMontant">—</span></div>
+          <div class="frais-row" style="border-top:1px solid #f5d598;margin-top:4px;padding-top:6px">
+            <span class="frais-net-lbl">Vous recevrez</span><span class="frais-net-val" id="shopFraisNet">—</span>
+          </div>
+        </div>
+        <button class="btn-main" onclick="doShopWithdraw()">Demander le retrait</button>
+        <button class="btn-sec" onclick="fermerShopWithdraw()">Annuler</button>
+      </div>
+      <div class="step" id="swS2">
+        <div class="suc-ico">⏳</div>
+        <p style="text-align:center;font-weight:700;font-size:16px;color:var(--b800);margin-bottom:6px">Retrait soumis !</p>
+        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">Traitement dans les 24h ouvrables.</p>
+        <div class="info-box">
+          <div class="i-row"><span class="i-lbl">Opérateur</span><span class="i-val">MTN MoMo</span></div>
+          <div class="i-row"><span class="i-lbl">Numéro</span><span class="i-val" id="swNumConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Montant</span><span class="i-val" id="swMtConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Frais</span><span class="i-val" id="swFraisConf" style="color:var(--am600)">—</span></div>
+          <div class="i-row"><span class="i-lbl" style="color:var(--g800);font-weight:700">Vous recevrez</span><span class="i-val" style="color:var(--g800)" id="swNetConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Statut</span><span class="i-val"><span class="bdg bdg-a">En attente</span></span></div>
+        </div>
+        <button class="btn-main" onclick="fermerShopWithdraw()">Fermer</button>
+      </div>
     </div>
   </div>
 
@@ -845,19 +1014,12 @@ body {
     </div>
   </div>
 
-  <!-- ── Footer ── -->
   <div class="copyright">© <b>CBO Company</b> — Tous droits réservés</div>
   <div id="toast"></div>
 
-</div><!-- /shell -->
+</div>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     JAVASCRIPT
-     ══════════════════════════════════════════════════════════════════════ -->
 <script>
-/* ──────────────────────────────────────────────────────────────────────────
-   CONFIG
-   ────────────────────────────────────────────────────────────────────────── */
 const _ENV = window.__ENV__ || {};
 const SUPABASE_URL       = _ENV.SUPABASE_URL       || '';
 const SUPABASE_KEY       = _ENV.SUPABASE_KEY       || '';
@@ -866,11 +1028,12 @@ const TELEGRAM_CHAT_ID   = _ENV.TELEGRAM_CHAT_ID   || '';
 
 if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables manquantes.');
 
-/* ── Constantes ── */
 const DEPOT_MIN       = 5000;
 const RETRAIT_MIN     = 4450;
+const SHOP_DEPOT_MIN  = 500;
+const SHOP_RETRAIT_MIN= 2500;
 const FRAIS_PERCENT   = 5;
-const TIMER_SEC       = 30;
+const TIMER_SEC       = 120;
 const BONUS_N1        = 2050;
 const BONUS_N2        = 750;
 const DEPOT_H_DEBUT   = 6;
@@ -879,24 +1042,18 @@ const RETRAIT_H_DEBUT = 7;
 const RETRAIT_H_FIN   = 17;
 const RETRAIT_JOURS   = [1,2,3,4,5];
 const JOURS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-const SHOP_MIN = 2500;
-const SHOP_FEE = 3;
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let user = null, userData = null, bal = 0;
 let completedMissions = new Set();
-let aTimerIv = null;
+let aTimerIv = null, sdTimerIv = null;
 let pendingDepotNum = '', pendingDepotMt = 0;
+let pendingShopNum = '', pendingShopMt = 0;
+let products = [], currentPage = 1;
+const perPage = 6;
 
-/* ── Boutique ── */
-let products    = [];
-let currentPage = 1;
-const perPage   = 6;
-
-/* ──────────────────────────────────────────────────────────────────────────
-   TOAST
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Toast ── */
 let toastIv = null;
 function toast(msg, dur = 3500) {
   const t = document.getElementById('toast');
@@ -905,9 +1062,7 @@ function toast(msg, dur = 3500) {
   toastIv = setTimeout(() => t.style.display = 'none', dur);
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   TELEGRAM
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Telegram ── */
 async function sendTG(text) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   try {
@@ -918,9 +1073,7 @@ async function sendTG(text) {
   } catch(e) { console.warn('TG error:', e); }
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   HORAIRES
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Horaires ── */
 function depotOuvert() {
   const h = new Date().getHours();
   return h >= DEPOT_H_DEBUT && h < DEPOT_H_FIN;
@@ -930,9 +1083,15 @@ function retraitOuvert() {
   return RETRAIT_JOURS.includes(j) && h >= RETRAIT_H_DEBUT && h < RETRAIT_H_FIN;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   AUTH
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Modal Bienvenue ── */
+function afficherWelcome() {
+  document.getElementById('modWelcome').classList.add('on');
+}
+function fermerWelcome() {
+  document.getElementById('modWelcome').classList.remove('on');
+}
+
+/* ── AUTH ── */
 function swTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   document.querySelectorAll('.frm').forEach(f => f.classList.remove('on'));
@@ -963,7 +1122,6 @@ function checkPassMatch() {
   }
 }
 
-/* Pré-remplir code parrain depuis l'URL */
 const _ref = new URLSearchParams(window.location.search).get('ref');
 if (_ref) {
   const r = document.getElementById('rRef');
@@ -1008,23 +1166,24 @@ async function doLogout() {
   ['sMain', 'sActivate'].forEach(id => document.getElementById(id).classList.remove('on'));
   document.getElementById('sAuth').classList.add('on');
   document.getElementById('modActivate').classList.remove('on');
+  document.getElementById('modWelcome').classList.remove('on');
   resetModActivate();
   user = null; userData = null; bal = 0; completedMissions = new Set();
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   LOAD USER
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Load User ── */
 async function loadUser() {
   const { data, error } = await sb.from('users').select('*').eq('id', user.id).single();
   if (error || !data) { toast('Erreur chargement profil'); return; }
   userData = data; bal = data.balance || 0;
   document.getElementById('sAuth').classList.remove('on');
 
+  /* Afficher la modale de bienvenue à chaque connexion */
+  afficherWelcome();
+
   if (!data.is_active) {
     document.getElementById('sMain').classList.remove('on');
     document.getElementById('sActivate').classList.add('on');
-    /* ✅ Charger les produits même pour les non-activés */
     await loadProducts();
     return;
   }
@@ -1042,35 +1201,28 @@ async function loadUser() {
   await checkBonusToday();
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   BOUTIQUE PUBLIQUE (depuis écran activation)
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Boutique publique depuis écran activation ── */
 function ouvrirBoutiquePublique() {
-  /* Passer vers l'écran sMain en mode "boutique seule" */
   document.getElementById('sActivate').classList.remove('on');
   document.getElementById('sMain').classList.add('on');
-
-  /* Masquer la topbar de solde pour les non-activés */
   if (userData && !userData.is_active) {
     const btnD = document.getElementById('btnDepotMain');
     if (btnD) btnD.style.display = 'none';
     setUserUI(userData.name, userData.phone, userData.ref_code, userData.is_active);
   }
-
-  /* Afficher la page Boutique directement */
   showPg('Shop');
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   UI HELPERS
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── UI Helpers ── */
 function updBal() {
   document.getElementById('balAmt').innerHTML =
     bal.toLocaleString('fr-FR') + ' <span style="font-size:17px;font-weight:400">FCFA</span>';
   const p = document.getElementById('profBal');    if (p) p.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
   const s = document.getElementById('soldeDispo'); if (s) s.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
   const sbal = userData?.shop_balance || 0;
-  const sb2  = document.getElementById('shopBal'); if (sb2) sb2.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const sb2  = document.getElementById('shopBal');        if (sb2) sb2.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const sb3  = document.getElementById('shopBalDisplay'); if (sb3) sb3.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const sb4  = document.getElementById('shopSoldeDispo'); if (sb4) sb4.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
 }
 
 function setUserUI(name, phone, refCode, isActive) {
@@ -1099,16 +1251,21 @@ function showPg(id) {
   const niEl = document.getElementById('ni-' + id.toLowerCase());
   if (niEl) niEl.classList.add('on');
 
-  /* Afficher/masquer la bannière boutique selon statut */
   if (id === 'Shop') {
     const notice = document.getElementById('shopNoticeInactive');
     if (notice) notice.style.display = (userData && !userData.is_active) ? 'flex' : 'none';
   }
+
+  if (id === 'Affil') {
+    const locked  = document.getElementById('affilLocked');
+    const content = document.getElementById('affilContent');
+    const isActive = userData?.is_active || false;
+    if (locked)  locked.style.display  = isActive ? 'none' : 'block';
+    if (content) content.style.display = isActive ? 'block' : 'none';
+  }
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   DÉPÔT D'ACTIVATION
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Dépôt Activation ── */
 function ouvrirDepotActivation() {
   if (userData && userData.is_active) { toast('✅ Votre compte est déjà actif.'); return; }
   if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`); return; }
@@ -1123,6 +1280,8 @@ function resetModActivate() {
   const s1 = document.getElementById('aS1'); if (s1) s1.classList.add('on');
   if (aTimerIv) { clearInterval(aTimerIv); aTimerIv = null; }
   pendingDepotNum = ''; pendingDepotMt = 0;
+  const btn = document.getElementById('aBtnCreer');
+  if (btn) { btn.disabled = false; btn.textContent = 'Créer le dépôt'; }
 }
 
 async function aCreerDepot() {
@@ -1183,10 +1342,9 @@ function lancerTimer(displayId, btnId, seconds) {
   return iv;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   RETRAIT
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Retrait Principal ── */
 function ouvrirRetrait() {
+  if (!userData?.is_active) { toast('🔒 Activez votre compte pour retirer'); return; }
   if (!retraitOuvert()) {
     const j = JOURS_FR[new Date().getDay()];
     toast(`⏰ Retraits fermés ! Lun–Ven ${RETRAIT_H_DEBUT}h–${RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
@@ -1239,9 +1397,124 @@ async function doRetrait() {
   await Promise.all([loadTransactions(), loadStats(), loadDepotBalance()]);
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   BOUTIQUE
-   ────────────────────────────────────────────────────────────────────────── */
+/* ══ DÉPÔT BOUTIQUE ══ */
+function openShopDeposit() {
+  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`); return; }
+  resetShopDeposit();
+  document.getElementById('modShopDeposit').classList.add('on');
+}
+function fermerShopDeposit() {
+  document.getElementById('modShopDeposit').classList.remove('on');
+  resetShopDeposit();
+}
+function resetShopDeposit() {
+  document.querySelectorAll('[id^="sdS"]').forEach(s => s.classList.remove('on'));
+  const s1 = document.getElementById('sdS1'); if (s1) s1.classList.add('on');
+  if (sdTimerIv) { clearInterval(sdTimerIv); sdTimerIv = null; }
+  pendingShopNum = ''; pendingShopMt = 0;
+  const btn = document.getElementById('sdBtnCreer');
+  if (btn) { btn.disabled = false; btn.textContent = 'Créer le dépôt'; }
+  const num = document.getElementById('sdNum'); if (num) num.value = '';
+  const mt  = document.getElementById('sdMt');  if (mt)  mt.value  = '';
+}
+
+async function sdCreerDepot() {
+  const num = document.getElementById('sdNum').value.trim();
+  const mt  = parseInt(document.getElementById('sdMt').value);
+  if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
+  if (mt < SHOP_DEPOT_MIN) { toast(`Minimum ${SHOP_DEPOT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+  const btn = document.getElementById('sdBtnCreer');
+  btn.disabled = true; btn.textContent = 'Création en cours…';
+  pendingShopNum = num; pendingShopMt = mt;
+  document.getElementById('sdUssdMt').textContent = mt.toLocaleString('fr-FR');
+  document.getElementById('sdS1').classList.remove('on');
+  document.getElementById('sdS2').classList.add('on');
+  sdTimerIv = lancerTimer('sdTimerDisplay', 'sdBtnConfirm', TIMER_SEC);
+  toast('Suivez les instructions MTN MoMo');
+}
+
+async function sdConfirmerPaiement() {
+  if (sdTimerIv) { clearInterval(sdTimerIv); sdTimerIv = null; }
+  document.getElementById('sdNumConf').textContent = pendingShopNum;
+  document.getElementById('sdMtConf').textContent  = pendingShopMt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('sdS2').classList.remove('on');
+  document.getElementById('sdS3').classList.add('on');
+  await sendTG(
+    `🛒 <b>RECHARGE BOUTIQUE EN ATTENTE</b>\n\n` +
+    `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
+    `💰 <b>${pendingShopMt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `📱 MTN MoMo · 📲 ${pendingShopNum}\n\n✅ Créditez le solde boutique depuis l'admin.`
+  );
+  toast("Recharge confirmée — l'admin va créditer votre solde boutique !");
+}
+
+/* ══ RETRAIT BOUTIQUE ══ */
+function openShopWithdraw() {
+  if (!retraitOuvert()) {
+    const j = JOURS_FR[new Date().getDay()];
+    toast(`⏰ Retraits fermés ! Lun–Ven ${RETRAIT_H_DEBUT}h–${RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
+    return;
+  }
+  const sbal = userData?.shop_balance || 0;
+  const sb4 = document.getElementById('shopSoldeDispo'); if (sb4) sb4.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
+  resetShopWithdraw();
+  document.getElementById('modShopWithdraw').classList.add('on');
+}
+function fermerShopWithdraw() {
+  document.getElementById('modShopWithdraw').classList.remove('on');
+  resetShopWithdraw();
+}
+function resetShopWithdraw() {
+  document.getElementById('swS1').classList.add('on');
+  document.getElementById('swS2').classList.remove('on');
+  document.getElementById('shopFraisBox').style.display = 'none';
+  const num = document.getElementById('swNum'); if (num) num.value = '';
+  const mt  = document.getElementById('swMt');  if (mt)  mt.value  = '';
+}
+
+function updateShopFrais() {
+  const mt  = parseInt(document.getElementById('swMt').value);
+  const box = document.getElementById('shopFraisBox');
+  if (!mt || mt < 1) { box.style.display = 'none'; return; }
+  const frais = Math.round(mt * FRAIS_PERCENT / 100), net = mt - frais;
+  document.getElementById('shopFraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('shopFraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('shopFraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
+  box.style.display = 'block';
+}
+
+async function doShopWithdraw() {
+  if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
+  const num = document.getElementById('swNum').value.trim();
+  const mt  = parseInt(document.getElementById('swMt').value);
+  if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
+  if (!mt || isNaN(mt)) { toast('Entre un montant valide'); return; }
+  if (mt < SHOP_RETRAIT_MIN) { toast(`Minimum ${SHOP_RETRAIT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+  const sbal = userData?.shop_balance || 0;
+  if (mt > sbal) { toast('Solde boutique insuffisant'); return; }
+  const frais = Math.round(mt * FRAIS_PERCENT / 100);
+  const net   = mt - frais;
+  const { data: res, error } = await sb.rpc('request_shop_withdrawal', {
+    p_number: num, p_amount: mt
+  });
+  if (error || !res?.success) { toast(res?.message || 'Erreur retrait boutique'); return; }
+  await sendTG(
+    `💸 <b>RETRAIT BOUTIQUE</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
+    `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `💸 Frais (${FRAIS_PERCENT}%) : ${frais.toLocaleString('fr-FR')} FCFA\n` +
+    `✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
+  );
+  document.getElementById('swNumConf').textContent   = num;
+  document.getElementById('swMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('swFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('swNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('swS1').classList.remove('on');
+  document.getElementById('swS2').classList.add('on');
+  toast('Retrait boutique soumis — admin notifié ✅');
+  if (userData) { userData.shop_balance = (userData.shop_balance || 0) - mt; updBal(); }
+}
+
+/* ══ BOUTIQUE ══ */
 async function loadProducts() {
   const { data } = await sb.from('products').select('*').order('created_at', { ascending: false });
   products = data || [];
@@ -1256,7 +1529,6 @@ function renderProducts() {
     container.innerHTML = '<p style="text-align:center;color:var(--gr600);padding:20px 0">Aucun produit disponible</p>';
     return;
   }
-  const isActive = userData?.is_active || false;
   container.innerHTML = pageItems.map(p => `
     <div class="card" style="margin-bottom:12px">
       ${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:180px;object-fit:cover">` : ''}
@@ -1265,10 +1537,7 @@ function renderProducts() {
           <div style="font-weight:600;font-size:14px">${p.title}</div>
           <div class="row-sub">${(p.price||0).toLocaleString('fr-FR')} FCFA</div>
         </div>
-        ${isActive
-          ? `<button class="btn-main" style="width:auto;padding:8px 14px;margin-top:0" onclick="buyProduct('${p.id}','${p.link}')">Acheter</button>`
-          : `<button class="btn-main" style="width:auto;padding:8px 14px;margin-top:0;background:var(--gr600)" onclick="toast('Activez votre compte pour acheter')">🔒 Acheter</button>`
-        }
+        <button class="btn-main" style="width:auto;padding:8px 14px;margin-top:0" onclick="buyProduct('${p.id}','${p.link}',${p.price||0})">Acheter</button>
       </div>
     </div>
   `).join('');
@@ -1286,55 +1555,19 @@ function renderPagination() {
 
 function goPage(p) { currentPage = p; renderProducts(); }
 
-async function buyProduct(id, link) {
-  if (!userData?.is_active) { toast('🔒 Activez votre compte pour acheter'); return; }
+async function buyProduct(id, link, price) {
+  const sbal = userData?.shop_balance || 0;
+  if (sbal < price) {
+    toast('💳 Solde boutique insuffisant — rechargez votre solde');
+    return;
+  }
   const { data: res, error } = await sb.rpc('buy_product', { p_product_id: id });
   if (error || !res?.success) { toast(res?.message || 'Solde boutique insuffisant'); return; }
   window.open(link, '_blank');
   toast('Achat réussi ! ✅');
-  await loadUser();
+  if (userData) { userData.shop_balance = (userData.shop_balance || 0) - price; updBal(); }
 }
 
-/* ── Dépôt boutique ── */
-function openShopDeposit() { document.getElementById('modShopDeposit').classList.add('on'); }
-
-async function createShopDeposit() {
-  const num = document.getElementById('sdNum').value.trim();
-  const mt  = parseInt(document.getElementById('sdMt').value);
-  if (!num || !mt) { toast('Remplis tous les champs'); return; }
-  await sendTG(
-    `🛒 <b>RECHARGE BOUTIQUE</b>\n\n` +
-    `👤 ${userData.name}\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 ${mt.toLocaleString('fr-FR')} FCFA\n📱 ${num}`
-  );
-  document.getElementById('modShopDeposit').classList.remove('on');
-  toast('Recharge envoyée à l\'admin !');
-}
-
-/* ── Retrait boutique ── */
-function calcShopFees() {
-  const mt  = parseInt(document.getElementById('swMt').value);
-  const box = document.getElementById('swFeesBox');
-  if (!mt) { box.style.display = 'none'; return; }
-  const fee = Math.round(mt * SHOP_FEE / 100), net = mt - fee;
-  box.innerHTML = `Frais (${SHOP_FEE}%) : <b>${fee.toLocaleString('fr-FR')} FCFA</b><br>Vous recevrez : <b>${net.toLocaleString('fr-FR')} FCFA</b>`;
-  box.style.display = 'block';
-}
-async function doShopWithdraw() {
-  const num = document.getElementById('swNum').value.trim();
-  const mt  = parseInt(document.getElementById('swMt').value);
-  if (!num || !mt) { toast('Remplis tous les champs'); return; }
-  if (mt < SHOP_MIN) { toast(`Minimum ${SHOP_MIN.toLocaleString('fr-FR')} FCFA`); return; }
-  const { data: res, error } = await sb.rpc('request_shop_withdrawal', {
-    p_number: num, p_amount: mt
-  });
-  if (error || !res?.success) { toast(res?.message || 'Erreur retrait boutique'); return; }
-  await sendTG(`💸 <b>RETRAIT BOUTIQUE</b>\n\n👤 ${userData.name}\n📞 ${userData.phone}\n💰 ${mt.toLocaleString('fr-FR')} FCFA\n📱 ${num}`);
-  document.getElementById('modShopWithdraw').classList.remove('on');
-  toast('Retrait boutique soumis !');
-}
-
-/* ── Ajouter produit ── */
 function openAddProduct() { document.getElementById('modProduct').classList.add('on'); }
 
 async function submitProduct() {
@@ -1351,9 +1584,7 @@ async function submitProduct() {
   toast('Produit envoyé à l\'admin !');
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   DATA LOADERS
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Data Loaders ── */
 async function loadTransactions() {
   const { data } = await sb.from('transactions').select('*')
     .eq('user_id', user.id).order('created_at', { ascending: false }).limit(10);
@@ -1393,9 +1624,7 @@ async function loadDepotBalance() {
   document.getElementById('retraitsPendingAmt').textContent = tp.toLocaleString('fr-FR') + ' FCFA';
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   MISSIONS
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Missions ── */
 async function loadCompletedMissions() {
   const { data } = await sb.from('completed_missions').select('mission_id').eq('user_id', user.id);
   completedMissions = new Set();
@@ -1434,9 +1663,7 @@ async function doMissionLink(id, name, rewardStr, link) {
   await loadTransactions();
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   PUBLICITÉS
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Publicités ── */
 async function loadAds() {
   const today = new Date().toISOString().split('T')[0];
   const { data: ads } = await sb.from('ads').select('*').eq('is_active', true).order('created_at', { ascending: false });
@@ -1474,9 +1701,7 @@ function watchAd(adId, duration, gain) {
   }, duration * 1000);
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   BONUS QUOTIDIEN
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Bonus ── */
 async function claimBonus() {
   if (!userData?.is_active) { toast('Compte non activé.'); return; }
   const { data: res, error } = await sb.rpc('claim_bonus_daily');
@@ -1498,9 +1723,7 @@ async function checkBonusToday() {
   if (data) { const el = document.getElementById('tBonus'); if (el) el.classList.add('done'); }
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   PARRAINAGE
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Parrainage ── */
 function copyLink() {
   if (!userData?.is_active) { toast('Activez votre compte avant de parrainer'); return; }
   navigator.clipboard.writeText('https://cashmind.pages.dev/?ref=' + userData.ref_code)
@@ -1545,9 +1768,7 @@ async function loadAffilTree() {
   document.getElementById('afN2Gains').textContent = gainsN2.toLocaleString('fr-FR');
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   INIT
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Init ── */
 async function checkUser() {
   const { data } = await sb.auth.getUser();
   if (data?.user) { user = data.user; await loadUser(); }
