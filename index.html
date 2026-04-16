@@ -22,6 +22,8 @@
   --primary: #43A047; --primary-dark: #2E7D32;
   --secondary: #81C784;
   --bg: #F1F8F1; --card: #ffffff;
+  /* Gains boutique */
+  --pur50: #F3E5F5; --pur600: #7B1FA2; --pur800: #4A148C;
 }
 
 body {
@@ -230,6 +232,7 @@ body {
 .bdg-b { background: var(--b50);  color: var(--b800);  }
 .bdg-a { background: var(--am50); color: var(--am600); }
 .bdg-r { background: var(--r50);  color: var(--r600);  }
+.bdg-p { background: var(--pur50); color: var(--pur600); }
 
 .card {
   background: #fff; border: 1px solid #c8e6c9;
@@ -448,6 +451,56 @@ body {
 .affil-locked .lock-ico { font-size: 40px; margin-bottom: 12px; }
 .affil-locked h3 { font-size: 16px; font-weight: 700; color: var(--b800); margin-bottom: 8px; }
 .affil-locked p { font-size: 13px; color: var(--gr600); line-height: 1.6; margin-bottom: 14px; }
+
+/* ══ GAINS BOUTIQUE ══ */
+.gains-card {
+  background: linear-gradient(135deg, #6A1B9A, #4A148C);
+  border-radius: 16px; padding: 16px; margin-bottom: 14px;
+}
+.gains-card-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+}
+.gains-card-title { color: #E1BEE7; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.gains-card-amt   { color: #fff; font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+.gains-card-sub   { color: #CE93D8; font-size: 11px; margin-top: 2px; }
+.gains-card-actions { display: flex; gap: 8px; margin-top: 12px; }
+.gains-card-btn {
+  flex: 1; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px; color: #fff; font-size: 12px; font-weight: 600;
+  padding: 8px; cursor: pointer;
+}
+.gains-card-btn:hover { background: rgba(255,255,255,0.28); }
+
+.gains-info-box {
+  background: linear-gradient(135deg, var(--pur50), #F3E5F5);
+  border: 1px solid #CE93D8; border-radius: 14px;
+  padding: 14px; margin-bottom: 14px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.gains-info-box .gi-ico { font-size: 22px; flex-shrink: 0; }
+.gains-info-box strong { display: block; font-size: 14px; color: var(--pur800); margin-bottom: 3px; }
+.gains-info-box p { font-size: 13px; color: var(--pur600); line-height: 1.5; }
+
+.gains-history-item {
+  background: #fff; border: 1px solid #CE93D8; border-radius: 12px;
+  padding: 11px 13px; margin-bottom: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.gains-history-item .gh-title { font-size: 13px; font-weight: 600; color: #111; }
+.gains-history-item .gh-sub   { font-size: 11px; color: var(--gr600); margin-top: 2px; }
+.gains-history-item .gh-amt   { font-size: 14px; font-weight: 700; color: var(--pur600); }
+
+/* Onglets boutique */
+.shop-tabs {
+  display: flex; background: #f0f8f0; border-radius: 10px;
+  padding: 3px; gap: 3px; margin-bottom: 14px;
+}
+.shop-tab {
+  flex: 1; padding: 8px 4px; border-radius: 8px; font-size: 12px;
+  font-weight: 500; cursor: pointer; border: none;
+  background: transparent; color: var(--gr600); white-space: nowrap;
+}
+.shop-tab.on { background: var(--b600); color: #fff; }
 </style>
 
 <div id="shell">
@@ -468,7 +521,6 @@ body {
       <button class="btn-main" onclick="fermerWelcome()">✅ Commencer maintenant</button>
     </div>
     <div class="welcome-body" style="padding:0 20px 20px">
-
       <div class="welcome-section">
         <h3>🚀 Mind Cash en bref</h3>
         <div class="welcome-feature">
@@ -477,15 +529,17 @@ body {
         </div>
         <div class="welcome-feature">
           <span class="wf-ico">👥</span>
-          <div><strong>Parrainage 2 niveaux</strong><span><b>2 050 FCFA</b> par filleul direct · <b>750 FCFA</b> indirect.</span></div>
+          <div><strong>Parrainage 2 niveaux</strong><span id="wf-parrainage">2 050 FCFA par filleul direct · 750 FCFA indirect.</span></div>
         </div>
         <div class="welcome-feature">
           <span class="wf-ico">💳</span>
-          <div><strong>Retrait MTN MoMo</strong><span>Minimum <b>4 450 FCFA</b> · Activation dès <b>5 000 FCFA</b>.</span></div>
+          <div><strong>Retrait MTN MoMo</strong><span id="wf-retrait">Minimum 4 450 FCFA · Activation dès 5 000 FCFA.</span></div>
+        </div>
+        <div class="welcome-feature">
+          <span class="wf-ico">🛒</span>
+          <div><strong>Boutique vendeur</strong><span>Proposez vos produits et recevez <strong>80% de chaque vente</strong> sur votre solde gains.</span></div>
         </div>
       </div>
-
-      <!-- SECTION WHATSAPP -->
       <div class="welcome-section" style="background:#E8F5E9;border-color:#A5D6A7">
         <h3 style="color:#1B5E20">💬 Communauté officielle</h3>
         <div class="welcome-feature">
@@ -499,7 +553,6 @@ body {
           <span style="font-size:17px">💬</span> Rejoindre le groupe WhatsApp
         </a>
       </div>
-
       <button class="btn-sec" onclick="fermerWelcome()" style="border-color:var(--b400);color:var(--b600)">✖ Fermer</button>
     </div>
   </div>
@@ -538,7 +591,7 @@ body {
         <button class="btn-main" onclick="doRegister()">Créer mon compte</button>
       </div>
     </div>
-    <p class="hint-text">Un dépôt minimum de 5 000 FCFA est requis pour activer votre compte</p>
+    <p class="hint-text" id="hintDepotMin">Un dépôt minimum de 5 000 FCFA est requis pour activer votre compte</p>
   </div>
 
   <!-- ÉCRAN ACTIVATION -->
@@ -552,14 +605,14 @@ body {
       <h2>Activez votre compte</h2>
       <p>Pour accéder à toutes les fonctionnalités, effectuez un dépôt d'activation.</p>
       <div class="act-info">
-        <div><span>Dépôt minimum</span><strong>5 000 FCFA</strong></div>
+        <div><span>Dépôt minimum</span><strong id="actDepotMin">5 000 FCFA</strong></div>
         <div><span>Opérateur</span><strong>MTN MoMo uniquement</strong></div>
-        <div><span>Horaires dépôt</span><strong>Tous les jours 6h–22h</strong></div>
+        <div><span>Horaires dépôt</span><strong id="actHoraires">Tous les jours 6h–22h</strong></div>
         <div><span>Activation</span><strong>Après validation admin</strong></div>
       </div>
       <button class="btn-main" onclick="ouvrirDepotActivation()">💳 Faire le dépôt d'activation</button>
       <button class="btn-sec" style="border-color:var(--b400);color:var(--b600);font-weight:600;margin-top:8px" onclick="ouvrirBoutiquePublique()">🛒 Accéder à la boutique</button>
-      <button class="btn-sec"  onclick="doLogout()">Se déconnecter</button>
+      <button class="btn-sec" onclick="doLogout()">Se déconnecter</button>
     </div>
   </div>
 
@@ -668,47 +721,106 @@ body {
         <div id="adminTasks"></div>
       </div>
 
-      <!-- ══ Page Boutique — ACCESSIBLE À TOUS ══ -->
+      <!-- ══ Page Boutique ══ -->
       <div class="pg" id="pgShop">
         <div class="sec-title">🛒 Boutique</div>
+
+        <!-- Onglets -->
+        <div class="shop-tabs">
+          <button class="shop-tab on" id="stProduits"   onclick="switchShopTab('produits')">🛍 Produits</button>
+          <button class="shop-tab"    id="stMesProduits" onclick="switchShopTab('mesProduits')">📦 Mes produits</button>
+          <button class="shop-tab"    id="stGains"       onclick="switchShopTab('gains')">💜 Gains ventes</button>
+        </div>
 
         <div class="shop-notice" id="shopNoticeInactive" style="display:none">
           <span class="sn-ico">ℹ️</span>
           <div>
             <strong>Compte non activé</strong>
-            Vous pouvez acheter et vendre des produits en rechargeant votre solde boutique (min. 500 FCFA).
+            Vous pouvez acheter et vendre des produits en rechargeant votre solde boutique (min. <span id="shopNoticeMin">500</span> FCFA).
           </div>
         </div>
 
-        <!-- Solde boutique affiché dans la shop -->
-        <div id="shopBalCard" style="background:var(--b600);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <div style="color:var(--b100);font-size:11px;margin-bottom:2px">Solde boutique</div>
-            <div style="color:#fff;font-size:22px;font-weight:700" id="shopBalDisplay">0 FCFA</div>
+        <!-- ══ ONGLET PRODUITS ══ -->
+        <div id="shopPanelProduits">
+          <div id="shopBalCard" style="background:var(--b600);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="color:var(--b100);font-size:11px;margin-bottom:2px">Solde boutique</div>
+              <div style="color:#fff;font-size:22px;font-weight:700" id="shopBalDisplay">0 FCFA</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <button onclick="openShopDeposit()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer">📥 Recharger</button>
+              <button onclick="openShopWithdraw()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer">💸 Retirer</button>
+            </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <button onclick="openShopDeposit()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer">📥 Recharger</button>
-            <button onclick="openShopWithdraw()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);border-radius:8px;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer">💸 Retirer</button>
-          </div>
+          <div id="shopList"></div>
+          <div id="pagination" style="text-align:center;margin-top:10px"></div>
+          <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un produit</button>
         </div>
 
-        <div id="shopList"></div>
-        <div id="pagination" style="text-align:center;margin-top:10px"></div>
-        <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un produit</button>
+        <!-- ══ ONGLET MES PRODUITS ══ -->
+        <div id="shopPanelMesProduits" style="display:none">
+          <div class="gains-info-box">
+            <span class="gi-ico">📦</span>
+            <div>
+              <strong>Vos produits proposés</strong>
+              <p>Suivez l'état de validation de vos produits. Une fois approuvés, ils apparaissent dans le catalogue.</p>
+            </div>
+          </div>
+          <div id="mesProduitsList">
+            <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
+          </div>
+          <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un nouveau produit</button>
+        </div>
+
+        <!-- ══ ONGLET GAINS VENTES ══ -->
+        <div id="shopPanelGains" style="display:none">
+
+          <!-- Carte solde gains -->
+          <div class="gains-card">
+            <div class="gains-card-header">
+              <div>
+                <div class="gains-card-title">💜 Solde gains ventes</div>
+                <div class="gains-card-amt" id="gainsBalAmt">0 <span style="font-size:14px;font-weight:400">FCFA</span></div>
+                <div class="gains-card-sub">80% de chaque vente de vos produits</div>
+              </div>
+              <div style="font-size:36px">🏆</div>
+            </div>
+            <div class="gains-card-actions">
+              <button class="gains-card-btn" onclick="ouvrirGainsWithdraw()">💸 Retirer mes gains</button>
+              <button class="gains-card-btn" onclick="loadGainsHistory()">🔄 Actualiser</button>
+            </div>
+          </div>
+
+          <!-- Info commission -->
+          <div class="gains-info-box">
+            <span class="gi-ico">💡</span>
+            <div>
+              <strong>Comment ça marche ?</strong>
+              <p>Chaque fois qu'un acheteur achète l'un de vos produits, <strong>80% du prix</strong> est automatiquement crédité sur ce solde. Les 20% restants sont des frais de plateforme.</p>
+            </div>
+          </div>
+
+          <!-- Stats gains -->
+          <div class="stats" style="margin-bottom:14px">
+            <div class="stat"><div class="lbl">Total vendu</div><div class="val" id="statVentesCount">0</div><span class="bdg bdg-p">ventes</span></div>
+            <div class="stat"><div class="lbl">Revenus totaux</div><div class="val" id="statVentesTotal">0</div><span class="bdg bdg-p">FCFA</span></div>
+          </div>
+
+          <div class="sec-title">Historique des ventes</div>
+          <div id="gainsHistoryList">
+            <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
+          </div>
+        </div>
       </div>
 
       <!-- Page Parrainage -->
       <div class="pg" id="pgAffil">
-
-        <!-- Zone verrouillée pour les non-activés -->
         <div class="affil-locked" id="affilLocked" style="display:none">
           <div class="lock-ico">🔒</div>
           <h3>Parrainage verrouillé</h3>
-          <p>Le parrainage est réservé aux comptes activés. Effectuez un dépôt de <strong>5 000 FCFA</strong> pour débloquer cette fonctionnalité et commencer à gagner des commissions.</p>
+          <p>Le parrainage est réservé aux comptes activés. Effectuez un dépôt de <strong id="affilDepotMin">5 000 FCFA</strong> pour débloquer cette fonctionnalité.</p>
           <button class="btn-main" style="max-width:220px;margin:0 auto" onclick="ouvrirDepotActivation()">🔓 Activer mon compte</button>
         </div>
-
-        <!-- Zone parrainage active -->
         <div id="affilContent">
           <div class="sec-title">Mon lien de parrainage</div>
           <div onclick="copyLink()" style="background:var(--b50);border:1px solid #a5d6a7;border-radius:12px;padding:13px;font-size:13px;color:var(--b800);word-break:break-all;margin-bottom:12px;cursor:pointer">
@@ -720,12 +832,12 @@ body {
             <div style="display:flex;gap:8px;margin-bottom:8px">
               <div style="flex:1;background:var(--b50);border-radius:10px;padding:10px;text-align:center">
                 <div style="font-size:11px;color:var(--b600);font-weight:600">NIVEAU 1</div>
-                <div style="font-size:20px;font-weight:700;color:var(--b800);margin:4px 0">2 050 FCFA</div>
+                <div style="font-size:20px;font-weight:700;color:var(--b800);margin:4px 0" id="afBonusN1Disp">2 050 FCFA</div>
                 <div style="font-size:11px;color:var(--b600)">Par filleul direct</div>
               </div>
               <div style="flex:1;background:var(--am50);border-radius:10px;padding:10px;text-align:center">
                 <div style="font-size:11px;color:var(--am600);font-weight:600">NIVEAU 2</div>
-                <div style="font-size:20px;font-weight:700;color:var(--am600);margin:4px 0">750 FCFA</div>
+                <div style="font-size:20px;font-weight:700;color:var(--am600);margin:4px 0" id="afBonusN2Disp">750 FCFA</div>
                 <div style="font-size:11px;color:var(--am600)">Par filleul indirect</div>
               </div>
             </div>
@@ -756,6 +868,8 @@ body {
         </div>
         <div class="card">
           <div class="row"><div>Solde actuel</div><div class="row-val" id="profBal">0 FCFA</div></div>
+          <div class="row"><div>Solde boutique</div><div class="row-val" id="profShopBal">0 FCFA</div></div>
+          <div class="row"><div>💜 Gains ventes</div><div class="row-val" id="profGainsBal" style="color:var(--pur600)">0 FCFA</div></div>
           <div class="row"><div>Total déposé</div><div class="row-val" id="profTotalDepose">— FCFA</div></div>
           <div class="row"><div>Total gagné</div><div class="row-val" id="profTotalGagne">— FCFA</div></div>
           <div class="row"><div>Total retiré</div><div class="row-val" id="profTotalRetrait">— FCFA</div></div>
@@ -795,10 +909,10 @@ body {
           </div>
         </div>
         <div style="background:var(--am50);border-radius:10px;padding:10px 13px;margin-bottom:14px;font-size:13px;color:var(--am600)">
-          Montant minimum : <strong>5 000 FCFA</strong>
+          Montant minimum : <strong id="aDepotMinLabel">5 000 FCFA</strong>
         </div>
         <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="aNum"></div>
-        <div class="fld"><label>Montant (FCFA)</label><input type="number" placeholder="5000" min="5000" id="aMt"></div>
+        <div class="fld"><label>Montant (FCFA)</label><input type="number" id="aMt"></div>
         <button class="btn-main" id="aBtnCreer" onclick="aCreerDepot()">Créer le dépôt</button>
         <button class="btn-sec" onclick="fermerModActivate()">Annuler</button>
       </div>
@@ -857,13 +971,13 @@ body {
           <p style="font-size:12px;color:var(--gr600)">Retraits du <b>lundi au vendredi, 7h–17h</b></p>
         </div>
         <div style="background:var(--b50);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--b800)">
-          Solde : <strong id="soldeDispo">0 FCFA</strong> &nbsp;·&nbsp; Minimum : <strong>4 450 FCFA</strong>
+          Solde : <strong id="soldeDispo">0 FCFA</strong> &nbsp;·&nbsp; Minimum : <strong id="retraitMinLabel">4 450 FCFA</strong>
         </div>
         <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="rNum"></div>
-        <div class="fld"><label>Montant à retirer (FCFA)</label><input type="number" placeholder="4450" id="rMt" oninput="updateFrais()"></div>
+        <div class="fld"><label>Montant à retirer (FCFA)</label><input type="number" id="rMt" oninput="updateFrais()"></div>
         <div class="frais-box" id="fraisBox" style="display:none">
           <div class="frais-row"><span class="frais-lbl">Montant demandé</span><span class="frais-val" id="fraisMtBrut">—</span></div>
-          <div class="frais-row"><span class="frais-lbl">Frais (5%)</span><span class="frais-val" id="fraisMontant">—</span></div>
+          <div class="frais-row"><span class="frais-lbl" id="fraisLabel">Frais (5%)</span><span class="frais-val" id="fraisMontant">—</span></div>
           <div class="frais-row" style="border-top:1px solid #f5d598;margin-top:4px;padding-top:6px">
             <span class="frais-net-lbl">Vous recevrez</span><span class="frais-net-val" id="fraisNet">—</span>
           </div>
@@ -888,7 +1002,7 @@ body {
     </div>
   </div>
 
-  <!-- ══ MODAL DÉPÔT BOUTIQUE (identique au dépôt principal, min 500 FCFA) ══ -->
+  <!-- MODAL DÉPÔT BOUTIQUE -->
   <div class="moverlay" id="modShopDeposit">
     <div class="mbox">
       <div class="mhandle"></div>
@@ -907,10 +1021,10 @@ body {
           </div>
         </div>
         <div style="background:var(--am50);border-radius:10px;padding:10px 13px;margin-bottom:14px;font-size:13px;color:var(--am600)">
-          Montant minimum : <strong>500 FCFA</strong>
+          Montant minimum : <strong id="sdMinLabel">500 FCFA</strong>
         </div>
         <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="sdNum"></div>
-        <div class="fld"><label>Montant (FCFA)</label><input type="number" placeholder="500" min="500" id="sdMt"></div>
+        <div class="fld"><label>Montant (FCFA)</label><input type="number" id="sdMt"></div>
         <button class="btn-main" id="sdBtnCreer" onclick="sdCreerDepot()">Créer le dépôt</button>
         <button class="btn-sec" onclick="fermerShopDeposit()">Annuler</button>
       </div>
@@ -958,7 +1072,7 @@ body {
     </div>
   </div>
 
-  <!-- ══ MODAL RETRAIT BOUTIQUE (identique au retrait principal, min 2500 FCFA) ══ -->
+  <!-- MODAL RETRAIT BOUTIQUE -->
   <div class="moverlay" id="modShopWithdraw">
     <div class="mbox">
       <div class="mhandle"></div>
@@ -969,13 +1083,13 @@ body {
           <p style="font-size:12px;color:var(--gr600)">Retraits du <b>lundi au vendredi, 7h–17h</b></p>
         </div>
         <div style="background:var(--b50);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--b800)">
-          Solde boutique : <strong id="shopSoldeDispo">0 FCFA</strong> &nbsp;·&nbsp; Minimum : <strong>2 500 FCFA</strong>
+          Solde boutique : <strong id="shopSoldeDispo">0 FCFA</strong> &nbsp;·&nbsp; Minimum : <strong id="swMinLabel">2 500 FCFA</strong>
         </div>
         <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="swNum"></div>
-        <div class="fld"><label>Montant à retirer (FCFA)</label><input type="number" placeholder="2500" id="swMt" oninput="updateShopFrais()"></div>
+        <div class="fld"><label>Montant à retirer (FCFA)</label><input type="number" id="swMt" oninput="updateShopFrais()"></div>
         <div class="frais-box" id="shopFraisBox" style="display:none">
           <div class="frais-row"><span class="frais-lbl">Montant demandé</span><span class="frais-val" id="shopFraisMtBrut">—</span></div>
-          <div class="frais-row"><span class="frais-lbl">Frais (5%)</span><span class="frais-val" id="shopFraisMontant">—</span></div>
+          <div class="frais-row"><span class="frais-lbl" id="shopFraisLabel">Frais (5%)</span><span class="frais-val" id="shopFraisMontant">—</span></div>
           <div class="frais-row" style="border-top:1px solid #f5d598;margin-top:4px;padding-top:6px">
             <span class="frais-net-lbl">Vous recevrez</span><span class="frais-net-val" id="shopFraisNet">—</span>
           </div>
@@ -1000,17 +1114,81 @@ body {
     </div>
   </div>
 
+  <!-- ══ MODAL RETRAIT GAINS VENTES ══ -->
+  <div class="moverlay" id="modGainsWithdraw">
+    <div class="mbox">
+      <div class="mhandle"></div>
+      <div class="mtitle">💜 Retrait gains ventes</div>
+      <div class="step on" id="gwS1">
+        <div style="text-align:center;margin-bottom:14px">
+          <div class="mtn-badge">🟡 MTN MoMo</div>
+          <p style="font-size:12px;color:var(--gr600)">Retraits du <b>lundi au vendredi, 7h–17h</b></p>
+        </div>
+        <!-- Carte gains résumé -->
+        <div style="background:linear-gradient(135deg,#6A1B9A,#4A148C);border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="color:#E1BEE7;font-size:11px;margin-bottom:2px">Solde gains disponible</div>
+            <div style="color:#fff;font-size:22px;font-weight:700" id="gwSoldeDisp">0 FCFA</div>
+          </div>
+          <div style="font-size:30px">💜</div>
+        </div>
+        <div style="background:var(--pur50);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--pur600)">
+          Minimum : <strong id="gwMinLabel">2 500 FCFA</strong> &nbsp;·&nbsp; Frais : <strong id="gwFraisLabel">5%</strong>
+        </div>
+        <div class="fld"><label>Votre numéro MTN MoMo</label><input type="tel" placeholder="0XXXXXXXXX" id="gwNum"></div>
+        <div class="fld"><label>Montant à retirer (FCFA)</label><input type="number" id="gwMt" oninput="updateGainsFrais()"></div>
+        <div class="frais-box" id="gainsFraisBox" style="display:none">
+          <div class="frais-row"><span class="frais-lbl">Montant demandé</span><span class="frais-val" id="gainsFraisMtBrut">—</span></div>
+          <div class="frais-row"><span class="frais-lbl" id="gainsFraisLabel">Frais (5%)</span><span class="frais-val" id="gainsFraisMontant">—</span></div>
+          <div class="frais-row" style="border-top:1px solid #f5d598;margin-top:4px;padding-top:6px">
+            <span class="frais-net-lbl">Vous recevrez</span><span class="frais-net-val" id="gainsFraisNet">—</span>
+          </div>
+        </div>
+        <button class="btn-main" style="background:var(--pur600)" onclick="doGainsWithdraw()">Demander le retrait</button>
+        <button class="btn-sec" onclick="fermerGainsWithdraw()">Annuler</button>
+      </div>
+      <div class="step" id="gwS2">
+        <div class="suc-ico" style="background:var(--pur50)">⏳</div>
+        <p style="text-align:center;font-weight:700;font-size:16px;color:var(--pur800);margin-bottom:6px">Retrait soumis !</p>
+        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">Traitement dans les 24h ouvrables.</p>
+        <div class="info-box">
+          <div class="i-row"><span class="i-lbl">Type</span><span class="i-val" style="color:var(--pur600);font-weight:700">Gains ventes boutique</span></div>
+          <div class="i-row"><span class="i-lbl">Numéro</span><span class="i-val" id="gwNumConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Montant</span><span class="i-val" id="gwMtConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Frais</span><span class="i-val" id="gwFraisConf" style="color:var(--am600)">—</span></div>
+          <div class="i-row"><span class="i-lbl" style="color:var(--g800);font-weight:700">Vous recevrez</span><span class="i-val" style="color:var(--g800)" id="gwNetConf">—</span></div>
+          <div class="i-row"><span class="i-lbl">Statut</span><span class="i-val"><span class="bdg bdg-a">En attente</span></span></div>
+        </div>
+        <button class="btn-main" onclick="fermerGainsWithdraw()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL AJOUTER PRODUIT -->
   <div class="moverlay" id="modProduct">
     <div class="mbox">
       <div class="mhandle"></div>
       <div class="mtitle">📦 Proposer un produit</div>
-      <div class="fld"><label>Titre</label><input id="pTitle" placeholder="Nom du produit"></div>
+      <!-- Info commission -->
+      <div class="gains-info-box" style="margin-bottom:14px">
+        <span class="gi-ico">💜</span>
+        <div>
+          <strong>Vous gagnez 80% par vente</strong>
+          <p>Dès qu'un acheteur achète votre produit, <strong>80% du prix</strong> est crédité automatiquement sur votre solde gains ventes.</p>
+        </div>
+      </div>
+      <div class="fld"><label>Titre du produit</label><input id="pTitle" placeholder="Nom du produit"></div>
       <div class="fld"><label>Prix (FCFA)</label><input id="pPrice" type="number" placeholder="Ex: 2000"></div>
-      <div class="fld"><label>Lien (Google Drive, etc.)</label><input id="pLink" placeholder="https://..."></div>
+      <div class="fld"><label>Lien de téléchargement (Google Drive, etc.)</label><input id="pLink" placeholder="https://..."></div>
       <div class="fld"><label>Image de couverture (URL)</label><input id="pCover" placeholder="https://..."></div>
+      <!-- Aperçu commission -->
+      <div id="prodCommissionPreview" style="display:none;background:var(--pur50);border:1px solid #CE93D8;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px">
+        <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--pur600)">Prix de vente</span><span style="font-weight:700;color:var(--pur800)" id="prevPrix">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--pur600)">Vos gains (80%)</span><span style="font-weight:700;color:var(--pur600)" id="prevGains">—</span></div>
+        <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--gr600)">Frais plateforme (20%)</span><span style="color:var(--gr600)" id="prevFrais">—</span></div>
+      </div>
       <button class="btn-main" onclick="submitProduct()">Envoyer à l'admin</button>
-      <button class="btn-sec"  onclick="document.getElementById('modProduct').classList.remove('on')">Annuler</button>
+      <button class="btn-sec" onclick="document.getElementById('modProduct').classList.remove('on')">Annuler</button>
     </div>
   </div>
 
@@ -1020,27 +1198,38 @@ body {
 </div>
 
 <script>
+/* ══════════════════════════════════════════════════════
+ 
+══════════════════════════════════════════════════════ */
 const _ENV = window.__ENV__ || {};
+
+/* Supabase & Telegram */
 const SUPABASE_URL       = _ENV.SUPABASE_URL       || '';
 const SUPABASE_KEY       = _ENV.SUPABASE_KEY       || '';
 const TELEGRAM_BOT_TOKEN = _ENV.TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_CHAT_ID   = _ENV.TELEGRAM_CHAT_ID   || '';
 
-if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables manquantes.');
+if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables Supabase manquantes.');
 
-const DEPOT_MIN       = 5000;
-const RETRAIT_MIN     = 4450;
-const SHOP_DEPOT_MIN  = 500;
-const SHOP_RETRAIT_MIN= 2500;
-const FRAIS_PERCENT   = 5;
-const TIMER_SEC       = 120;
-const BONUS_N1        = 2050;
-const BONUS_N2        = 750;
-const DEPOT_H_DEBUT   = 6;
-const DEPOT_H_FIN     = 22;
-const RETRAIT_H_DEBUT = 7;
-const RETRAIT_H_FIN   = 17;
-const RETRAIT_JOURS   = [1,2,3,4,5];
+/*  */
+const CFG = {
+  DEPOT_MIN:        _ENV.DEPOT_MIN        || 5000,
+  RETRAIT_MIN:      _ENV.RETRAIT_MIN      || 4450,
+  SHOP_DEPOT_MIN:   _ENV.SHOP_DEPOT_MIN   || 500,
+  SHOP_RETRAIT_MIN: _ENV.SHOP_RETRAIT_MIN || 2500,
+  GAINS_RETRAIT_MIN:_ENV.GAINS_RETRAIT_MIN|| 2500,
+  FRAIS_PERCENT:    _ENV.FRAIS_PERCENT    || 5,
+  TIMER_SEC:        _ENV.TIMER_SEC        || 120,
+  BONUS_N1:         _ENV.BONUS_N1         || 2050,
+  BONUS_N2:         _ENV.BONUS_N2         || 750,
+  DEPOT_H_DEBUT:    _ENV.DEPOT_H_DEBUT    || 6,
+  DEPOT_H_FIN:      _ENV.DEPOT_H_FIN      || 22,
+  RETRAIT_H_DEBUT:  _ENV.RETRAIT_H_DEBUT  || 7,
+  RETRAIT_H_FIN:    _ENV.RETRAIT_H_FIN    || 17,
+  RETRAIT_JOURS:    _ENV.RETRAIT_JOURS    || [1,2,3,4,5],
+  VENDOR_PERCENT:   _ENV.VENDOR_PERCENT   || 80,   // % 
+};
+
 const JOURS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -1053,6 +1242,78 @@ let pendingShopNum = '', pendingShopMt = 0;
 let products = [], currentPage = 1;
 const perPage = 6;
 
+/* ─────────────────────────────────────────────────────
+   INJECTION DES CONSTANTES DANS L'UI
+───────────────────────────────────────────────────── */
+function injectConstantesUI() {
+  const f = (n) => Number(n).toLocaleString('fr-FR');
+
+  // Auth screen
+  const hintEl = document.getElementById('hintDepotMin');
+  if (hintEl) hintEl.textContent =
+    `Un dépôt minimum de ${f(CFG.DEPOT_MIN)} FCFA est requis pour activer votre compte`;
+
+  // Écran activation
+  const actMin = document.getElementById('actDepotMin');
+  if (actMin) actMin.textContent = f(CFG.DEPOT_MIN) + ' FCFA';
+  const actH = document.getElementById('actHoraires');
+  if (actH) actH.textContent = `Tous les jours ${CFG.DEPOT_H_DEBUT}h–${CFG.DEPOT_H_FIN}h`;
+
+  // Modal dépôt activation
+  const aLabel = document.getElementById('aDepotMinLabel');
+  if (aLabel) aLabel.textContent = f(CFG.DEPOT_MIN) + ' FCFA';
+  const aMtInput = document.getElementById('aMt');
+  if (aMtInput) { aMtInput.placeholder = CFG.DEPOT_MIN; aMtInput.min = CFG.DEPOT_MIN; }
+
+  // Modal retrait principal
+  const rLabel = document.getElementById('retraitMinLabel');
+  if (rLabel) rLabel.textContent = f(CFG.RETRAIT_MIN) + ' FCFA';
+  const rMtInput = document.getElementById('rMt');
+  if (rMtInput) rMtInput.placeholder = CFG.RETRAIT_MIN;
+  const fraisLbl = document.getElementById('fraisLabel');
+  if (fraisLbl) fraisLbl.textContent = `Frais (${CFG.FRAIS_PERCENT}%)`;
+
+  // Modal dépôt boutique
+  const sdLabel = document.getElementById('sdMinLabel');
+  if (sdLabel) sdLabel.textContent = f(CFG.SHOP_DEPOT_MIN) + ' FCFA';
+  const sdMtInput = document.getElementById('sdMt');
+  if (sdMtInput) { sdMtInput.placeholder = CFG.SHOP_DEPOT_MIN; sdMtInput.min = CFG.SHOP_DEPOT_MIN; }
+  const snMin = document.getElementById('shopNoticeMin');
+  if (snMin) snMin.textContent = f(CFG.SHOP_DEPOT_MIN);
+
+  // Modal retrait boutique
+  const swLabel = document.getElementById('swMinLabel');
+  if (swLabel) swLabel.textContent = f(CFG.SHOP_RETRAIT_MIN) + ' FCFA';
+  const swMtInput = document.getElementById('swMt');
+  if (swMtInput) swMtInput.placeholder = CFG.SHOP_RETRAIT_MIN;
+  const shopFraisLbl = document.getElementById('shopFraisLabel');
+  if (shopFraisLbl) shopFraisLbl.textContent = `Frais (${CFG.FRAIS_PERCENT}%)`;
+
+  // Modal retrait gains
+  const gwLabel = document.getElementById('gwMinLabel');
+  if (gwLabel) gwLabel.textContent = f(CFG.GAINS_RETRAIT_MIN) + ' FCFA';
+  const gwFraisLblEl = document.getElementById('gwFraisLabel');
+  if (gwFraisLblEl) gwFraisLblEl.textContent = `${CFG.FRAIS_PERCENT}%`;
+  const gwFraisLblBox = document.getElementById('gainsFraisLabel');
+  if (gwFraisLblBox) gwFraisLblBox.textContent = `Frais (${CFG.FRAIS_PERCENT}%)`;
+  const gwMtInput = document.getElementById('gwMt');
+  if (gwMtInput) gwMtInput.placeholder = CFG.GAINS_RETRAIT_MIN;
+
+  // Parrainage
+  const afB1 = document.getElementById('afBonusN1Disp');
+  if (afB1) afB1.textContent = f(CFG.BONUS_N1) + ' FCFA';
+  const afB2 = document.getElementById('afBonusN2Disp');
+  if (afB2) afB2.textContent = f(CFG.BONUS_N2) + ' FCFA';
+  const afDepMin = document.getElementById('affilDepotMin');
+  if (afDepMin) afDepMin.textContent = f(CFG.DEPOT_MIN) + ' FCFA';
+
+  // Bienvenue modal
+  const wfP = document.getElementById('wf-parrainage');
+  if (wfP) wfP.textContent = `${f(CFG.BONUS_N1)} FCFA par filleul direct · ${f(CFG.BONUS_N2)} FCFA indirect.`;
+  const wfR = document.getElementById('wf-retrait');
+  if (wfR) wfR.textContent = `Minimum ${f(CFG.RETRAIT_MIN)} FCFA · Activation dès ${f(CFG.DEPOT_MIN)} FCFA.`;
+}
+
 /* ── Toast ── */
 let toastIv = null;
 function toast(msg, dur = 3500) {
@@ -1062,7 +1323,7 @@ function toast(msg, dur = 3500) {
   toastIv = setTimeout(() => t.style.display = 'none', dur);
 }
 
-/* ── Telegram ── */
+/* ──  */
 async function sendTG(text) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   try {
@@ -1073,14 +1334,27 @@ async function sendTG(text) {
   } catch(e) { console.warn('TG error:', e); }
 }
 
-/* ── Horaires ── */
+/* ──  ── */
 function depotOuvert() {
   const h = new Date().getHours();
-  return h >= DEPOT_H_DEBUT && h < DEPOT_H_FIN;
+  return h >= CFG.DEPOT_H_DEBUT && h < CFG.DEPOT_H_FIN;
 }
 function retraitOuvert() {
   const now = new Date(), h = now.getHours(), j = now.getDay();
-  return RETRAIT_JOURS.includes(j) && h >= RETRAIT_H_DEBUT && h < RETRAIT_H_FIN;
+  const jours = Array.isArray(CFG.RETRAIT_JOURS) ? CFG.RETRAIT_JOURS : [1,2,3,4,5];
+  return jours.includes(j) && h >= CFG.RETRAIT_H_DEBUT && h < CFG.RETRAIT_H_FIN;
+}
+
+/* ──  ── */
+function switchShopTab(tab) {
+  ['produits','mesProduits','gains'].forEach(t => {
+    const btn = document.getElementById('st' + t.charAt(0).toUpperCase() + t.slice(1));
+    const panel = document.getElementById('shopPanel' + t.charAt(0).toUpperCase() + t.slice(1));
+    if (btn) btn.classList.toggle('on', t === tab);
+    if (panel) panel.style.display = t === tab ? 'block' : 'none';
+  });
+  if (tab === 'gains' && user) loadGainsHistory();
+  if (tab === 'mesProduits' && user) loadMesProduits();
 }
 
 /* ── Modal Bienvenue ── */
@@ -1147,7 +1421,8 @@ async function doRegister() {
   const refCode = 'MC-' + Math.floor(100000 + Math.random() * 899999);
   const { error: ie } = await sb.from('users').insert({
     id: data.user.id, name, phone, balance: 0, is_active: false,
-    ref_code: refCode, referred_by: referredBy
+    ref_code: refCode, referred_by: referredBy,
+    shop_balance: 0, gains_balance: 0
   });
   if (ie) { toast(ie.message); return; }
   toast('✅ Compte créé ! Connectez-vous.'); swTab('login');
@@ -1177,8 +1452,6 @@ async function loadUser() {
   if (error || !data) { toast('Erreur chargement profil'); return; }
   userData = data; bal = data.balance || 0;
   document.getElementById('sAuth').classList.remove('on');
-
-  /* Afficher la modale de bienvenue à chaque connexion */
   afficherWelcome();
 
   if (!data.is_active) {
@@ -1217,12 +1490,19 @@ function ouvrirBoutiquePublique() {
 function updBal() {
   document.getElementById('balAmt').innerHTML =
     bal.toLocaleString('fr-FR') + ' <span style="font-size:17px;font-weight:400">FCFA</span>';
-  const p = document.getElementById('profBal');    if (p) p.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
+  const p = document.getElementById('profBal'); if (p) p.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
   const s = document.getElementById('soldeDispo'); if (s) s.textContent = bal.toLocaleString('fr-FR') + ' FCFA';
-  const sbal = userData?.shop_balance || 0;
-  const sb2  = document.getElementById('shopBal');        if (sb2) sb2.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
-  const sb3  = document.getElementById('shopBalDisplay'); if (sb3) sb3.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
-  const sb4  = document.getElementById('shopSoldeDispo'); if (sb4) sb4.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
+
+  const sbal  = userData?.shop_balance  || 0;
+  const gbal  = userData?.gains_balance || 0;
+
+  const sb2  = document.getElementById('shopBal');         if (sb2)  sb2.textContent  = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const sb3  = document.getElementById('shopBalDisplay');  if (sb3)  sb3.textContent  = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const sb4  = document.getElementById('shopSoldeDispo');  if (sb4)  sb4.textContent  = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const gb1  = document.getElementById('gainsBalAmt');     if (gb1)  gb1.innerHTML    = gbal.toLocaleString('fr-FR') + ' <span style="font-size:14px;font-weight:400">FCFA</span>';
+  const gb2  = document.getElementById('gwSoldeDisp');     if (gb2)  gb2.textContent  = gbal.toLocaleString('fr-FR') + ' FCFA';
+  const psb  = document.getElementById('profShopBal');     if (psb)  psb.textContent  = sbal.toLocaleString('fr-FR') + ' FCFA';
+  const pgb  = document.getElementById('profGainsBal');    if (pgb)  pgb.textContent  = gbal.toLocaleString('fr-FR') + ' FCFA';
 }
 
 function setUserUI(name, phone, refCode, isActive) {
@@ -1268,7 +1548,7 @@ function showPg(id) {
 /* ── Dépôt Activation ── */
 function ouvrirDepotActivation() {
   if (userData && userData.is_active) { toast('✅ Votre compte est déjà actif.'); return; }
-  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`); return; }
+  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
   document.getElementById('modActivate').classList.add('on');
 }
 function fermerModActivate() {
@@ -1288,7 +1568,7 @@ async function aCreerDepot() {
   const num = document.getElementById('aNum').value.trim();
   const mt  = parseInt(document.getElementById('aMt').value);
   if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
-  if (mt < DEPOT_MIN) { toast(`Minimum ${DEPOT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+  if (mt < CFG.DEPOT_MIN) { toast(`Minimum ${Number(CFG.DEPOT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const btn = document.getElementById('aBtnCreer');
   btn.disabled = true; btn.textContent = 'Création en cours…';
   try {
@@ -1302,7 +1582,7 @@ async function aCreerDepot() {
     pendingDepotNum = num; pendingDepotMt = mt;
     document.getElementById('aS1').classList.remove('on');
     document.getElementById('aS2').classList.add('on');
-    aTimerIv = lancerTimer('aTimerDisplay', 'aBtnConfirm', TIMER_SEC);
+    aTimerIv = lancerTimer('aTimerDisplay', 'aBtnConfirm', CFG.TIMER_SEC);
     toast('Dépôt enregistré — suivez les instructions MTN MoMo');
   } catch(e) {
     toast('Erreur inattendue. Réessayez.');
@@ -1313,13 +1593,13 @@ async function aCreerDepot() {
 async function aConfirmerPaiement() {
   if (aTimerIv) { clearInterval(aTimerIv); aTimerIv = null; }
   document.getElementById('aNumConf').textContent = pendingDepotNum;
-  document.getElementById('aMtConf').textContent  = pendingDepotMt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('aMtConf').textContent  = Number(pendingDepotMt).toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('aS2').classList.remove('on');
   document.getElementById('aS3').classList.add('on');
   await sendTG(
     `🔔 <b>DÉPÔT D'ACTIVATION EN ATTENTE</b>\n\n` +
     `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 <b>${pendingDepotMt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `💰 <b>${Number(pendingDepotMt).toLocaleString('fr-FR')} FCFA</b>\n` +
     `📱 MTN MoMo · 📲 ${pendingDepotNum}\n\n✅ Validez depuis le tableau de bord admin.`
   );
   toast("Paiement confirmé — l'admin va activer votre compte !");
@@ -1347,7 +1627,7 @@ function ouvrirRetrait() {
   if (!userData?.is_active) { toast('🔒 Activez votre compte pour retirer'); return; }
   if (!retraitOuvert()) {
     const j = JOURS_FR[new Date().getDay()];
-    toast(`⏰ Retraits fermés ! Lun–Ven ${RETRAIT_H_DEBUT}h–${RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
+    toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
     return;
   }
   document.getElementById('modRetrait').classList.add('on');
@@ -1364,7 +1644,7 @@ function updateFrais() {
   const mt  = parseInt(document.getElementById('rMt').value);
   const box = document.getElementById('fraisBox');
   if (!mt || mt < 1) { box.style.display = 'none'; return; }
-  const frais = Math.round(mt * FRAIS_PERCENT / 100), net = mt - frais;
+  const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   document.getElementById('fraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('fraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('fraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
@@ -1376,6 +1656,7 @@ async function doRetrait() {
   const mt  = parseInt(document.getElementById('rMt').value);
   if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
   if (!mt || isNaN(mt)) { toast('Entre un montant valide'); return; }
+  if (mt < CFG.RETRAIT_MIN) { toast(`Minimum ${Number(CFG.RETRAIT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const { data: res, error } = await sb.rpc('request_withdrawal', {
     p_number: num, p_amount: mt
   });
@@ -1384,7 +1665,7 @@ async function doRetrait() {
   await sendTG(
     `💳 <b>DEMANDE DE RETRAIT</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
     `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `💸 Frais (${FRAIS_PERCENT}%) : ${res.fees.toLocaleString('fr-FR')} FCFA\n` +
+    `💸 Frais (${CFG.FRAIS_PERCENT}%) : ${res.fees.toLocaleString('fr-FR')} FCFA\n` +
     `✅ Net : <b>${res.net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
   );
   document.getElementById('rNumConf').textContent   = num;
@@ -1399,7 +1680,7 @@ async function doRetrait() {
 
 /* ══ DÉPÔT BOUTIQUE ══ */
 function openShopDeposit() {
-  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${DEPOT_H_DEBUT}h à ${DEPOT_H_FIN}h`); return; }
+  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
   resetShopDeposit();
   document.getElementById('modShopDeposit').classList.add('on');
 }
@@ -1422,27 +1703,27 @@ async function sdCreerDepot() {
   const num = document.getElementById('sdNum').value.trim();
   const mt  = parseInt(document.getElementById('sdMt').value);
   if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
-  if (mt < SHOP_DEPOT_MIN) { toast(`Minimum ${SHOP_DEPOT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+  if (mt < CFG.SHOP_DEPOT_MIN) { toast(`Minimum ${Number(CFG.SHOP_DEPOT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const btn = document.getElementById('sdBtnCreer');
   btn.disabled = true; btn.textContent = 'Création en cours…';
   pendingShopNum = num; pendingShopMt = mt;
   document.getElementById('sdUssdMt').textContent = mt.toLocaleString('fr-FR');
   document.getElementById('sdS1').classList.remove('on');
   document.getElementById('sdS2').classList.add('on');
-  sdTimerIv = lancerTimer('sdTimerDisplay', 'sdBtnConfirm', TIMER_SEC);
+  sdTimerIv = lancerTimer('sdTimerDisplay', 'sdBtnConfirm', CFG.TIMER_SEC);
   toast('Suivez les instructions MTN MoMo');
 }
 
 async function sdConfirmerPaiement() {
   if (sdTimerIv) { clearInterval(sdTimerIv); sdTimerIv = null; }
   document.getElementById('sdNumConf').textContent = pendingShopNum;
-  document.getElementById('sdMtConf').textContent  = pendingShopMt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('sdMtConf').textContent  = Number(pendingShopMt).toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('sdS2').classList.remove('on');
   document.getElementById('sdS3').classList.add('on');
   await sendTG(
     `🛒 <b>RECHARGE BOUTIQUE EN ATTENTE</b>\n\n` +
     `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 <b>${pendingShopMt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `💰 <b>${Number(pendingShopMt).toLocaleString('fr-FR')} FCFA</b>\n` +
     `📱 MTN MoMo · 📲 ${pendingShopNum}\n\n✅ Créditez le solde boutique depuis l'admin.`
   );
   toast("Recharge confirmée — l'admin va créditer votre solde boutique !");
@@ -1452,7 +1733,7 @@ async function sdConfirmerPaiement() {
 function openShopWithdraw() {
   if (!retraitOuvert()) {
     const j = JOURS_FR[new Date().getDay()];
-    toast(`⏰ Retraits fermés ! Lun–Ven ${RETRAIT_H_DEBUT}h–${RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
+    toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
     return;
   }
   const sbal = userData?.shop_balance || 0;
@@ -1471,28 +1752,26 @@ function resetShopWithdraw() {
   const num = document.getElementById('swNum'); if (num) num.value = '';
   const mt  = document.getElementById('swMt');  if (mt)  mt.value  = '';
 }
-
 function updateShopFrais() {
   const mt  = parseInt(document.getElementById('swMt').value);
   const box = document.getElementById('shopFraisBox');
   if (!mt || mt < 1) { box.style.display = 'none'; return; }
-  const frais = Math.round(mt * FRAIS_PERCENT / 100), net = mt - frais;
+  const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   document.getElementById('shopFraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('shopFraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('shopFraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
   box.style.display = 'block';
 }
-
 async function doShopWithdraw() {
   if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
   const num = document.getElementById('swNum').value.trim();
   const mt  = parseInt(document.getElementById('swMt').value);
   if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
   if (!mt || isNaN(mt)) { toast('Entre un montant valide'); return; }
-  if (mt < SHOP_RETRAIT_MIN) { toast(`Minimum ${SHOP_RETRAIT_MIN.toLocaleString('fr-FR')} FCFA`); return; }
+  if (mt < CFG.SHOP_RETRAIT_MIN) { toast(`Minimum ${Number(CFG.SHOP_RETRAIT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const sbal = userData?.shop_balance || 0;
   if (mt > sbal) { toast('Solde boutique insuffisant'); return; }
-  const frais = Math.round(mt * FRAIS_PERCENT / 100);
+  const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100);
   const net   = mt - frais;
   const { data: res, error } = await sb.rpc('request_shop_withdrawal', {
     p_number: num, p_amount: mt
@@ -1501,7 +1780,7 @@ async function doShopWithdraw() {
   await sendTG(
     `💸 <b>RETRAIT BOUTIQUE</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
     `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `💸 Frais (${FRAIS_PERCENT}%) : ${frais.toLocaleString('fr-FR')} FCFA\n` +
+    `💸 Frais (${CFG.FRAIS_PERCENT}%) : ${frais.toLocaleString('fr-FR')} FCFA\n` +
     `✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
   );
   document.getElementById('swNumConf').textContent   = num;
@@ -1514,9 +1793,164 @@ async function doShopWithdraw() {
   if (userData) { userData.shop_balance = (userData.shop_balance || 0) - mt; updBal(); }
 }
 
+/* ══ GAINS VENTES BOUTIQUE ══ */
+function ouvrirGainsWithdraw() {
+  if (!retraitOuvert()) {
+    const j = JOURS_FR[new Date().getDay()];
+    toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd'hui : ${j}`);
+    return;
+  }
+  const gbal = userData?.gains_balance || 0;
+  if (gbal <= 0) { toast('💜 Votre solde gains est vide'); return; }
+  const gwDisp = document.getElementById('gwSoldeDisp');
+  if (gwDisp) gwDisp.textContent = gbal.toLocaleString('fr-FR') + ' FCFA';
+  resetGainsWithdraw();
+  document.getElementById('modGainsWithdraw').classList.add('on');
+}
+function fermerGainsWithdraw() {
+  document.getElementById('modGainsWithdraw').classList.remove('on');
+  resetGainsWithdraw();
+}
+function resetGainsWithdraw() {
+  document.getElementById('gwS1').classList.add('on');
+  document.getElementById('gwS2').classList.remove('on');
+  document.getElementById('gainsFraisBox').style.display = 'none';
+  const num = document.getElementById('gwNum'); if (num) num.value = '';
+  const mt  = document.getElementById('gwMt');  if (mt)  mt.value  = '';
+}
+function updateGainsFrais() {
+  const mt  = parseInt(document.getElementById('gwMt').value);
+  const box = document.getElementById('gainsFraisBox');
+  if (!mt || mt < 1) { box.style.display = 'none'; return; }
+  const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
+  document.getElementById('gainsFraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gainsFraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gainsFraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
+  box.style.display = 'block';
+}
+async function doGainsWithdraw() {
+  if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
+  const num = document.getElementById('gwNum').value.trim();
+  const mt  = parseInt(document.getElementById('gwMt').value);
+  if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
+  if (!mt || isNaN(mt)) { toast('Entre un montant valide'); return; }
+  if (mt < CFG.GAINS_RETRAIT_MIN) { toast(`Minimum ${Number(CFG.GAINS_RETRAIT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
+  const gbal = userData?.gains_balance || 0;
+  if (mt > gbal) { toast('💜 Solde gains insuffisant'); return; }
+  const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100);
+  const net   = mt - frais;
+
+  /* Appel RPC Supabase — créez la fonction request_gains_withdrawal
+     similaire à request_shop_withdrawal mais sur gains_balance */
+  const { data: res, error } = await sb.rpc('request_gains_withdrawal', {
+    p_number: num, p_amount: mt
+  });
+  if (error || !res?.success) { toast(res?.message || 'Erreur retrait gains'); return; }
+
+  await sendTG(
+    `💜 <b>RETRAIT GAINS VENTES</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
+    `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
+    `💸 Frais (${CFG.FRAIS_PERCENT}%) : ${frais.toLocaleString('fr-FR')} FCFA\n` +
+    `✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
+  );
+  document.getElementById('gwNumConf').textContent   = num;
+  document.getElementById('gwMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gwFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gwNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gwS1').classList.remove('on');
+  document.getElementById('gwS2').classList.add('on');
+  toast('Retrait gains soumis — admin notifié ✅');
+  if (userData) { userData.gains_balance = (userData.gains_balance || 0) - mt; updBal(); }
+}
+
+/* ── Historique des gains ventes ── */
+async function loadGainsHistory() {
+  const el = document.getElementById('gainsHistoryList');
+  if (!user) return;
+  el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div>';
+
+  /* Cherche les transactions de type 'sale_gain' pour cet utilisateur */
+  const { data: sales } = await sb.from('transactions')
+    .select('*')
+    .eq('user_id', user.id)
+    .eq('type', 'sale_gain')
+    .order('created_at', { ascending: false })
+    .limit(20);
+
+  const total = (sales||[]).reduce((s,t) => s + (t.amount||0), 0);
+  document.getElementById('statVentesCount').textContent = (sales||[]).length;
+  document.getElementById('statVentesTotal').textContent = total.toLocaleString('fr-FR');
+
+  if (!sales?.length) {
+    el.innerHTML = `
+      <div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #CE93D8;border-radius:14px">
+        <div style="font-size:40px;margin-bottom:10px">🛍</div>
+        <div style="font-size:14px;font-weight:600;color:var(--pur800);margin-bottom:6px">Pas encore de ventes</div>
+        <div style="font-size:12px;color:var(--gr600)">Proposez vos produits et commencez à gagner 80% sur chaque vente !</div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = sales.map(tx => {
+    const date = new Date(tx.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+    const prodTitle = tx.meta?.product_title || 'Produit vendu';
+    const pct = CFG.VENDOR_PERCENT;
+    return `
+      <div class="gains-history-item">
+        <div>
+          <div class="gh-title">🛍 ${prodTitle}</div>
+          <div class="gh-sub">${date} · <span class="bdg bdg-p">${pct}% vendeur</span></div>
+        </div>
+        <div class="gh-amt">+${tx.amount.toLocaleString('fr-FR')} FCFA</div>
+      </div>`;
+  }).join('');
+}
+
+/* ── Mes produits ── */
+async function loadMesProduits() {
+  const el = document.getElementById('mesProduitsList');
+  if (!user) return;
+  el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div>';
+
+  const { data } = await sb.from('products')
+    .select('*')
+    .eq('seller_id', user.id)
+    .order('created_at', { ascending: false });
+
+  if (!data?.length) {
+    el.innerHTML = `
+      <div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #c8e6c9;border-radius:14px">
+        <div style="font-size:40px;margin-bottom:10px">📦</div>
+        <div style="font-size:14px;font-weight:600;color:var(--b800);margin-bottom:6px">Aucun produit proposé</div>
+        <div style="font-size:12px;color:var(--gr600)">Cliquez sur "Proposer un produit" pour commencer à vendre.</div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = data.map(p => {
+    const status = p.is_approved ? '✅ Approuvé' : p.is_rejected ? '❌ Refusé' : '⏳ En attente';
+    const bdg    = p.is_approved ? 'bdg-g' : p.is_rejected ? 'bdg-r' : 'bdg-a';
+    const gains  = Math.round((p.price||0) * CFG.VENDOR_PERCENT / 100);
+    return `
+      <div class="card" style="margin-bottom:10px">
+        ${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:120px;object-fit:cover">` : ''}
+        <div class="row">
+          <div>
+            <div style="font-weight:600;font-size:14px">${p.title}</div>
+            <div class="row-sub">${(p.price||0).toLocaleString('fr-FR')} FCFA · <span class="bdg ${bdg}">${status}</span></div>
+            <div style="font-size:11px;color:var(--pur600);margin-top:3px;font-weight:600">💜 Vos gains : ${gains.toLocaleString('fr-FR')} FCFA/vente</div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
 /* ══ BOUTIQUE ══ */
 async function loadProducts() {
-  const { data } = await sb.from('products').select('*').order('created_at', { ascending: false });
+  const { data } = await sb.from('products')
+    .select('*')
+    .eq('is_approved', true)
+    .order('created_at', { ascending: false });
   products = data || [];
   renderProducts();
 }
@@ -1529,18 +1963,21 @@ function renderProducts() {
     container.innerHTML = '<p style="text-align:center;color:var(--gr600);padding:20px 0">Aucun produit disponible</p>';
     return;
   }
-  container.innerHTML = pageItems.map(p => `
-    <div class="card" style="margin-bottom:12px">
-      ${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:180px;object-fit:cover">` : ''}
-      <div class="row">
-        <div>
-          <div style="font-weight:600;font-size:14px">${p.title}</div>
-          <div class="row-sub">${(p.price||0).toLocaleString('fr-FR')} FCFA</div>
+  container.innerHTML = pageItems.map(p => {
+    const gains = Math.round((p.price||0) * CFG.VENDOR_PERCENT / 100);
+    return `
+      <div class="card" style="margin-bottom:12px">
+        ${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:180px;object-fit:cover">` : ''}
+        <div class="row">
+          <div>
+            <div style="font-weight:600;font-size:14px">${p.title}</div>
+            <div class="row-sub">${(p.price||0).toLocaleString('fr-FR')} FCFA</div>
+            <div style="font-size:11px;color:var(--pur600);font-weight:600">💜 Vendeur reçoit : ${gains.toLocaleString('fr-FR')} FCFA</div>
+          </div>
+          <button class="btn-main" style="width:auto;padding:8px 14px;margin-top:0" onclick="buyProduct('${p.id}','${p.link}',${p.price||0},'${p.seller_id||''}')">Acheter</button>
         </div>
-        <button class="btn-main" style="width:auto;padding:8px 14px;margin-top:0" onclick="buyProduct('${p.id}','${p.link}',${p.price||0})">Acheter</button>
-      </div>
-    </div>
-  `).join('');
+      </div>`;
+  }).join('');
   renderPagination();
 }
 
@@ -1555,30 +1992,56 @@ function renderPagination() {
 
 function goPage(p) { currentPage = p; renderProducts(); }
 
-async function buyProduct(id, link, price) {
+async function buyProduct(id, link, price, sellerId) {
   const sbal = userData?.shop_balance || 0;
   if (sbal < price) {
     toast('💳 Solde boutique insuffisant — rechargez votre solde');
     return;
   }
-  const { data: res, error } = await sb.rpc('buy_product', { p_product_id: id });
+  /* L'appel RPC buy_product doit maintenant :
+     1. Débiter shop_balance de l'acheteur
+     2. Créditer gains_balance du vendeur (VENDOR_PERCENT %)
+     3. Enregistrer une transaction type='sale_gain' pour le vendeur */
+  const { data: res, error } = await sb.rpc('buy_product', {
+    p_product_id: id,
+    p_vendor_percent: CFG.VENDOR_PERCENT
+  });
   if (error || !res?.success) { toast(res?.message || 'Solde boutique insuffisant'); return; }
   window.open(link, '_blank');
   toast('Achat réussi ! ✅');
   if (userData) { userData.shop_balance = (userData.shop_balance || 0) - price; updBal(); }
 }
 
-function openAddProduct() { document.getElementById('modProduct').classList.add('on'); }
+function openAddProduct() {
+  document.getElementById('modProduct').classList.add('on');
+  /* Réinitialiser l'aperçu */
+  document.getElementById('prodCommissionPreview').style.display = 'none';
+  /* Écouter le champ prix pour l'aperçu */
+  const pPriceInput = document.getElementById('pPrice');
+  pPriceInput.oninput = () => {
+    const v = parseInt(pPriceInput.value);
+    const prev = document.getElementById('prodCommissionPreview');
+    if (!v || v < 1) { prev.style.display = 'none'; return; }
+    const gains = Math.round(v * CFG.VENDOR_PERCENT / 100);
+    const frais = v - gains;
+    document.getElementById('prevPrix').textContent   = v.toLocaleString('fr-FR') + ' FCFA';
+    document.getElementById('prevGains').textContent  = gains.toLocaleString('fr-FR') + ' FCFA';
+    document.getElementById('prevFrais').textContent  = frais.toLocaleString('fr-FR') + ' FCFA';
+    prev.style.display = 'block';
+  };
+}
 
 async function submitProduct() {
   const title = document.getElementById('pTitle').value.trim();
-  const price = document.getElementById('pPrice').value.trim();
+  const price = parseInt(document.getElementById('pPrice').value);
   const link  = document.getElementById('pLink').value.trim();
   const cover = document.getElementById('pCover').value.trim();
   if (!title || !price || !link) { toast('Remplis les champs obligatoires'); return; }
+  const gains = Math.round(price * CFG.VENDOR_PERCENT / 100);
   await sendTG(
     `📦 <b>NOUVEAU PRODUIT PROPOSÉ</b>\n\n` +
-    `👤 ${userData.name}\n📌 ${title}\n💰 ${price} FCFA\n🔗 ${link}\n🖼 ${cover || 'Pas d\'image'}`
+    `👤 ${userData.name} (${userData.ref_code})\n📌 ${title}\n💰 ${price.toLocaleString('fr-FR')} FCFA\n` +
+    `💜 Gains vendeur : ${gains.toLocaleString('fr-FR')} FCFA (${CFG.VENDOR_PERCENT}%)\n🔗 ${link}\n🖼 ${cover || 'Pas d\'image'}`
   );
   document.getElementById('modProduct').classList.remove('on');
   toast('Produit envoyé à l\'admin !');
@@ -1590,19 +2053,20 @@ async function loadTransactions() {
     .eq('user_id', user.id).order('created_at', { ascending: false }).limit(10);
   const el = document.getElementById('txList');
   if (!data?.length) { el.innerHTML = '<div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Aucune transaction</div>'; return; }
-  const lbl = { deposit:'Dépôt', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardée', mission:'Mission', referral:'Parrainage' };
+  const lbl = { deposit:'Dépôt', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardée', mission:'Mission', referral:'Parrainage', sale_gain:'Gain vente boutique', gains_withdraw:'Retrait gains ventes' };
   el.innerHTML = data.map(tx => {
-    const pos  = tx.type !== 'withdraw';
+    const pos  = !['withdraw','gains_withdraw'].includes(tx.type);
     const date = new Date(tx.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
     const cls  = tx.status==='success'?'bdg-g':tx.status==='pending'?'bdg-a':'bdg-r';
     const stxt = tx.status==='success'?'Validé':tx.status==='pending'?'En attente':'Échoué';
-    return `<div class="row"><div><div style="font-weight:600;font-size:13px">${lbl[tx.type]||tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos?'var(--g600)':'var(--r600)'};font-weight:700">${pos?'+':'−'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
+    const isSaleGain = tx.type === 'sale_gain';
+    return `<div class="row"><div><div style="font-weight:600;font-size:13px${isSaleGain?';color:var(--pur600)':''}">${lbl[tx.type]||tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos?'var(--g600)':'var(--r600)'};font-weight:700">${pos?'+':'−'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
   }).join('');
 }
 
 async function loadStats() {
   const { data: gains } = await sb.from('transactions').select('amount,type')
-    .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral']).eq('status','success');
+    .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral','sale_gain']).eq('status','success');
   const tg = (gains||[]).reduce((s,t) => s+(t.amount||0), 0);
   document.getElementById('statTotalGagne').textContent = tg.toLocaleString('fr-FR');
   document.getElementById('profTotalGagne').textContent = tg.toLocaleString('fr-FR') + ' FCFA';
@@ -1742,9 +2206,9 @@ async function loadAffilTree() {
   for (const u1 of n1) {
     const date = new Date(u1.created_at).toLocaleDateString('fr-FR');
     const b1   = u1.is_active
-      ? `<span class="bdg bdg-g">+${BONUS_N1.toLocaleString('fr-FR')} FCFA</span>`
+      ? `<span class="bdg bdg-g">+${Number(CFG.BONUS_N1).toLocaleString('fr-FR')} FCFA</span>`
       : '<span class="bdg bdg-a">En attente</span>';
-    if (u1.is_active) gainsN1 += BONUS_N1;
+    if (u1.is_active) gainsN1 += Number(CFG.BONUS_N1);
     html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u1.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u1.is_active?'Actif':'En attente'} · ${date} · N1</div></div>${b1}</div>`;
     const { data: n2 } = await sb.from('users').select('id,name,ref_code,is_active,created_at').eq('referred_by', u1.id);
     if (n2?.length) {
@@ -1752,9 +2216,9 @@ async function loadAffilTree() {
       for (const u2 of n2) {
         const d2 = new Date(u2.created_at).toLocaleDateString('fr-FR');
         const b2 = u2.is_active
-          ? `<span class="bdg bdg-g">+${BONUS_N2.toLocaleString('fr-FR')} FCFA</span>`
+          ? `<span class="bdg bdg-g">+${Number(CFG.BONUS_N2).toLocaleString('fr-FR')} FCFA</span>`
           : '<span class="bdg bdg-a">En attente</span>';
-        if (u2.is_active) gainsN2 += BONUS_N2;
+        if (u2.is_active) gainsN2 += Number(CFG.BONUS_N2);
         html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u2.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u2.is_active?'Actif':'En attente'} · ${d2} · N2</div></div>${b2}</div>`;
         n2Total++;
       }
@@ -1769,6 +2233,8 @@ async function loadAffilTree() {
 }
 
 /* ── Init ── */
+injectConstantesUI();
+
 async function checkUser() {
   const { data } = await sb.auth.getUser();
   if (data?.user) { user = data.user; await loadUser(); }
