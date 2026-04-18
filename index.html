@@ -394,7 +394,6 @@ body {
 }
 .err-box strong { display: block; font-size: 15px; margin-bottom: 4px; }
 
-/* ══ MODAL BIENVENUE ══ */
 .welcome-overlay {
   display: none; position: fixed; inset: 0;
   background: rgba(10,61,10,0.7); z-index: 1000;
@@ -407,8 +406,7 @@ body {
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 .welcome-header {
-  background: var(--b900); padding: 24px 20px 20px;
-  text-align: center;
+  background: var(--b900); padding: 24px 20px 20px; text-align: center;
 }
 .welcome-logo {
   width: 60px; height: 60px; background: var(--b400); border-radius: 16px;
@@ -434,15 +432,9 @@ body {
 .welcome-feature .wf-ico { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 .welcome-feature strong { display: block; font-weight: 600; color: var(--b800); margin-bottom: 1px; }
 .welcome-feature span { color: var(--gr600); line-height: 1.4; }
-.welcome-badge {
-  background: var(--b600); color: #fff; border-radius: 20px;
-  padding: 3px 10px; font-size: 11px; font-weight: 700;
-}
 .welcome-footer { padding: 0 20px 20px; }
 .welcome-footer .btn-main { font-size: 15px; padding: 14px; border-radius: 14px; }
-.welcome-footer .btn-main:hover { background: var(--b900); }
 
-/* ══ PARRAINAGE masqué ══ */
 .affil-locked {
   background: linear-gradient(135deg, #f8fcf8, #e8f5e9);
   border: 2px dashed #a5d6a7; border-radius: 14px;
@@ -452,14 +444,11 @@ body {
 .affil-locked h3 { font-size: 16px; font-weight: 700; color: var(--b800); margin-bottom: 8px; }
 .affil-locked p { font-size: 13px; color: var(--gr600); line-height: 1.6; margin-bottom: 14px; }
 
-/* ══ GAINS BOUTIQUE ══ */
 .gains-card {
   background: linear-gradient(135deg, #6A1B9A, #4A148C);
   border-radius: 16px; padding: 16px; margin-bottom: 14px;
 }
-.gains-card-header {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
-}
+.gains-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .gains-card-title { color: #E1BEE7; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 .gains-card-amt   { color: #fff; font-size: 28px; font-weight: 700; letter-spacing: -1px; }
 .gains-card-sub   { color: #CE93D8; font-size: 11px; margin-top: 2px; }
@@ -490,7 +479,6 @@ body {
 .gains-history-item .gh-sub   { font-size: 11px; color: var(--gr600); margin-top: 2px; }
 .gains-history-item .gh-amt   { font-size: 14px; font-weight: 700; color: var(--pur600); }
 
-/* Onglets boutique */
 .shop-tabs {
   display: flex; background: #f0f8f0; border-radius: 10px;
   padding: 3px; gap: 3px; margin-bottom: 14px;
@@ -501,22 +489,6 @@ body {
   background: transparent; color: var(--gr600); white-space: nowrap;
 }
 .shop-tab.on { background: var(--b600); color: #fff; }
-
-/* ══ PARTAGE PRODUIT ══ */
-.share-bar {
-  display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;
-}
-.share-btn {
-  flex: 1; min-width: 80px; padding: 7px 6px;
-  border-radius: 10px; border: none; font-size: 11px; font-weight: 600;
-  cursor: pointer; display: flex; align-items: center;
-  justify-content: center; gap: 4px; color: #fff;
-}
-.share-btn.whatsapp { background: #25D366; }
-.share-btn.facebook { background: #1877F2; }
-.share-btn.telegram { background: #229ED9; }
-.share-btn.copy     { background: var(--b600); }
-.share-btn.more     { background: var(--gr600); }
 
 /* ══ TIMER PUB ══ */
 .ad-timer-bar {
@@ -534,10 +506,7 @@ body {
   background: rgba(10,61,10,0.55); z-index: 300; align-items: flex-end;
 }
 .share-overlay.on { display: flex; }
-.share-box {
-  background: #fff; border-radius: 22px 22px 0 0;
-  width: 100%; padding: 1.5rem;
-}
+.share-box { background: #fff; border-radius: 22px 22px 0 0; width: 100%; padding: 1.5rem; }
 .share-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 10px; margin: 14px 0;
@@ -554,7 +523,6 @@ body {
 </style>
 
 <div id="shell">
-
   <div class="site-header">
     <div class="site-header-name"><span>💸</span> MIND CASH</div>
   </div>
@@ -666,9 +634,8 @@ body {
     </div>
   </div>
 
-  <!-- ══════════════ ÉCRAN PRINCIPAL ══════════════ -->
+  <!-- ÉCRAN PRINCIPAL -->
   <div id="sMain" class="scr">
-
     <div class="topbar">
       <div class="topbar-info">
         <h2>Bonjour, <span id="uName">—</span> 👋</h2>
@@ -709,7 +676,6 @@ body {
     </div>
 
     <div class="content">
-
       <!-- Page Accueil -->
       <div class="pg on" id="pgHome">
         <div class="stats">
@@ -736,12 +702,10 @@ body {
           </div>
           <div class="task-rew">+20 FCFA</div>
         </div>
-
         <div class="sec-title" style="margin-top:14px">Publicités</div>
         <div id="adsList">
           <div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div>
         </div>
-
         <div class="sec-title" style="margin-top:14px">Missions spéciales</div>
         <div class="task" id="tM1" onclick="doMissionLink(1,'Canal Telegram','50','https://t.me/+z_-7HKMIAhU2Nzlk')">
           <div class="task-ico" style="background:var(--b50)">📋</div>
@@ -771,7 +735,7 @@ body {
         <div id="adminTasks"></div>
       </div>
 
-      <!-- ══ Page Boutique ══ -->
+      <!-- Page Boutique -->
       <div class="pg" id="pgShop">
         <div class="sec-title">🛒 Boutique</div>
         <div class="shop-tabs">
@@ -779,7 +743,6 @@ body {
           <button class="shop-tab"    id="stMesProduits" onclick="switchShopTab('mesProduits')">📦 Mes produits</button>
           <button class="shop-tab"    id="stGains"       onclick="switchShopTab('gains')">💜 Gains ventes</button>
         </div>
-
         <div class="shop-notice" id="shopNoticeInactive" style="display:none">
           <span class="sn-ico">ℹ️</span>
           <div>
@@ -787,10 +750,9 @@ body {
             Vous pouvez acheter et vendre des produits en rechargeant votre solde boutique (min. <span id="shopNoticeMin">500</span> FCFA).
           </div>
         </div>
-
-        <!-- ══ ONGLET PRODUITS ══ -->
+        <!-- ONGLET PRODUITS -->
         <div id="shopPanelProduits">
-          <div id="shopBalCard" style="background:var(--b600);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div style="background:var(--b600);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
             <div>
               <div style="color:var(--b100);font-size:11px;margin-bottom:2px">Solde boutique</div>
               <div style="color:#fff;font-size:22px;font-weight:700" id="shopBalDisplay">0 FCFA</div>
@@ -804,8 +766,7 @@ body {
           <div id="pagination" style="text-align:center;margin-top:10px"></div>
           <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un produit</button>
         </div>
-
-        <!-- ══ ONGLET MES PRODUITS ══ -->
+        <!-- ONGLET MES PRODUITS -->
         <div id="shopPanelMesProduits" style="display:none">
           <div class="gains-info-box">
             <span class="gi-ico">📦</span>
@@ -814,13 +775,10 @@ body {
               <p>Suivez l'état de validation de vos produits. Une fois approuvés, ils apparaissent dans le catalogue.</p>
             </div>
           </div>
-          <div id="mesProduitsList">
-            <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
-          </div>
+          <div id="mesProduitsList"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div></div>
           <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un nouveau produit</button>
         </div>
-
-        <!-- ══ ONGLET GAINS VENTES ══ -->
+        <!-- ONGLET GAINS VENTES -->
         <div id="shopPanelGains" style="display:none">
           <div class="gains-card">
             <div class="gains-card-header">
@@ -840,7 +798,7 @@ body {
             <span class="gi-ico">💡</span>
             <div>
               <strong>Comment ça marche ?</strong>
-              <p>Chaque fois qu'un acheteur achète l'un de vos produits, <strong>80% du prix</strong> est automatiquement crédité sur ce solde. Les 20% restants sont des frais de plateforme.</p>
+              <p>Chaque fois qu'un acheteur achète l'un de vos produits, <strong>80% du prix</strong> est automatiquement crédité sur ce solde.</p>
             </div>
           </div>
           <div class="stats" style="margin-bottom:14px">
@@ -848,9 +806,7 @@ body {
             <div class="stat"><div class="lbl">Revenus totaux</div><div class="val" id="statVentesTotal">0</div><span class="bdg bdg-p">FCFA</span></div>
           </div>
           <div class="sec-title">Historique des ventes</div>
-          <div id="gainsHistoryList">
-            <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
-          </div>
+          <div id="gainsHistoryList"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div></div>
         </div>
       </div>
 
@@ -893,9 +849,7 @@ body {
             <div class="stat"><div class="lbl">Gains N2</div><div class="val" id="afN2Gains">0</div><span class="bdg bdg-a">FCFA</span></div>
           </div>
           <div class="sec-title">Réseau de parrainage</div>
-          <div id="affilTree">
-            <div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div>
-          </div>
+          <div id="affilTree"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div></div>
         </div>
       </div>
 
@@ -918,7 +872,6 @@ body {
         </div>
         <button class="btn-main danger" style="margin-top:12px" onclick="doLogout()">Se déconnecter</button>
       </div>
-
     </div>
 
     <div class="bnav">
@@ -928,7 +881,6 @@ body {
       <button class="ni"    id="ni-affil"  onclick="showPg('Affil')"> <span class="ni-ico">👥</span><span class="ni-lbl">Parrainage</span></button>
       <button class="ni"    id="ni-profil" onclick="showPg('Profil')"><span class="ni-ico">👤</span><span class="ni-lbl">Profil</span></button>
     </div>
-
   </div>
 
   <!-- MODAL DÉPÔT D'ACTIVATION -->
@@ -1072,7 +1024,6 @@ body {
       <div class="step" id="sdS2">
         <div style="text-align:center;margin-bottom:12px">
           <div style="font-size:15px;font-weight:700;color:var(--b800)">⏳ Dépôt en cours de création</div>
-          <div style="font-size:12px;color:var(--gr600);margin-top:4px">Suivez les étapes ci-dessous sur votre téléphone</div>
         </div>
         <div class="nb-depot" style="margin-bottom:12px">
           <span class="nb-icon">⚠️</span>
@@ -1081,7 +1032,7 @@ body {
         <div class="ussd-box">
           <div class="ussd-title">📱 Comment payer avec MTN MoMo</div>
           <div class="ussd-steps">
-            1. Composez <span class="ussd-code">*105#</span> sur votre téléphone<br>
+            1. Composez <span class="ussd-code">*105#</span><br>
             2. Choisissez l'option <span class="ussd-code">6</span><br>
             3. Entrez le code : <span class="ussd-code">168694</span><br>
             4. Entrez le montant : <span class="ussd-code" id="sdUssdMt">500</span><br>
@@ -1093,20 +1044,17 @@ body {
             <div class="ussd-timer-lbl">Temps restant avant confirmation</div>
           </div>
         </div>
-        <button class="btn-main" id="sdBtnConfirm" disabled onclick="sdConfirmerPaiement()">
-          🔒 Attendez la fin du compte à rebours…
-        </button>
+        <button class="btn-main" id="sdBtnConfirm" disabled onclick="sdConfirmerPaiement()">🔒 Attendez…</button>
         <button class="btn-sec" onclick="fermerShopDeposit()">Annuler</button>
       </div>
       <div class="step" id="sdS3">
         <div class="suc-ico">⏳</div>
         <p style="text-align:center;font-weight:700;font-size:16px;color:var(--b800);margin-bottom:6px">Recharge soumise !</p>
-        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">L'administrateur va valider et créditer votre solde boutique sous peu.</p>
+        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">L'administrateur va valider et créditer votre solde boutique.</p>
         <div class="info-box">
-          <div class="i-row"><span class="i-lbl">Opérateur</span><span class="i-val">MTN MoMo</span></div>
           <div class="i-row"><span class="i-lbl">Numéro</span><span class="i-val" id="sdNumConf">—</span></div>
           <div class="i-row"><span class="i-lbl">Montant</span><span class="i-val" id="sdMtConf">—</span></div>
-          <div class="i-row"><span class="i-lbl">Statut</span><span class="i-val"><span class="bdg bdg-a">En attente de validation</span></span></div>
+          <div class="i-row"><span class="i-lbl">Statut</span><span class="i-val"><span class="bdg bdg-a">En attente</span></span></div>
         </div>
         <button class="btn-main" onclick="fermerShopDeposit()">Fermer</button>
       </div>
@@ -1141,9 +1089,7 @@ body {
       <div class="step" id="swS2">
         <div class="suc-ico">⏳</div>
         <p style="text-align:center;font-weight:700;font-size:16px;color:var(--b800);margin-bottom:6px">Retrait soumis !</p>
-        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">Traitement dans les 24h ouvrables.</p>
         <div class="info-box">
-          <div class="i-row"><span class="i-lbl">Opérateur</span><span class="i-val">MTN MoMo</span></div>
           <div class="i-row"><span class="i-lbl">Numéro</span><span class="i-val" id="swNumConf">—</span></div>
           <div class="i-row"><span class="i-lbl">Montant</span><span class="i-val" id="swMtConf">—</span></div>
           <div class="i-row"><span class="i-lbl">Frais</span><span class="i-val" id="swFraisConf" style="color:var(--am600)">—</span></div>
@@ -1155,7 +1101,7 @@ body {
     </div>
   </div>
 
-  <!-- ══ MODAL RETRAIT GAINS VENTES ══ -->
+  <!-- MODAL RETRAIT GAINS -->
   <div class="moverlay" id="modGainsWithdraw">
     <div class="mbox">
       <div class="mhandle"></div>
@@ -1190,9 +1136,7 @@ body {
       <div class="step" id="gwS2">
         <div class="suc-ico" style="background:var(--pur50)">⏳</div>
         <p style="text-align:center;font-weight:700;font-size:16px;color:var(--pur800);margin-bottom:6px">Retrait soumis !</p>
-        <p style="text-align:center;font-size:13px;color:var(--gr600);margin-bottom:14px">Traitement dans les 24h ouvrables.</p>
         <div class="info-box">
-          <div class="i-row"><span class="i-lbl">Type</span><span class="i-val" style="color:var(--pur600);font-weight:700">Gains ventes boutique</span></div>
           <div class="i-row"><span class="i-lbl">Numéro</span><span class="i-val" id="gwNumConf">—</span></div>
           <div class="i-row"><span class="i-lbl">Montant</span><span class="i-val" id="gwMtConf">—</span></div>
           <div class="i-row"><span class="i-lbl">Frais</span><span class="i-val" id="gwFraisConf" style="color:var(--am600)">—</span></div>
@@ -1204,7 +1148,7 @@ body {
     </div>
   </div>
 
-  <!-- MODAL AJOUTER PRODUIT — CORRIGÉ ✅ -->
+  <!-- MODAL AJOUTER PRODUIT -->
   <div class="moverlay" id="modProduct">
     <div class="mbox">
       <div class="mhandle"></div>
@@ -1216,27 +1160,11 @@ body {
           <p>Dès qu'un acheteur achète votre produit, <strong>80% du prix</strong> est crédité automatiquement sur votre solde gains ventes.</p>
         </div>
       </div>
-      <div class="fld">
-        <label>Titre du produit *</label>
-        <input id="pTitle" placeholder="Ex : Formation Marketing Digital">
-      </div>
-      <div class="fld">
-        <label>Description *</label>
-        <textarea id="pDesc" placeholder="Décrivez votre produit en quelques lignes…"></textarea>
-      </div>
-      <div class="fld">
-        <label>Prix (FCFA) *</label>
-        <input id="pPrice" type="number" placeholder="Ex: 2000" oninput="updateProdPreview()">
-      </div>
-      <div class="fld">
-        <label>Lien de téléchargement (Google Drive, etc.) *</label>
-        <input id="pLink" placeholder="https://...">
-      </div>
-      <div class="fld">
-        <label>Image de couverture (URL — facultatif)</label>
-        <input id="pCover" placeholder="https://... (laisser vide si aucune)">
-      </div>
-      <!-- Aperçu commission -->
+      <div class="fld"><label>Titre du produit *</label><input id="pTitle" placeholder="Ex : Formation Marketing Digital"></div>
+      <div class="fld"><label>Description *</label><textarea id="pDesc" placeholder="Décrivez votre produit…"></textarea></div>
+      <div class="fld"><label>Prix (FCFA) *</label><input id="pPrice" type="number" placeholder="Ex: 2000" oninput="updateProdPreview()"></div>
+      <div class="fld"><label>Lien de téléchargement *</label><input id="pLink" placeholder="https://..."></div>
+      <div class="fld"><label>Image de couverture (URL — facultatif)</label><input id="pCover" placeholder="https://..."></div>
       <div id="prodCommissionPreview" style="display:none;background:var(--pur50);border:1px solid #CE93D8;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px">
         <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--pur600)">Prix de vente</span><span style="font-weight:700;color:var(--pur800)" id="prevPrix">—</span></div>
         <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="color:var(--pur600)">Vos gains (80%)</span><span style="font-weight:700;color:var(--pur600)" id="prevGains">—</span></div>
@@ -1248,44 +1176,26 @@ body {
     </div>
   </div>
 
-  <!-- ══ MODAL PARTAGE PRODUIT ══ -->
+  <!-- MODAL PARTAGE PRODUIT -->
   <div class="share-overlay" id="modShare">
     <div class="share-box">
       <div class="mhandle"></div>
       <div class="mtitle" style="margin-bottom:6px">📤 Partager ce produit</div>
       <div id="shareProductName" style="font-size:13px;color:var(--gr600);margin-bottom:4px"></div>
       <div id="shareProductPrice" style="font-size:13px;font-weight:700;color:var(--b800);margin-bottom:14px"></div>
-      <!-- URL copiable -->
       <div id="shareLinkDisplay" style="background:var(--b50);border:1px solid #a5d6a7;border-radius:10px;padding:10px 12px;font-size:12px;color:var(--b800);word-break:break-all;margin-bottom:12px;cursor:pointer" onclick="copyShareLink()">
         <span id="shareLinkText"></span>
         <div style="font-size:11px;margin-top:4px;color:var(--b600);font-weight:600">👆 Appuyer pour copier le lien</div>
       </div>
-      <!-- Grille plateformes -->
       <div class="share-grid">
-        <div class="share-item" onclick="shareWhatsApp()">
-          <span class="si-ico">💬</span>WhatsApp
-        </div>
-        <div class="share-item" onclick="shareFacebook()">
-          <span class="si-ico">📘</span>Facebook
-        </div>
-        <div class="share-item" onclick="shareTelegram()">
-          <span class="si-ico">✈️</span>Telegram
-        </div>
-        <div class="share-item" onclick="shareTwitter()">
-          <span class="si-ico">🐦</span>Twitter/X
-        </div>
-        <div class="share-item" onclick="shareSMS()">
-          <span class="si-ico">💬</span>SMS
-        </div>
-        <div class="share-item" onclick="shareEmail()">
-          <span class="si-ico">📧</span>Email
-        </div>
-        <div class="share-item" onclick="shareLinkedIn()">
-          <span class="si-ico">💼</span>LinkedIn
-        </div>
-        <div class="share-item" onclick="shareNative()">
-          <span class="si-ico">📲</span>Autres
-        </div>
+        <div class="share-item" onclick="shareWhatsApp()"><span class="si-ico">💬</span>WhatsApp</div>
+        <div class="share-item" onclick="shareFacebook()"><span class="si-ico">📘</span>Facebook</div>
+        <div class="share-item" onclick="shareTelegram()"><span class="si-ico">✈️</span>Telegram</div>
+        <div class="share-item" onclick="shareTwitter()"><span class="si-ico">🐦</span>Twitter/X</div>
+        <div class="share-item" onclick="shareSMS()"><span class="si-ico">💬</span>SMS</div>
+        <div class="share-item" onclick="shareEmail()"><span class="si-ico">📧</span>Email</div>
+        <div class="share-item" onclick="shareLinkedIn()"><span class="si-ico">💼</span>LinkedIn</div>
+        <div class="share-item" onclick="shareNative()"><span class="si-ico">📲</span>Autres</div>
       </div>
       <button class="btn-sec" onclick="fermerShare()">Fermer</button>
     </div>
@@ -1293,18 +1203,14 @@ body {
 
   <div class="copyright">© <b>CBO Company</b> — Tous droits réservés</div>
   <div id="toast"></div>
-
 </div>
 
 <script>
 const _ENV = window.__ENV__ || {};
-
 const SUPABASE_URL       = _ENV.SUPABASE_URL       || '';
 const SUPABASE_KEY       = _ENV.SUPABASE_KEY       || '';
 const TELEGRAM_BOT_TOKEN = _ENV.TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_CHAT_ID   = _ENV.TELEGRAM_CHAT_ID   || '';
-
-if (!SUPABASE_URL || !SUPABASE_KEY) console.error('[MindCash] Variables Supabase manquantes.');
 
 const CFG = {
   DEPOT_MIN:        _ENV.DEPOT_MIN        || 5000,
@@ -1334,16 +1240,20 @@ let pendingDepotNum = '', pendingDepotMt = 0;
 let pendingShopNum = '', pendingShopMt = 0;
 let products = [], currentPage = 1;
 const perPage = 6;
-
-// ── Objet produit courant pour le partage ──
 let shareProduct = null;
 
-/* ─── INJECTION UI ─── */
+// ══════════════════════════════════════════════════════
+// REGISTRE DES PUBS — stocke les données complètes
+// pour éviter les problèmes de guillemets dans onclick
+// ══════════════════════════════════════════════════════
+const adsRegistry = {};   // { adId: { id, duration, reward, link } }
+const prodsRegistry = {}; // { prodId: { id, title, price, link, cover, seller_id } }
+
+/* ── Injection UI ── */
 function injectConstantesUI() {
   const f = n => Number(n).toLocaleString('fr-FR');
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   const a = (id, k, v) => { const el = document.getElementById(id); if (el) el[k] = v; };
-
   s('hintDepotMin', `Un dépôt minimum de ${f(CFG.DEPOT_MIN)} FCFA est requis pour activer votre compte`);
   s('actDepotMin', f(CFG.DEPOT_MIN) + ' FCFA');
   s('actHoraires', `Tous les jours ${CFG.DEPOT_H_DEBUT}h–${CFG.DEPOT_H_FIN}h`);
@@ -1369,7 +1279,6 @@ function injectConstantesUI() {
   s('wf-retrait', `Minimum ${f(CFG.RETRAIT_MIN)} FCFA · Activation dès ${f(CFG.DEPOT_MIN)} FCFA.`);
 }
 
-/* ── Toast ── */
 let toastIv = null;
 function toast(msg, dur = 3500) {
   const t = document.getElementById('toast');
@@ -1378,7 +1287,6 @@ function toast(msg, dur = 3500) {
   toastIv = setTimeout(() => t.style.display = 'none', dur);
 }
 
-/* ── Telegram ── */
 async function sendTG(text) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   try {
@@ -1389,7 +1297,6 @@ async function sendTG(text) {
   } catch(e) { console.warn('TG error:', e); }
 }
 
-/* ── Horaires ── */
 function depotOuvert() {
   const h = new Date().getHours();
   return h >= CFG.DEPOT_H_DEBUT && h < CFG.DEPOT_H_FIN;
@@ -1400,7 +1307,6 @@ function retraitOuvert() {
   return jours.includes(j) && h >= CFG.RETRAIT_H_DEBUT && h < CFG.RETRAIT_H_FIN;
 }
 
-/* ── Onglets boutique ── */
 function switchShopTab(tab) {
   ['produits','mesProduits','gains'].forEach(t => {
     const key = t.charAt(0).toUpperCase() + t.slice(1);
@@ -1409,17 +1315,14 @@ function switchShopTab(tab) {
     if (btn)   btn.classList.toggle('on', t === tab);
     if (panel) panel.style.display = t === tab ? 'block' : 'none';
   });
-  if (tab === 'gains' && user)      loadGainsHistory();
+  if (tab === 'gains' && user)       loadGainsHistory();
   if (tab === 'mesProduits' && user) loadMesProduits();
 }
 
-/* ── Modal Bienvenue ── */
 function afficherWelcome() { document.getElementById('modWelcome').classList.add('on'); }
 function fermerWelcome()   { document.getElementById('modWelcome').classList.remove('on'); }
 
-/* ══════════════════════════════════════════════════════
-   AUTH
-══════════════════════════════════════════════════════ */
+/* ── AUTH ── */
 function swTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   document.querySelectorAll('.frm').forEach(f => f.classList.remove('on'));
@@ -1442,9 +1345,8 @@ function checkPassMatch() {
     document.getElementById('rPassConfirm').className = 'input-ok';
     document.getElementById('rPass').className = 'input-ok'; return true;
   } else {
-    msg.className = 'pass-match-msg err'; msg.textContent = '❌ Les mots de passe ne correspondent pas';
-    document.getElementById('rPassConfirm').className = 'input-error';
-    document.getElementById('rPass').className = ''; return false;
+    msg.className = 'pass-match-msg err'; msg.textContent = '❌ Ne correspondent pas';
+    document.getElementById('rPassConfirm').className = 'input-error'; return false;
   }
 }
 
@@ -1473,8 +1375,7 @@ async function doRegister() {
   const refCode = 'MC-' + Math.floor(100000 + Math.random() * 899999);
   const { error: ie } = await sb.from('users').insert({
     id: data.user.id, name, phone, balance: 0, is_active: false,
-    ref_code: refCode, referred_by: referredBy,
-    shop_balance: 0, gains_balance: 0
+    ref_code: refCode, referred_by: referredBy, shop_balance: 0, gains_balance: 0
   });
   if (ie) { toast(ie.message); return; }
   toast('✅ Compte créé ! Connectez-vous.'); swTab('login');
@@ -1498,26 +1399,22 @@ async function doLogout() {
   user = null; userData = null; bal = 0; completedMissions = new Set();
 }
 
-/* ── Load User ── */
 async function loadUser() {
   const { data, error } = await sb.from('users').select('*').eq('id', user.id).single();
   if (error || !data) { toast('Erreur chargement profil'); return; }
   userData = data; bal = data.balance || 0;
   document.getElementById('sAuth').classList.remove('on');
   afficherWelcome();
-
   if (!data.is_active) {
     document.getElementById('sMain').classList.remove('on');
     document.getElementById('sActivate').classList.add('on');
     await loadProducts();
     return;
   }
-
   document.getElementById('sActivate').classList.remove('on');
   document.getElementById('sMain').classList.add('on');
   const btnD = document.getElementById('btnDepotMain');
   if (btnD) btnD.style.display = 'none';
-
   updBal(); setUserUI(data.name, data.phone, data.ref_code, data.is_active);
   await Promise.all([
     loadTransactions(), loadStats(), loadAffilTree(),
@@ -1537,21 +1434,20 @@ function ouvrirBoutiquePublique() {
   showPg('Shop');
 }
 
-/* ── UI Helpers ── */
 function updBal() {
   document.getElementById('balAmt').innerHTML =
     bal.toLocaleString('fr-FR') + ' <span style="font-size:17px;font-weight:400">FCFA</span>';
   const sbal = userData?.shop_balance  || 0;
   const gbal = userData?.gains_balance || 0;
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-  s('profBal',       bal.toLocaleString('fr-FR') + ' FCFA');
-  s('soldeDispo',    bal.toLocaleString('fr-FR') + ' FCFA');
-  s('shopBal',       sbal.toLocaleString('fr-FR') + ' FCFA');
-  s('shopBalDisplay',sbal.toLocaleString('fr-FR') + ' FCFA');
-  s('shopSoldeDispo',sbal.toLocaleString('fr-FR') + ' FCFA');
-  s('profShopBal',   sbal.toLocaleString('fr-FR') + ' FCFA');
-  s('profGainsBal',  gbal.toLocaleString('fr-FR') + ' FCFA');
-  s('gwSoldeDisp',   gbal.toLocaleString('fr-FR') + ' FCFA');
+  s('profBal',        bal.toLocaleString('fr-FR') + ' FCFA');
+  s('soldeDispo',     bal.toLocaleString('fr-FR') + ' FCFA');
+  s('shopBal',        sbal.toLocaleString('fr-FR') + ' FCFA');
+  s('shopBalDisplay', sbal.toLocaleString('fr-FR') + ' FCFA');
+  s('shopSoldeDispo', sbal.toLocaleString('fr-FR') + ' FCFA');
+  s('profShopBal',    sbal.toLocaleString('fr-FR') + ' FCFA');
+  s('profGainsBal',   gbal.toLocaleString('fr-FR') + ' FCFA');
+  s('gwSoldeDisp',    gbal.toLocaleString('fr-FR') + ' FCFA');
   const gb1 = document.getElementById('gainsBalAmt');
   if (gb1) gb1.innerHTML = gbal.toLocaleString('fr-FR') + ' <span style="font-size:14px;font-weight:400">FCFA</span>';
 }
@@ -1591,18 +1487,13 @@ function showPg(id) {
   }
 }
 
-/* ══════════════════════════════════════════════════════
-   DÉPÔT ACTIVATION
-══════════════════════════════════════════════════════ */
+/* ── Dépôt Activation ── */
 function ouvrirDepotActivation() {
   if (userData && userData.is_active) { toast('✅ Votre compte est déjà actif.'); return; }
   if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
   document.getElementById('modActivate').classList.add('on');
 }
-function fermerModActivate() {
-  document.getElementById('modActivate').classList.remove('on');
-  resetModActivate();
-}
+function fermerModActivate() { document.getElementById('modActivate').classList.remove('on'); resetModActivate(); }
 function resetModActivate() {
   document.querySelectorAll('[id^="aS"]').forEach(s => s.classList.remove('on'));
   const s1 = document.getElementById('aS1'); if (s1) s1.classList.add('on');
@@ -1629,7 +1520,6 @@ async function aCreerDepot() {
     document.getElementById('aS1').classList.remove('on');
     document.getElementById('aS2').classList.add('on');
     aTimerIv = lancerTimer('aTimerDisplay', 'aBtnConfirm', CFG.TIMER_SEC);
-    toast('Dépôt enregistré — suivez les instructions MTN MoMo');
   } catch(e) {
     toast('Erreur inattendue. Réessayez.');
     btn.disabled = false; btn.textContent = 'Créer le dépôt';
@@ -1667,9 +1557,7 @@ function lancerTimer(displayId, btnId, seconds) {
   return iv;
 }
 
-/* ══════════════════════════════════════════════════════
-   RETRAIT PRINCIPAL
-══════════════════════════════════════════════════════ */
+/* ── Retrait Principal ── */
 function ouvrirRetrait() {
   if (!userData?.is_active) { toast('🔒 Activez votre compte pour retirer'); return; }
   if (!retraitOuvert()) {
@@ -1683,8 +1571,7 @@ function fermerRetrait() {
   document.getElementById('rS1').classList.add('on');
   document.getElementById('rS2').classList.remove('on');
   document.getElementById('fraisBox').style.display = 'none';
-  document.getElementById('rMt').value  = '';
-  document.getElementById('rNum').value = '';
+  document.getElementById('rMt').value = ''; document.getElementById('rNum').value = '';
 }
 function updateFrais() {
   const mt = parseInt(document.getElementById('rMt').value);
@@ -1706,12 +1593,7 @@ async function doRetrait() {
   const { data: res, error } = await sb.rpc('request_withdrawal', { p_number: num, p_amount: mt });
   if (error || !res?.success) { toast(res?.message || error?.message || 'Erreur retrait'); return; }
   bal -= mt; updBal();
-  await sendTG(
-    `💳 <b>DEMANDE DE RETRAIT</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `💸 Frais (${CFG.FRAIS_PERCENT}%) : ${res.fees.toLocaleString('fr-FR')} FCFA\n` +
-    `✅ Net : <b>${res.net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
-  );
+  await sendTG(`💳 <b>DEMANDE DE RETRAIT</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n💸 Frais (${CFG.FRAIS_PERCENT}%) : ${res.fees.toLocaleString('fr-FR')} FCFA\n✅ Net : <b>${res.net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`);
   document.getElementById('rNumConf').textContent   = num;
   document.getElementById('rMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('rFraisConf').textContent = '− ' + res.fees.toLocaleString('fr-FR') + ' FCFA';
@@ -1722,11 +1604,10 @@ async function doRetrait() {
   await Promise.all([loadTransactions(), loadStats(), loadDepotBalance()]);
 }
 
-/* ══ DÉPÔT BOUTIQUE ══ */
+/* ── Dépôt Boutique ── */
 function openShopDeposit() {
   if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
-  resetShopDeposit();
-  document.getElementById('modShopDeposit').classList.add('on');
+  resetShopDeposit(); document.getElementById('modShopDeposit').classList.add('on');
 }
 function fermerShopDeposit() { document.getElementById('modShopDeposit').classList.remove('on'); resetShopDeposit(); }
 function resetShopDeposit() {
@@ -1737,7 +1618,7 @@ function resetShopDeposit() {
   const btn = document.getElementById('sdBtnCreer');
   if (btn) { btn.disabled = false; btn.textContent = 'Créer le dépôt'; }
   const n = document.getElementById('sdNum'); if (n) n.value = '';
-  const m = document.getElementById('sdMt');  if (m) m.value  = '';
+  const m = document.getElementById('sdMt');  if (m) m.value = '';
 }
 async function sdCreerDepot() {
   const num = document.getElementById('sdNum').value.trim();
@@ -1751,7 +1632,6 @@ async function sdCreerDepot() {
   document.getElementById('sdS1').classList.remove('on');
   document.getElementById('sdS2').classList.add('on');
   sdTimerIv = lancerTimer('sdTimerDisplay', 'sdBtnConfirm', CFG.TIMER_SEC);
-  toast('Suivez les instructions MTN MoMo');
 }
 async function sdConfirmerPaiement() {
   if (sdTimerIv) { clearInterval(sdTimerIv); sdTimerIv = null; }
@@ -1759,25 +1639,16 @@ async function sdConfirmerPaiement() {
   document.getElementById('sdMtConf').textContent  = Number(pendingShopMt).toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('sdS2').classList.remove('on');
   document.getElementById('sdS3').classList.add('on');
-  await sendTG(
-    `🛒 <b>RECHARGE BOUTIQUE EN ATTENTE</b>\n\n` +
-    `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 <b>${Number(pendingShopMt).toLocaleString('fr-FR')} FCFA</b>\n` +
-    `📱 MTN MoMo · 📲 ${pendingShopNum}\n\n✅ Créditez le solde boutique depuis l'admin.`
-  );
+  await sendTG(`🛒 <b>RECHARGE BOUTIQUE EN ATTENTE</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 <b>${Number(pendingShopMt).toLocaleString('fr-FR')} FCFA</b>\n📱 MTN MoMo · 📲 ${pendingShopNum}\n\n✅ Créditez le solde boutique depuis l'admin.`);
   toast("Recharge confirmée — l'admin va créditer votre solde boutique !");
 }
 
-/* ══ RETRAIT BOUTIQUE ══ */
+/* ── Retrait Boutique ── */
 function openShopWithdraw() {
-  if (!retraitOuvert()) {
-    toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd'hui : ${JOURS_FR[new Date().getDay()]}`);
-    return;
-  }
+  if (!retraitOuvert()) { toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h.`); return; }
   const sbal = userData?.shop_balance || 0;
   const el = document.getElementById('shopSoldeDispo'); if (el) el.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
-  resetShopWithdraw();
-  document.getElementById('modShopWithdraw').classList.add('on');
+  resetShopWithdraw(); document.getElementById('modShopWithdraw').classList.add('on');
 }
 function fermerShopWithdraw() { document.getElementById('modShopWithdraw').classList.remove('on'); resetShopWithdraw(); }
 function resetShopWithdraw() {
@@ -1785,7 +1656,7 @@ function resetShopWithdraw() {
   document.getElementById('swS2').classList.remove('on');
   document.getElementById('shopFraisBox').style.display = 'none';
   const n = document.getElementById('swNum'); if (n) n.value = '';
-  const m = document.getElementById('swMt');  if (m) m.value  = '';
+  const m = document.getElementById('swMt');  if (m) m.value = '';
 }
 function updateShopFrais() {
   const mt = parseInt(document.getElementById('swMt').value);
@@ -1801,40 +1672,31 @@ async function doShopWithdraw() {
   if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
   const num = document.getElementById('swNum').value.trim();
   const mt  = parseInt(document.getElementById('swMt').value);
-  if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
-  if (!mt || isNaN(mt)) { toast('Entre un montant valide'); return; }
+  if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
   if (mt < CFG.SHOP_RETRAIT_MIN) { toast(`Minimum ${Number(CFG.SHOP_RETRAIT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const sbal = userData?.shop_balance || 0;
   if (mt > sbal) { toast('Solde boutique insuffisant'); return; }
   const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   const { data: res, error } = await sb.rpc('request_shop_withdrawal', { p_number: num, p_amount: mt });
   if (error || !res?.success) { toast(res?.message || 'Erreur retrait boutique'); return; }
-  await sendTG(
-    `💸 <b>RETRAIT BOUTIQUE</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `💸 Frais : ${frais.toLocaleString('fr-FR')} FCFA · ✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
-  );
+  await sendTG(`💸 <b>RETRAIT BOUTIQUE</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n💸 Frais : ${frais.toLocaleString('fr-FR')} FCFA · ✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`);
   document.getElementById('swNumConf').textContent   = num;
   document.getElementById('swMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('swFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('swNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('swS1').classList.remove('on');
   document.getElementById('swS2').classList.add('on');
-  toast('Retrait boutique soumis — admin notifié ✅');
+  toast('Retrait boutique soumis ✅');
   if (userData) { userData.shop_balance = (userData.shop_balance || 0) - mt; updBal(); }
 }
 
-/* ══ GAINS VENTES ══ */
+/* ── Gains Ventes ── */
 function ouvrirGainsWithdraw() {
-  if (!retraitOuvert()) {
-    toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd'hui : ${JOURS_FR[new Date().getDay()]}`);
-    return;
-  }
+  if (!retraitOuvert()) { toast(`⏰ Retraits fermés !`); return; }
   const gbal = userData?.gains_balance || 0;
   if (gbal <= 0) { toast('💜 Votre solde gains est vide'); return; }
   const el = document.getElementById('gwSoldeDisp'); if (el) el.textContent = gbal.toLocaleString('fr-FR') + ' FCFA';
-  resetGainsWithdraw();
-  document.getElementById('modGainsWithdraw').classList.add('on');
+  resetGainsWithdraw(); document.getElementById('modGainsWithdraw').classList.add('on');
 }
 function fermerGainsWithdraw() { document.getElementById('modGainsWithdraw').classList.remove('on'); resetGainsWithdraw(); }
 function resetGainsWithdraw() {
@@ -1842,7 +1704,7 @@ function resetGainsWithdraw() {
   document.getElementById('gwS2').classList.remove('on');
   document.getElementById('gainsFraisBox').style.display = 'none';
   const n = document.getElementById('gwNum'); if (n) n.value = '';
-  const m = document.getElementById('gwMt');  if (m) m.value  = '';
+  const m = document.getElementById('gwMt');  if (m) m.value = '';
 }
 function updateGainsFrais() {
   const mt = parseInt(document.getElementById('gwMt').value);
@@ -1858,31 +1720,30 @@ async function doGainsWithdraw() {
   if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
   const num = document.getElementById('gwNum').value.trim();
   const mt  = parseInt(document.getElementById('gwMt').value);
-  if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
-  if (!mt || isNaN(mt)) { toast('Entre un montant valide'); return; }
+  if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
   if (mt < CFG.GAINS_RETRAIT_MIN) { toast(`Minimum ${Number(CFG.GAINS_RETRAIT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const gbal = userData?.gains_balance || 0;
   if (mt > gbal) { toast('💜 Solde gains insuffisant'); return; }
   const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   const { data: res, error } = await sb.rpc('request_gains_withdrawal', { p_number: num, p_amount: mt });
   if (error || !res?.success) { toast(res?.message || 'Erreur retrait gains'); return; }
-  await sendTG(
-    `💜 <b>RETRAIT GAINS VENTES</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
-    `💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n` +
-    `💸 Frais : ${frais.toLocaleString('fr-FR')} FCFA · ✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`
-  );
+  await sendTG(`💜 <b>RETRAIT GAINS VENTES</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n💸 Frais : ${frais.toLocaleString('fr-FR')} FCFA · ✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`);
   document.getElementById('gwNumConf').textContent   = num;
   document.getElementById('gwMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('gwFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('gwNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('gwS1').classList.remove('on');
   document.getElementById('gwS2').classList.add('on');
-  toast('Retrait gains soumis — admin notifié ✅');
+  toast('Retrait gains soumis ✅');
   if (userData) { userData.gains_balance = (userData.gains_balance || 0) - mt; updBal(); }
 }
 
 /* ══════════════════════════════════════════════════════
-   PUBLICITÉS — ✅ CORRIGÉ : redirection vers le lien de la pub
+   ✅ PUBLICITÉS — CORRIGÉ
+   Les données de chaque pub sont stockées dans adsRegistry
+   pour éviter les problèmes de guillemets dans les URLs.
+   La redirection vers le lien s'ouvre dans une nouvelle
+   fenêtre dès le clic, AVANT le compte à rebours.
 ══════════════════════════════════════════════════════ */
 async function loadAds() {
   const today = new Date().toISOString().split('T')[0];
@@ -1896,12 +1757,23 @@ async function loadAds() {
     .eq('user_id', user.id).eq('type','ad').gte('created_at', today+'T00:00:00');
   const wids = new Set((wt||[]).map(t => t.meta?.ad_id ? String(t.meta.ad_id) : null).filter(Boolean));
 
+  // Stocker chaque pub dans le registre
+  ads.forEach(ad => {
+    adsRegistry[String(ad.id)] = {
+      id:       String(ad.id),
+      duration: ad.duration_seconds,
+      reward:   ad.reward,
+      link:     ad.link || ''
+    };
+  });
+
+  // ✅ Le onclick utilise uniquement l'ID — pas de problème de guillemets dans l'URL
   el.innerHTML = ads.map(ad => {
-    const done = wids.has(String(ad.id));
+    const done    = wids.has(String(ad.id));
     const hasLink = ad.link && ad.link.trim() !== '';
     return `
-      <div class="task ${done?'done':''}" id="ad-${ad.id}" onclick="watchAd('${ad.id}', ${ad.duration_seconds}, ${ad.reward}, ${JSON.stringify(ad.link || '')})">
-        <div class="task-ico" style="background:var(--b50)">${ad.icon||'📢'}</div>
+      <div class="task ${done ? 'done' : ''}" id="ad-${ad.id}" onclick="watchAd('${ad.id}')">
+        <div class="task-ico" style="background:var(--b50)">${ad.icon || '📢'}</div>
         <div class="task-body">
           <div class="task-title">${ad.title}</div>
           <div class="task-desc">${ad.description || 'Regarder ' + ad.duration_seconds + 's'}${hasLink ? ' · 🔗 Lien inclus' : ''}</div>
@@ -1912,38 +1784,37 @@ async function loadAds() {
   }).join('');
 }
 
-/*
- * ✅ CORRECTION watchAd :
- *  1. Ouvre le lien de la pub immédiatement si présent
- *  2. Lance la barre de progression visuelle
- *  3. Crédite la récompense après la durée
- */
-function watchAd(adId, duration, gain, link) {
+/* ✅ watchAd reçoit uniquement l'ID et récupère tout depuis adsRegistry */
+function watchAd(adId) {
   if (!userData?.is_active) { toast('Compte non activé.'); return; }
+
+  const ad = adsRegistry[String(adId)];
+  if (!ad) { toast('Pub introuvable'); return; }
+
   const el = document.getElementById('ad-' + adId);
   if (el?.classList.contains('done')) { toast('Déjà regardée aujourd\'hui'); return; }
 
-  // ── 1. Ouvrir le lien de la pub ──────────────────────────────
-  if (link && link.trim() !== '') {
-    window.open(link, '_blank');
+  // ✅ 1. Ouvrir le lien dans une NOUVELLE FENÊTRE immédiatement
+  if (ad.link && ad.link.trim() !== '') {
+    window.open(ad.link, '_blank', 'noopener,noreferrer');
   }
 
-  // ── 2. Désactiver le bouton et lancer la barre de progression ─
+  // 2. Bloquer le bouton + barre de progression
   if (el) { el.style.opacity = '0.6'; el.style.pointerEvents = 'none'; }
-  toast(`⏳ Pub en cours… +${gain} FCFA dans ${duration}s`);
+  toast(`⏳ Pub en cours… +${ad.reward} FCFA dans ${ad.duration}s`);
 
   const bar = document.getElementById('adbar-' + adId);
   let elapsed = 0;
   const iv = setInterval(() => {
     elapsed++;
-    if (bar) bar.style.width = Math.min((elapsed / duration) * 100, 100) + '%';
+    if (bar) bar.style.width = Math.min((elapsed / ad.duration) * 100, 100) + '%';
   }, 1000);
 
-  // ── 3. Créditer après la durée ────────────────────────────────
+  // 3. Créditer après la durée
   setTimeout(async () => {
     clearInterval(iv);
     if (bar) bar.style.width = '100%';
-    const { data: res, error } = await sb.rpc('claim_ad_reward', { p_ad_id: adId, p_gain: gain });
+    const { data: res, error } = await sb.rpc('claim_ad_reward', { p_ad_id: adId, p_gain: ad.reward });
     if (error || !res?.success) {
       toast(res?.message || 'Erreur pub');
       if (el) { el.style.opacity = ''; el.style.pointerEvents = ''; }
@@ -1952,18 +1823,26 @@ function watchAd(adId, duration, gain, link) {
     bal += res.gain; updBal();
     toast(`✅ +${res.gain} FCFA crédités !`);
     if (el) el.classList.add('done');
-    document.getElementById('mCount').textContent =
-      parseInt(document.getElementById('mCount').textContent || '0') + 1;
+    const mc = document.getElementById('mCount');
+    if (mc) mc.textContent = parseInt(mc.textContent || '0') + 1;
     await loadTransactions();
-  }, duration * 1000);
+  }, ad.duration * 1000);
 }
 
 /* ══════════════════════════════════════════════════════
-   BOUTIQUE — PRODUITS
+   ✅ BOUTIQUE — ACHAT PRODUIT CORRIGÉ
+   Problème : userData.shop_balance n'était pas toujours
+   à jour (lu depuis le cache JS, pas depuis Supabase).
+   Solution :
+   1. On recharge le solde depuis Supabase avant d'acheter
+   2. On fait la vérification côté JS avec le vrai solde
+   3. Si le RPC échoue, on affiche l'erreur exacte
 ══════════════════════════════════════════════════════ */
 async function loadProducts() {
   const { data } = await sb.from('products').select('*').eq('is_approved', true).order('created_at', { ascending: false });
   products = data || [];
+  // Stocker chaque produit dans le registre
+  products.forEach(p => { prodsRegistry[String(p.id)] = p; });
   renderProducts();
 }
 
@@ -1975,8 +1854,9 @@ function renderProducts() {
     el.innerHTML = '<p style="text-align:center;color:var(--gr600);padding:20px 0">Aucun produit disponible</p>';
     return;
   }
+  // ✅ onclick utilise uniquement l'ID — pas de problème de guillemets/apostrophes dans les titres
   el.innerHTML = page.map(p => {
-    const gains  = Math.round((p.price||0) * CFG.VENDOR_PERCENT / 100);
+    const gains  = Math.round((p.price || 0) * CFG.VENDOR_PERCENT / 100);
     const imgHtml = p.cover
       ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:180px;object-fit:cover" onerror="this.style.display='none'">`
       : '';
@@ -1986,12 +1866,12 @@ function renderProducts() {
         <div class="row" style="align-items:flex-start;padding:12px 0">
           <div style="flex:1;min-width:0">
             <div style="font-weight:600;font-size:14px">${p.title}</div>
-            <div class="row-sub" style="margin-top:3px">${(p.price||0).toLocaleString('fr-FR')} FCFA</div>
+            <div class="row-sub" style="margin-top:3px">${(p.price || 0).toLocaleString('fr-FR')} FCFA</div>
             <div style="font-size:11px;color:var(--pur600);font-weight:600;margin-top:2px">💜 Vendeur : ${gains.toLocaleString('fr-FR')} FCFA</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px;margin-left:10px">
-            <button class="btn-main" style="width:auto;padding:7px 13px;font-size:13px" onclick="buyProduct('${p.id}','${p.link||''}',${p.price||0},'${p.seller_id||''}','${(p.title||'').replace(/'/g,"\\'")}')">Acheter</button>
-            <button style="background:var(--b50);border:1px solid #a5d6a7;border-radius:8px;color:var(--b800);font-size:12px;font-weight:600;padding:6px 10px;cursor:pointer" onclick="ouvrirShare('${p.id}','${(p.title||'').replace(/'/g,"\\'")}',${p.price||0},'${p.link||''}','${p.cover||''}')">📤 Partager</button>
+            <button class="btn-main" style="width:auto;padding:7px 13px;font-size:13px" onclick="buyProduct('${p.id}')">Acheter</button>
+            <button style="background:var(--b50);border:1px solid #a5d6a7;border-radius:8px;color:var(--b800);font-size:12px;font-weight:600;padding:6px 10px;cursor:pointer" onclick="ouvrirShare('${p.id}')">📤 Partager</button>
           </div>
         </div>
       </div>`;
@@ -2003,28 +1883,59 @@ function renderPagination() {
   const total = Math.ceil(products.length / perPage);
   const el = document.getElementById('pagination');
   if (total <= 1) { el.innerHTML = ''; return; }
-  el.innerHTML = Array.from({length: total}, (_,i) =>
-    `<button onclick="goPage(${i+1})" style="margin:2px;padding:6px 12px;border-radius:8px;border:1px solid #c8e6c9;background:${currentPage===i+1?'var(--b600)':'#fff'};color:${currentPage===i+1?'#fff':'#111'};cursor:pointer">${i+1}</button>`
+  el.innerHTML = Array.from({length: total}, (_, i) =>
+    `<button onclick="goPage(${i + 1})" style="margin:2px;padding:6px 12px;border-radius:8px;border:1px solid #c8e6c9;background:${currentPage === i + 1 ? 'var(--b600)' : '#fff'};color:${currentPage === i + 1 ? '#fff' : '#111'};cursor:pointer">${i + 1}</button>`
   ).join('');
 }
-
 function goPage(p) { currentPage = p; renderProducts(); }
 
-async function buyProduct(id, link, price, sellerId, title) {
-  const sbal = userData?.shop_balance || 0;
-  if (sbal < price) { toast('💳 Solde boutique insuffisant — rechargez votre solde'); return; }
-  const { data: res, error } = await sb.rpc('buy_product', { p_product_id: id, p_vendor_percent: CFG.VENDOR_PERCENT });
-  if (error || !res?.success) { toast(res?.message || 'Solde boutique insuffisant'); return; }
-  if (link && link.trim() !== '') window.open(link, '_blank');
-  toast(`✅ Achat réussi ! "${title}"`);
-  if (userData) { userData.shop_balance = (userData.shop_balance || 0) - price; updBal(); }
+/* ✅ buyProduct — corrigé */
+async function buyProduct(prodId) {
+  const p = prodsRegistry[String(prodId)];
+  if (!p) { toast('Produit introuvable'); return; }
+
+  // ── 1. Recharger le vrai solde boutique depuis Supabase ──────
+  toast('⏳ Vérification du solde…');
+  const { data: freshUser, error: ue } = await sb.from('users')
+    .select('shop_balance').eq('id', user.id).single();
+  if (ue || !freshUser) { toast('Erreur chargement solde'); return; }
+
+  const realBalance = freshUser.shop_balance || 0;
+  // Mettre à jour le cache local
+  if (userData) userData.shop_balance = realBalance;
+  updBal();
+
+  // ── 2. Vérification locale avec le vrai solde ────────────────
+  if (realBalance < p.price) {
+    toast(`💳 Solde insuffisant (${realBalance.toLocaleString('fr-FR')} FCFA) — rechargez votre solde boutique`);
+    return;
+  }
+
+  // ── 3. Appel RPC ─────────────────────────────────────────────
+  const { data: res, error } = await sb.rpc('buy_product', {
+    p_product_id:     prodId,
+    p_vendor_percent: CFG.VENDOR_PERCENT
+  });
+
+  if (error || !res?.success) {
+    // Afficher l'erreur exacte retournée par Supabase
+    const msg = res?.message || error?.message || 'Erreur lors de l\'achat';
+    toast('❌ ' + msg);
+    return;
+  }
+
+  // ── 4. Succès — ouvrir le lien + mettre à jour l'UI ─────────
+  if (p.link && p.link.trim() !== '') {
+    window.open(p.link, '_blank', 'noopener,noreferrer');
+  }
+  toast(`✅ Achat réussi ! "${p.title}"`);
+  // Mettre à jour le solde localement
+  if (userData) { userData.shop_balance = (userData.shop_balance || 0) - p.price; updBal(); }
+  await loadTransactions();
 }
 
-/* ══════════════════════════════════════════════════════
-   PROPOSER UN PRODUIT — ✅ CORRIGÉ : insertion dans Supabase
-══════════════════════════════════════════════════════ */
+/* ── Proposer un produit ── */
 function openAddProduct() {
-  // Réinitialiser le formulaire
   ['pTitle','pDesc','pPrice','pLink','pCover'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
   });
@@ -2034,20 +1945,16 @@ function openAddProduct() {
   document.getElementById('btnSubmitProd').textContent = '📤 Envoyer à l\'admin pour validation';
   document.getElementById('modProduct').classList.add('on');
 }
-
-function fermerModProduct() {
-  document.getElementById('modProduct').classList.remove('on');
-}
+function fermerModProduct() { document.getElementById('modProduct').classList.remove('on'); }
 
 function updateProdPreview() {
   const v = parseInt(document.getElementById('pPrice').value);
   const prev = document.getElementById('prodCommissionPreview');
   if (!v || v < 1) { prev.style.display = 'none'; return; }
   const gains = Math.round(v * CFG.VENDOR_PERCENT / 100);
-  const frais = v - gains;
   document.getElementById('prevPrix').textContent  = v.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('prevGains').textContent = gains.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('prevFrais').textContent = frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('prevFrais').textContent = (v - gains).toLocaleString('fr-FR') + ' FCFA';
   prev.style.display = 'block';
 }
 
@@ -2057,61 +1964,31 @@ async function submitProduct() {
   const price = parseInt(document.getElementById('pPrice').value);
   const link  = document.getElementById('pLink').value.trim();
   const cover = document.getElementById('pCover').value.trim() || null;
-
-  // Validation
   const errEl = document.getElementById('prodErrMsg');
   errEl.style.display = 'none';
-
-  if (!title) { errEl.innerHTML = '<strong>❌ Champ manquant</strong>Le titre est obligatoire.'; errEl.style.display = 'block'; return; }
+  if (!title)                        { errEl.innerHTML = '<strong>❌ Champ manquant</strong>Le titre est obligatoire.'; errEl.style.display = 'block'; return; }
   if (!price || isNaN(price) || price <= 0) { errEl.innerHTML = '<strong>❌ Prix invalide</strong>Entrez un prix positif.'; errEl.style.display = 'block'; return; }
-  if (!link) { errEl.innerHTML = '<strong>❌ Lien manquant</strong>Le lien de téléchargement est obligatoire.'; errEl.style.display = 'block'; return; }
-  if (!link.startsWith('http')) { errEl.innerHTML = '<strong>❌ Lien invalide</strong>Le lien doit commencer par https://'; errEl.style.display = 'block'; return; }
-
+  if (!link)                         { errEl.innerHTML = '<strong>❌ Lien manquant</strong>Le lien de téléchargement est obligatoire.'; errEl.style.display = 'block'; return; }
+  if (!link.startsWith('http'))      { errEl.innerHTML = '<strong>❌ Lien invalide</strong>Le lien doit commencer par https://'; errEl.style.display = 'block'; return; }
   const btn = document.getElementById('btnSubmitProd');
   btn.disabled = true; btn.textContent = '⏳ Envoi en cours…';
-
   try {
-    // ── ✅ CORRECTION PRINCIPALE : insertion dans Supabase ──────
     const { error: insertErr } = await sb.from('products').insert({
-      title:       title,
-      description: desc || null,
-      price:       price,
-      link:        link,
-      cover:       cover,
-      seller_id:   user.id,     // ← colonne vendeur
-      user_id:     user.id,     // ← si ta table utilise user_id
-      is_approved: false,
-      is_rejected: false,
+      title, description: desc || null, price, link, cover,
+      seller_id: user.id, user_id: user.id,
+      is_approved: false, is_rejected: false,
     });
-
     if (insertErr) {
       errEl.innerHTML = `<strong>❌ Erreur</strong>${insertErr.message}`;
       errEl.style.display = 'block';
       btn.disabled = false; btn.textContent = '📤 Envoyer à l\'admin pour validation';
       return;
     }
-
-    // ── Notification Telegram ──────────────────────────────────
     const gains = Math.round(price * CFG.VENDOR_PERCENT / 100);
-    await sendTG(
-      `📦 <b>NOUVEAU PRODUIT PROPOSÉ</b>\n\n` +
-      `👤 ${userData.name} (${userData.ref_code})\n` +
-      `📌 <b>${title}</b>\n` +
-      `📝 ${desc || 'Pas de description'}\n` +
-      `💰 ${price.toLocaleString('fr-FR')} FCFA\n` +
-      `💜 Gains vendeur : ${gains.toLocaleString('fr-FR')} FCFA (${CFG.VENDOR_PERCENT}%)\n` +
-      `🔗 ${link}\n` +
-      `🖼 ${cover || 'Pas d\'image'}\n\n` +
-      `✅ Validez depuis le bot admin.`
-    );
-
+    await sendTG(`📦 <b>NOUVEAU PRODUIT PROPOSÉ</b>\n\n👤 ${userData.name} (${userData.ref_code})\n📌 <b>${title}</b>\n📝 ${desc || 'Pas de description'}\n💰 ${price.toLocaleString('fr-FR')} FCFA\n💜 Gains vendeur : ${gains.toLocaleString('fr-FR')} FCFA (${CFG.VENDOR_PERCENT}%)\n🔗 ${link}\n🖼 ${cover || 'Pas d\'image'}\n\n✅ Validez depuis le bot admin.`);
     fermerModProduct();
     toast('✅ Produit envoyé ! En attente de validation admin.');
-    // Actualiser "Mes produits" si visible
-    if (document.getElementById('shopPanelMesProduits')?.style.display !== 'none') {
-      await loadMesProduits();
-    }
-
+    if (document.getElementById('shopPanelMesProduits')?.style.display !== 'none') await loadMesProduits();
   } catch(e) {
     errEl.innerHTML = `<strong>❌ Erreur inattendue</strong>${e.message}`;
     errEl.style.display = 'block';
@@ -2119,132 +1996,68 @@ async function submitProduct() {
   }
 }
 
-/* ══════════════════════════════════════════════════════
-   PARTAGE DE PRODUITS — ✅ NOUVEAU
-══════════════════════════════════════════════════════ */
-function ouvrirShare(id, title, price, link, cover) {
-  shareProduct = { id, title, price, link, cover };
-  const siteUrl = window.location.origin + window.location.pathname;
-  const shareUrl = `${siteUrl}?prod=${id}`;
-
-  document.getElementById('shareProductName').textContent  = '📌 ' + title;
-  document.getElementById('shareProductPrice').textContent = '💰 ' + Number(price).toLocaleString('fr-FR') + ' FCFA';
+/* ── Partage Produits ── */
+function ouvrirShare(prodId) {
+  const p = prodsRegistry[String(prodId)];
+  if (!p) return;
+  shareProduct = p;
+  const shareUrl = window.location.origin + window.location.pathname + '?prod=' + prodId;
+  document.getElementById('shareProductName').textContent  = '📌 ' + p.title;
+  document.getElementById('shareProductPrice').textContent = '💰 ' + Number(p.price || 0).toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('shareLinkText').textContent     = shareUrl;
   document.getElementById('modShare').classList.add('on');
 }
-
-function fermerShare() {
-  document.getElementById('modShare').classList.remove('on');
-  shareProduct = null;
+function fermerShare() { document.getElementById('modShare').classList.remove('on'); shareProduct = null; }
+function getShareUrl() {
+  if (!shareProduct) return '';
+  return window.location.origin + window.location.pathname + '?prod=' + shareProduct.id;
 }
-
 function getShareText() {
   if (!shareProduct) return '';
-  return `🛍 *${shareProduct.title}*\n💰 ${Number(shareProduct.price).toLocaleString('fr-FR')} FCFA\n\nDisponible sur MindCash Boutique :\n${getShareUrl()}`;
+  return `🛍 *${shareProduct.title}*\n💰 ${Number(shareProduct.price || 0).toLocaleString('fr-FR')} FCFA\n\nDisponible sur MindCash Boutique :\n${getShareUrl()}`;
 }
-function getShareUrl() {
-  const siteUrl = window.location.origin + window.location.pathname;
-  return `${siteUrl}?prod=${shareProduct?.id || ''}`;
-}
-
 function copyShareLink() {
   const url = getShareUrl();
   navigator.clipboard.writeText(url)
     .then(() => toast('🔗 Lien copié !'))
     .catch(() => {
-      // Fallback pour mobiles
       const ta = document.createElement('textarea');
       ta.value = url; document.body.appendChild(ta);
       ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
       toast('🔗 Lien copié !');
     });
 }
-
-function shareWhatsApp() {
-  const text = encodeURIComponent(getShareText());
-  window.open(`https://wa.me/?text=${text}`, '_blank');
-}
-
-function shareFacebook() {
-  const url = encodeURIComponent(getShareUrl());
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-}
-
-function shareTelegram() {
-  const url  = encodeURIComponent(getShareUrl());
-  const text = encodeURIComponent(`🛍 ${shareProduct?.title} — ${Number(shareProduct?.price||0).toLocaleString('fr-FR')} FCFA`);
-  window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
-}
-
-function shareTwitter() {
-  const text = encodeURIComponent(`🛍 ${shareProduct?.title} — ${Number(shareProduct?.price||0).toLocaleString('fr-FR')} FCFA\n${getShareUrl()}`);
-  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
-}
-
-function shareSMS() {
-  const text = encodeURIComponent(getShareText());
-  window.open(`sms:?body=${text}`, '_blank');
-}
-
-function shareEmail() {
-  const subj = encodeURIComponent(`🛍 ${shareProduct?.title} sur MindCash`);
-  const body = encodeURIComponent(getShareText());
-  window.open(`mailto:?subject=${subj}&body=${body}`, '_blank');
-}
-
-function shareLinkedIn() {
-  const url = encodeURIComponent(getShareUrl());
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
-}
-
+function shareWhatsApp()  { window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareFacebook()  { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}`, '_blank'); }
+function shareTelegram()  { window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent('🛍 ' + (shareProduct?.title || ''))}`, '_blank'); }
+function shareTwitter()   { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareSMS()       { window.open(`sms:?body=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareEmail()     { window.open(`mailto:?subject=${encodeURIComponent('🛍 ' + (shareProduct?.title || '') + ' sur MindCash')}&body=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareLinkedIn()  { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrl())}`, '_blank'); }
 async function shareNative() {
   if (navigator.share) {
     try {
-      await navigator.share({
-        title: `🛍 ${shareProduct?.title}`,
-        text: `${shareProduct?.title} — ${Number(shareProduct?.price||0).toLocaleString('fr-FR')} FCFA\nDisponible sur MindCash Boutique`,
-        url: getShareUrl(),
-      });
-    } catch(e) {
-      if (e.name !== 'AbortError') copyShareLink();
-    }
-  } else {
-    copyShareLink();
-  }
+      await navigator.share({ title: '🛍 ' + (shareProduct?.title || ''), text: getShareText(), url: getShareUrl() });
+    } catch(e) { if (e.name !== 'AbortError') copyShareLink(); }
+  } else { copyShareLink(); }
 }
 
-/* ══════════════════════════════════════════════════════
-   HISTORIQUE GAINS + MES PRODUITS
-══════════════════════════════════════════════════════ */
+/* ── Historique gains + Mes produits ── */
 async function loadGainsHistory() {
   const el = document.getElementById('gainsHistoryList');
   if (!user) return;
   el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div>';
-  const { data: sales } = await sb.from('transactions')
-    .select('*').eq('user_id', user.id).eq('type', 'sale_gain')
-    .order('created_at', { ascending: false }).limit(20);
-  const total = (sales||[]).reduce((s,t) => s+(t.amount||0), 0);
-  document.getElementById('statVentesCount').textContent = (sales||[]).length;
+  const { data: sales } = await sb.from('transactions').select('*').eq('user_id', user.id).eq('type', 'sale_gain').order('created_at', { ascending: false }).limit(20);
+  const total = (sales || []).reduce((s, t) => s + (t.amount || 0), 0);
+  document.getElementById('statVentesCount').textContent = (sales || []).length;
   document.getElementById('statVentesTotal').textContent = total.toLocaleString('fr-FR');
   if (!sales?.length) {
-    el.innerHTML = `
-      <div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #CE93D8;border-radius:14px">
-        <div style="font-size:40px;margin-bottom:10px">🛍</div>
-        <div style="font-size:14px;font-weight:600;color:var(--pur800);margin-bottom:6px">Pas encore de ventes</div>
-        <div style="font-size:12px;color:var(--gr600)">Proposez vos produits et commencez à gagner 80% sur chaque vente !</div>
-      </div>`;
+    el.innerHTML = `<div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #CE93D8;border-radius:14px"><div style="font-size:40px;margin-bottom:10px">🛍</div><div style="font-size:14px;font-weight:600;color:var(--pur800);margin-bottom:6px">Pas encore de ventes</div><div style="font-size:12px;color:var(--gr600)">Proposez vos produits et commencez à gagner 80% sur chaque vente !</div></div>`;
     return;
   }
   el.innerHTML = sales.map(tx => {
     const date = new Date(tx.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-    return `
-      <div class="gains-history-item">
-        <div>
-          <div class="gh-title">🛍 ${tx.meta?.product_title || 'Produit vendu'}</div>
-          <div class="gh-sub">${date} · <span class="bdg bdg-p">${CFG.VENDOR_PERCENT}% vendeur</span></div>
-        </div>
-        <div class="gh-amt">+${tx.amount.toLocaleString('fr-FR')} FCFA</div>
-      </div>`;
+    return `<div class="gains-history-item"><div><div class="gh-title">🛍 ${tx.meta?.product_title || 'Produit vendu'}</div><div class="gh-sub">${date} · <span class="bdg bdg-p">${CFG.VENDOR_PERCENT}% vendeur</span></div></div><div class="gh-amt">+${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
   }).join('');
 }
 
@@ -2252,80 +2065,56 @@ async function loadMesProduits() {
   const el = document.getElementById('mesProduitsList');
   if (!user) return;
   el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div>';
-  // ✅ Cherche par seller_id OU user_id selon ta colonne
-  const { data } = await sb.from('products')
-    .select('*')
-    .or(`seller_id.eq.${user.id},user_id.eq.${user.id}`)
-    .order('created_at', { ascending: false });
+  const { data } = await sb.from('products').select('*').or(`seller_id.eq.${user.id},user_id.eq.${user.id}`).order('created_at', { ascending: false });
   if (!data?.length) {
-    el.innerHTML = `
-      <div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #c8e6c9;border-radius:14px">
-        <div style="font-size:40px;margin-bottom:10px">📦</div>
-        <div style="font-size:14px;font-weight:600;color:var(--b800);margin-bottom:6px">Aucun produit proposé</div>
-        <div style="font-size:12px;color:var(--gr600)">Cliquez sur "Proposer un produit" pour commencer à vendre.</div>
-      </div>`;
+    el.innerHTML = `<div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #c8e6c9;border-radius:14px"><div style="font-size:40px;margin-bottom:10px">📦</div><div style="font-size:14px;font-weight:600;color:var(--b800);margin-bottom:6px">Aucun produit proposé</div><div style="font-size:12px;color:var(--gr600)">Cliquez sur "Proposer un produit" pour commencer à vendre.</div></div>`;
     return;
   }
   el.innerHTML = data.map(p => {
     const status = p.is_approved ? '✅ Approuvé' : p.is_rejected ? '❌ Refusé' : '⏳ En attente de validation';
     const bdg    = p.is_approved ? 'bdg-g' : p.is_rejected ? 'bdg-r' : 'bdg-a';
-    const gains  = Math.round((p.price||0) * CFG.VENDOR_PERCENT / 100);
-    return `
-      <div class="card" style="margin-bottom:10px">
-        ${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:120px;object-fit:cover" onerror="this.style.display='none'">` : ''}
-        <div class="row" style="padding:10px 0">
-          <div>
-            <div style="font-weight:600;font-size:14px">${p.title}</div>
-            <div class="row-sub">${(p.price||0).toLocaleString('fr-FR')} FCFA · <span class="bdg ${bdg}">${status}</span></div>
-            <div style="font-size:11px;color:var(--pur600);margin-top:3px;font-weight:600">💜 Vos gains : ${gains.toLocaleString('fr-FR')} FCFA/vente</div>
-          </div>
-        </div>
-      </div>`;
+    const gains  = Math.round((p.price || 0) * CFG.VENDOR_PERCENT / 100);
+    return `<div class="card" style="margin-bottom:10px">${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:120px;object-fit:cover" onerror="this.style.display='none'">` : ''}<div class="row" style="padding:10px 0"><div><div style="font-weight:600;font-size:14px">${p.title}</div><div class="row-sub">${(p.price || 0).toLocaleString('fr-FR')} FCFA · <span class="bdg ${bdg}">${status}</span></div><div style="font-size:11px;color:var(--pur600);margin-top:3px;font-weight:600">💜 Vos gains : ${gains.toLocaleString('fr-FR')} FCFA/vente</div></div></div></div>`;
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════════
-   DATA LOADERS
-══════════════════════════════════════════════════════ */
+/* ── Data Loaders ── */
 async function loadTransactions() {
-  const { data } = await sb.from('transactions').select('*')
-    .eq('user_id', user.id).order('created_at', { ascending: false }).limit(10);
+  const { data } = await sb.from('transactions').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(10);
   const el = document.getElementById('txList');
   if (!data?.length) { el.innerHTML = '<div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Aucune transaction</div>'; return; }
   const lbl = { deposit:'Dépôt', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardée', mission:'Mission', referral:'Parrainage', sale_gain:'Gain vente boutique', gains_withdraw:'Retrait gains ventes', manual_credit:'Crédit admin' };
   el.innerHTML = data.map(tx => {
     const pos  = !['withdraw','gains_withdraw','shop_withdraw'].includes(tx.type);
     const date = new Date(tx.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-    const cls  = tx.status==='success'?'bdg-g':tx.status==='pending'?'bdg-a':'bdg-r';
-    const stxt = tx.status==='success'?'Validé':tx.status==='pending'?'En attente':'Échoué';
-    const isSG = tx.type === 'sale_gain';
-    return `<div class="row"><div><div style="font-weight:600;font-size:13px${isSG?';color:var(--pur600)':''}">${lbl[tx.type]||tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos?'var(--g600)':'var(--r600)'};font-weight:700">${pos?'+':'−'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
+    const cls  = tx.status === 'success' ? 'bdg-g' : tx.status === 'pending' ? 'bdg-a' : 'bdg-r';
+    const stxt = tx.status === 'success' ? 'Validé' : tx.status === 'pending' ? 'En attente' : 'Échoué';
+    return `<div class="row"><div><div style="font-weight:600;font-size:13px${tx.type==='sale_gain'?';color:var(--pur600)':''}">${lbl[tx.type] || tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos ? 'var(--g600)' : 'var(--r600)'};font-weight:700">${pos ? '+' : '−'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
   }).join('');
 }
 
 async function loadStats() {
-  const { data: gains } = await sb.from('transactions').select('amount,type')
-    .eq('user_id', user.id).in('type', ['bonus','ad','mission','referral','sale_gain']).eq('status','success');
-  const tg = (gains||[]).reduce((s,t) => s+(t.amount||0), 0);
-  const s = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+  const { data: gains } = await sb.from('transactions').select('amount,type').eq('user_id', user.id).in('type', ['bonus','ad','mission','referral','sale_gain']).eq('status','success');
+  const tg = (gains || []).reduce((s, t) => s + (t.amount || 0), 0);
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   s('statTotalGagne', tg.toLocaleString('fr-FR'));
   s('profTotalGagne', tg.toLocaleString('fr-FR') + ' FCFA');
   const { data: rets } = await sb.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','success');
-  const tr = (rets||[]).reduce((s,r) => s+(r.amount||0), 0);
-  s('statRetraits',     (rets||[]).length);
+  const tr = (rets || []).reduce((s, r) => s + (r.amount || 0), 0);
+  s('statRetraits',     (rets || []).length);
   s('profTotalRetrait', tr.toLocaleString('fr-FR') + ' FCFA');
   const { data: n1 } = await sb.from('users').select('id').eq('referred_by', user.id);
-  s('statFilleuls', (n1||[]).length);
+  s('statFilleuls', (n1 || []).length);
 }
 
 async function loadDepotBalance() {
   const { data: deps } = await sb.from('deposits').select('amount,status').eq('user_id', user.id);
-  const td = (deps||[]).filter(d => d.status==='success').reduce((s,d) => s+(d.amount||0), 0);
-  const s = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+  const td = (deps || []).filter(d => d.status === 'success').reduce((s, d) => s + (d.amount || 0), 0);
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   s('totalDeposeAmt', td.toLocaleString('fr-FR') + ' FCFA');
   s('profTotalDepose', td.toLocaleString('fr-FR') + ' FCFA');
   const { data: rets } = await sb.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','pending');
-  const tp = (rets||[]).reduce((s,r) => s+(r.amount||0), 0);
+  const tp = (rets || []).reduce((s, r) => s + (r.amount || 0), 0);
   s('retraitsPendingAmt', tp.toLocaleString('fr-FR') + ' FCFA');
 }
 
@@ -2333,10 +2122,10 @@ async function loadDepotBalance() {
 async function loadCompletedMissions() {
   const { data } = await sb.from('completed_missions').select('mission_id').eq('user_id', user.id);
   completedMissions = new Set();
-  (data||[]).forEach(row => {
+  (data || []).forEach(row => {
     const key = String(row.mission_id);
     completedMissions.add(key);
-    const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
+    const el = document.getElementById('tM' + key) || document.getElementById('tAa' + key) || document.getElementById('tAaa' + key);
     if (el) el.classList.add('done');
   });
   document.getElementById('mCount').textContent = completedMissions.size;
@@ -2347,18 +2136,16 @@ async function doMissionLink(id, name, rewardStr, link) {
   const key = String(id);
   if (completedMissions.has(key)) { toast('✅ Mission déjà complétée !'); return; }
   if (link && link !== '#') window.open(link, '_blank');
-  const { data: res, error } = await sb.rpc('complete_mission', {
-    p_mission_id: key, p_mission_name: name, p_reward: parseInt(rewardStr)
-  });
+  const { data: res, error } = await sb.rpc('complete_mission', { p_mission_id: key, p_mission_name: name, p_reward: parseInt(rewardStr) });
   if (error || !res?.success) {
     toast(res?.message || '✅ Mission déjà complétée !');
-    const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
+    const el = document.getElementById('tM' + key) || document.getElementById('tAa' + key) || document.getElementById('tAaa' + key);
     if (el) el.classList.add('done');
     completedMissions.add(key); return;
   }
   completedMissions.add(key); bal += res.gain; updBal();
   toast('+' + res.gain + ' FCFA — ' + name);
-  const el = document.getElementById('tM'+key) || document.getElementById('tAa'+key) || document.getElementById('tAaa'+key);
+  const el = document.getElementById('tM' + key) || document.getElementById('tAa' + key) || document.getElementById('tAaa' + key);
   if (el) el.classList.add('done');
   document.getElementById('mCount').textContent = completedMissions.size;
   await loadTransactions();
@@ -2368,10 +2155,7 @@ async function doMissionLink(id, name, rewardStr, link) {
 async function claimBonus() {
   if (!userData?.is_active) { toast('Compte non activé.'); return; }
   const { data: res, error } = await sb.rpc('claim_bonus_daily');
-  if (error || !res?.success) {
-    toast(res?.message || '⏰ Bonus déjà récupéré aujourd\'hui !');
-    document.getElementById('tBonus').classList.add('done'); return;
-  }
+  if (error || !res?.success) { toast(res?.message || '⏰ Bonus déjà récupéré aujourd\'hui !'); document.getElementById('tBonus').classList.add('done'); return; }
   bal += res.gain; updBal();
   toast(`+${res.gain} FCFA 🎁 Bonus du jour récupéré !`);
   document.getElementById('tBonus').classList.add('done');
@@ -2380,9 +2164,7 @@ async function claimBonus() {
 
 async function checkBonusToday() {
   const today = new Date().toISOString().split('T')[0];
-  const { data } = await sb.from('transactions').select('id')
-    .eq('user_id', user.id).eq('type','bonus').eq('status','success')
-    .gte('created_at', today+'T00:00:00').maybeSingle();
+  const { data } = await sb.from('transactions').select('id').eq('user_id', user.id).eq('type','bonus').eq('status','success').gte('created_at', today + 'T00:00:00').maybeSingle();
   if (data) { const el = document.getElementById('tBonus'); if (el) el.classList.add('done'); }
 }
 
@@ -2397,34 +2179,30 @@ async function loadAffilTree() {
   const { data: n1 } = await sb.from('users').select('id,name,ref_code,is_active,created_at').eq('referred_by', user.id);
   if (!n1?.length) {
     document.getElementById('affilTree').innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Pas encore de filleuls</div>';
-    ['afN1Count','afN2Count','afN1Gains','afN2Gains'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent='0'; });
+    ['afN1Count','afN2Count','afN1Gains','afN2Gains'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '0'; });
     return;
   }
   let html = '', n2Total = 0, gainsN1 = 0, gainsN2 = 0;
   for (const u1 of n1) {
     const date = new Date(u1.created_at).toLocaleDateString('fr-FR');
-    const b1 = u1.is_active
-      ? `<span class="bdg bdg-g">+${Number(CFG.BONUS_N1).toLocaleString('fr-FR')} FCFA</span>`
-      : '<span class="bdg bdg-a">En attente</span>';
+    const b1 = u1.is_active ? `<span class="bdg bdg-g">+${Number(CFG.BONUS_N1).toLocaleString('fr-FR')} FCFA</span>` : '<span class="bdg bdg-a">En attente</span>';
     if (u1.is_active) gainsN1 += Number(CFG.BONUS_N1);
-    html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u1.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u1.is_active?'Actif':'En attente'} · ${date} · N1</div></div>${b1}</div>`;
+    html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u1.name || 'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u1.is_active ? 'Actif' : 'En attente'} · ${date} · N1</div></div>${b1}</div>`;
     const { data: n2 } = await sb.from('users').select('id,name,ref_code,is_active,created_at').eq('referred_by', u1.id);
     if (n2?.length) {
       html += '<div class="tree-indent">';
       for (const u2 of n2) {
         const d2 = new Date(u2.created_at).toLocaleDateString('fr-FR');
-        const b2 = u2.is_active
-          ? `<span class="bdg bdg-g">+${Number(CFG.BONUS_N2).toLocaleString('fr-FR')} FCFA</span>`
-          : '<span class="bdg bdg-a">En attente</span>';
+        const b2 = u2.is_active ? `<span class="bdg bdg-g">+${Number(CFG.BONUS_N2).toLocaleString('fr-FR')} FCFA</span>` : '<span class="bdg bdg-a">En attente</span>';
         if (u2.is_active) gainsN2 += Number(CFG.BONUS_N2);
-        html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u2.name||'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u2.is_active?'Actif':'En attente'} · ${d2} · N2</div></div>${b2}</div>`;
+        html += `<div class="tree-node"><div><div style="font-size:13px;font-weight:600">${u2.name || 'Utilisateur'}</div><div style="font-size:11px;color:var(--gr600)">${u2.is_active ? 'Actif' : 'En attente'} · ${d2} · N2</div></div>${b2}</div>`;
         n2Total++;
       }
       html += '</div>';
     }
   }
   document.getElementById('affilTree').innerHTML = html;
-  const s=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   s('afN1Count', n1.length); s('afN2Count', n2Total);
   s('afN1Gains', gainsN1.toLocaleString('fr-FR'));
   s('afN2Gains', gainsN2.toLocaleString('fr-FR'));
