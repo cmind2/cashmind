@@ -490,7 +490,6 @@ body {
 }
 .shop-tab.on { background: var(--b600); color: #fff; }
 
-/* ══ TIMER PUB ══ */
 .ad-timer-bar {
   height: 4px; background: #e8f5e8; border-radius: 4px;
   margin-top: 8px; overflow: hidden;
@@ -500,7 +499,6 @@ body {
   width: 0%; transition: width 1s linear;
 }
 
-/* ══ MODAL PARTAGE ══ */
 .share-overlay {
   display: none; position: absolute; inset: 0;
   background: rgba(10,61,10,0.55); z-index: 300; align-items: flex-end;
@@ -527,7 +525,7 @@ body {
     <div class="site-header-name"><span>💸</span> MIND CASH</div>
   </div>
 
-<!-- ══ MODAL BIENVENUE ══ -->
+<!-- MODAL BIENVENUE -->
 <div class="welcome-overlay" id="modWelcome">
   <div class="welcome-box">
     <div class="welcome-header">
@@ -750,7 +748,6 @@ body {
             Vous pouvez acheter et vendre des produits en rechargeant votre solde boutique (min. <span id="shopNoticeMin">500</span> FCFA).
           </div>
         </div>
-        <!-- ONGLET PRODUITS -->
         <div id="shopPanelProduits">
           <div style="background:var(--b600);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
             <div>
@@ -766,7 +763,6 @@ body {
           <div id="pagination" style="text-align:center;margin-top:10px"></div>
           <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un produit</button>
         </div>
-        <!-- ONGLET MES PRODUITS -->
         <div id="shopPanelMesProduits" style="display:none">
           <div class="gains-info-box">
             <span class="gi-ico">📦</span>
@@ -778,7 +774,6 @@ body {
           <div id="mesProduitsList"><div style="text-align:center;color:var(--gr600);font-size:13px;padding:20px 0">Chargement...</div></div>
           <button class="btn-main" style="margin-top:8px" onclick="openAddProduct()">➕ Proposer un nouveau produit</button>
         </div>
-        <!-- ONGLET GAINS VENTES -->
         <div id="shopPanelGains" style="display:none">
           <div class="gains-card">
             <div class="gains-card-header">
@@ -883,7 +878,7 @@ body {
     </div>
   </div>
 
-  <!-- MODAL DÉPÔT D'ACTIVATION -->
+  <!-- MODAL DÉPÔT ACTIVATION -->
   <div class="moverlay" id="modActivate">
     <div class="mbox">
       <div class="mhandle"></div>
@@ -1242,40 +1237,37 @@ let products = [], currentPage = 1;
 const perPage = 6;
 let shareProduct = null;
 
-// ══════════════════════════════════════════════════════
+const adsRegistry  = {};
+const prodsRegistry = {};
 
-// ══════════════════════════════════════════════════════
-const adsRegistry = {};   // { adId: { id, duration, reward, link } }
-const prodsRegistry = {}; // { prodId: { id, title, price, link, cover, seller_id } }
-
-/* ── Injection UI ── */
+/* ── UI ── */
 function injectConstantesUI() {
   const f = n => Number(n).toLocaleString('fr-FR');
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   const a = (id, k, v) => { const el = document.getElementById(id); if (el) el[k] = v; };
-  s('hintDepotMin', `Un dépôt minimum de ${f(CFG.DEPOT_MIN)} FCFA est requis pour activer votre compte`);
-  s('actDepotMin', f(CFG.DEPOT_MIN) + ' FCFA');
-  s('actHoraires', `Tous les jours ${CFG.DEPOT_H_DEBUT}h–${CFG.DEPOT_H_FIN}h`);
+  s('hintDepotMin',   `Un dépôt minimum de ${f(CFG.DEPOT_MIN)} FCFA est requis pour activer votre compte`);
+  s('actDepotMin',    f(CFG.DEPOT_MIN) + ' FCFA');
+  s('actHoraires',    `Tous les jours ${CFG.DEPOT_H_DEBUT}h–${CFG.DEPOT_H_FIN}h`);
   s('aDepotMinLabel', f(CFG.DEPOT_MIN) + ' FCFA');
   a('aMt', 'placeholder', CFG.DEPOT_MIN); a('aMt', 'min', CFG.DEPOT_MIN);
   s('retraitMinLabel', f(CFG.RETRAIT_MIN) + ' FCFA');
   a('rMt', 'placeholder', CFG.RETRAIT_MIN);
-  s('fraisLabel', `Frais (${CFG.FRAIS_PERCENT}%)`);
-  s('sdMinLabel', f(CFG.SHOP_DEPOT_MIN) + ' FCFA');
+  s('fraisLabel',      `Frais (${CFG.FRAIS_PERCENT}%)`);
+  s('sdMinLabel',      f(CFG.SHOP_DEPOT_MIN) + ' FCFA');
   a('sdMt', 'placeholder', CFG.SHOP_DEPOT_MIN); a('sdMt', 'min', CFG.SHOP_DEPOT_MIN);
-  s('shopNoticeMin', f(CFG.SHOP_DEPOT_MIN));
-  s('swMinLabel', f(CFG.SHOP_RETRAIT_MIN) + ' FCFA');
+  s('shopNoticeMin',   f(CFG.SHOP_DEPOT_MIN));
+  s('swMinLabel',      f(CFG.SHOP_RETRAIT_MIN) + ' FCFA');
   a('swMt', 'placeholder', CFG.SHOP_RETRAIT_MIN);
-  s('shopFraisLabel', `Frais (${CFG.FRAIS_PERCENT}%)`);
-  s('gwMinLabel', f(CFG.GAINS_RETRAIT_MIN) + ' FCFA');
-  s('gwFraisLabel', `${CFG.FRAIS_PERCENT}%`);
+  s('shopFraisLabel',  `Frais (${CFG.FRAIS_PERCENT}%)`);
+  s('gwMinLabel',      f(CFG.GAINS_RETRAIT_MIN) + ' FCFA');
+  s('gwFraisLabel',    `${CFG.FRAIS_PERCENT}%`);
   s('gainsFraisLabel', `Frais (${CFG.FRAIS_PERCENT}%)`);
   a('gwMt', 'placeholder', CFG.GAINS_RETRAIT_MIN);
-  s('afBonusN1Disp', f(CFG.BONUS_N1) + ' FCFA');
-  s('afBonusN2Disp', f(CFG.BONUS_N2) + ' FCFA');
-  s('affilDepotMin', f(CFG.DEPOT_MIN) + ' FCFA');
-  s('wf-parrainage', `${f(CFG.BONUS_N1)} FCFA par filleul direct · ${f(CFG.BONUS_N2)} FCFA indirect.`);
-  s('wf-retrait', `Minimum ${f(CFG.RETRAIT_MIN)} FCFA · Activation dès ${f(CFG.DEPOT_MIN)} FCFA.`);
+  s('afBonusN1Disp',   f(CFG.BONUS_N1) + ' FCFA');
+  s('afBonusN2Disp',   f(CFG.BONUS_N2) + ' FCFA');
+  s('affilDepotMin',   f(CFG.DEPOT_MIN) + ' FCFA');
+  s('wf-parrainage',   `${f(CFG.BONUS_N1)} FCFA par filleul direct · ${f(CFG.BONUS_N2)} FCFA indirect.`);
+  s('wf-retrait',      `Minimum ${f(CFG.RETRAIT_MIN)} FCFA · Activation dès ${f(CFG.DEPOT_MIN)} FCFA.`);
 }
 
 let toastIv = null;
@@ -1362,7 +1354,7 @@ async function doRegister() {
   const pconf = document.getElementById('rPassConfirm').value;
   const ref   = document.getElementById('rRef').value.trim() || null;
   if (!name || !phone || !pass || !pconf) { toast('Remplis tous les champs obligatoires'); return; }
-  if (pass !== pconf) { toast('❌ Les mots de passe ne correspondent pas'); return; }
+  if (pass !== pconf) { toast('Les mots de passe ne correspondent pas'); return; }
   if (pass.length < 6) { toast('Le mot de passe doit faire au moins 6 caractères'); return; }
   const { data, error } = await sb.auth.signUp({ email: phone + '@mindcash.app', password: pass });
   if (error) { toast(error.message); return; }
@@ -1377,7 +1369,7 @@ async function doRegister() {
     ref_code: refCode, referred_by: referredBy, shop_balance: 0, gains_balance: 0
   });
   if (ie) { toast(ie.message); return; }
-  toast('✅ Compte créé ! Connectez-vous.'); swTab('login');
+  toast('Compte créé ! Connectez-vous.'); swTab('login');
 }
 
 async function doLogin() {
@@ -1478,7 +1470,7 @@ function showPg(id) {
     if (notice) notice.style.display = (userData && !userData.is_active) ? 'flex' : 'none';
   }
   if (id === 'Affil') {
-    const locked = document.getElementById('affilLocked');
+    const locked  = document.getElementById('affilLocked');
     const content = document.getElementById('affilContent');
     const isActive = userData?.is_active || false;
     if (locked)  locked.style.display  = isActive ? 'none' : 'block';
@@ -1486,10 +1478,10 @@ function showPg(id) {
   }
 }
 
-/* ──n ── */
+/* ── Dépôt Activation ── */
 function ouvrirDepotActivation() {
-  if (userData && userData.is_active) { toast('✅ Votre compte est déjà actif.'); return; }
-  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
+  if (userData && userData.is_active) { toast('Votre compte est déjà actif.'); return; }
+  if (!depotOuvert()) { toast(`Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
   document.getElementById('modActivate').classList.add('on');
 }
 function fermerModActivate() { document.getElementById('modActivate').classList.remove('on'); resetModActivate(); }
@@ -1532,7 +1524,7 @@ async function aConfirmerPaiement() {
   document.getElementById('aS2').classList.remove('on');
   document.getElementById('aS3').classList.add('on');
   await sendTG(
-    `🔔 <b>DÉPÔT D'ACTIVATION EN ATTENTE</b>\n\n` +
+    `🔔 <b>DEPOT ACTIVATION EN ATTENTE</b>\n\n` +
     `👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n` +
     `💰 <b>${Number(pendingDepotMt).toLocaleString('fr-FR')} FCFA</b>\n` +
     `📱 MTN MoMo · 📲 ${pendingDepotNum}\n\n✅ Validez depuis le tableau de bord admin.`
@@ -1544,7 +1536,7 @@ function lancerTimer(displayId, btnId, seconds) {
   let rem = seconds;
   const display = document.getElementById(displayId), btn = document.getElementById(btnId);
   if (!display || !btn) return null;
-  btn.disabled = true; btn.textContent = '🔒 Attendez la fin du compte à rebours…';
+  btn.disabled = true; btn.textContent = 'Attendez la fin du compte à rebours…';
   function tick() {
     const m = Math.floor(rem / 60), s = rem % 60;
     display.textContent = m + ':' + String(s).padStart(2, '0');
@@ -1556,11 +1548,11 @@ function lancerTimer(displayId, btnId, seconds) {
   return iv;
 }
 
-/* ──  ── */
+/* ── Retrait Principal ── */
 function ouvrirRetrait() {
-  if (!userData?.is_active) { toast('🔒 Activez votre compte pour retirer'); return; }
+  if (!userData?.is_active) { toast('Activez votre compte pour retirer'); return; }
   if (!retraitOuvert()) {
-    toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd'hui : ${JOURS_FR[new Date().getDay()]}`);
+    toast(`Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h. Aujourd hui : ${JOURS_FR[new Date().getDay()]}`);
     return;
   }
   document.getElementById('modRetrait').classList.add('on');
@@ -1578,12 +1570,12 @@ function updateFrais() {
   if (!mt || mt < 1) { box.style.display = 'none'; return; }
   const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   document.getElementById('fraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('fraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('fraisMontant').textContent = '- ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('fraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
   box.style.display = 'block';
 }
 async function doRetrait() {
-  if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
+  if (!retraitOuvert()) { toast('Retraits fermés !'); return; }
   const num = document.getElementById('rNum').value.trim();
   const mt  = parseInt(document.getElementById('rMt').value);
   if (!num) { toast('Entre ton numéro MTN MoMo'); return; }
@@ -1595,17 +1587,17 @@ async function doRetrait() {
   await sendTG(`💳 <b>DEMANDE DE RETRAIT</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n💸 Frais (${CFG.FRAIS_PERCENT}%) : ${res.fees.toLocaleString('fr-FR')} FCFA\n✅ Net : <b>${res.net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`);
   document.getElementById('rNumConf').textContent   = num;
   document.getElementById('rMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('rFraisConf').textContent = '− ' + res.fees.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('rFraisConf').textContent = '- ' + res.fees.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('rNetConf').textContent   = res.net.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('rS1').classList.remove('on');
   document.getElementById('rS2').classList.add('on');
-  toast('Retrait soumis — admin notifié ✅');
+  toast('Retrait soumis — admin notifié');
   await Promise.all([loadTransactions(), loadStats(), loadDepotBalance()]);
 }
 
-/* ──  ── */
+/* ── Dépôt Boutique ── */
 function openShopDeposit() {
-  if (!depotOuvert()) { toast(`⏰ Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
+  if (!depotOuvert()) { toast(`Dépôts fermés ! Ouverts de ${CFG.DEPOT_H_DEBUT}h à ${CFG.DEPOT_H_FIN}h`); return; }
   resetShopDeposit(); document.getElementById('modShopDeposit').classList.add('on');
 }
 function fermerShopDeposit() { document.getElementById('modShopDeposit').classList.remove('on'); resetShopDeposit(); }
@@ -1642,9 +1634,9 @@ async function sdConfirmerPaiement() {
   toast("Recharge confirmée — l'admin va créditer votre solde boutique !");
 }
 
-/* ──  ── */
+/* ── Retrait Boutique ── */
 function openShopWithdraw() {
-  if (!retraitOuvert()) { toast(`⏰ Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h.`); return; }
+  if (!retraitOuvert()) { toast(`Retraits fermés ! Lun–Ven ${CFG.RETRAIT_H_DEBUT}h–${CFG.RETRAIT_H_FIN}h.`); return; }
   const sbal = userData?.shop_balance || 0;
   const el = document.getElementById('shopSoldeDispo'); if (el) el.textContent = sbal.toLocaleString('fr-FR') + ' FCFA';
   resetShopWithdraw(); document.getElementById('modShopWithdraw').classList.add('on');
@@ -1663,12 +1655,12 @@ function updateShopFrais() {
   if (!mt || mt < 1) { box.style.display = 'none'; return; }
   const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   document.getElementById('shopFraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('shopFraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('shopFraisMontant').textContent = '- ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('shopFraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
   box.style.display = 'block';
 }
 async function doShopWithdraw() {
-  if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
+  if (!retraitOuvert()) { toast('Retraits fermés !'); return; }
   const num = document.getElementById('swNum').value.trim();
   const mt  = parseInt(document.getElementById('swMt').value);
   if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
@@ -1681,19 +1673,19 @@ async function doShopWithdraw() {
   await sendTG(`💸 <b>RETRAIT BOUTIQUE</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n💸 Frais : ${frais.toLocaleString('fr-FR')} FCFA · ✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`);
   document.getElementById('swNumConf').textContent   = num;
   document.getElementById('swMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('swFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('swFraisConf').textContent = '- ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('swNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('swS1').classList.remove('on');
   document.getElementById('swS2').classList.add('on');
-  toast('Retrait boutique soumis ✅');
+  toast('Retrait boutique soumis');
   if (userData) { userData.shop_balance = (userData.shop_balance || 0) - mt; updBal(); }
 }
 
 /* ── Gains Ventes ── */
 function ouvrirGainsWithdraw() {
-  if (!retraitOuvert()) { toast(`⏰ Retraits fermés !`); return; }
+  if (!retraitOuvert()) { toast('Retraits fermés !'); return; }
   const gbal = userData?.gains_balance || 0;
-  if (gbal <= 0) { toast('💜 Votre solde gains est vide'); return; }
+  if (gbal <= 0) { toast('Votre solde gains est vide'); return; }
   const el = document.getElementById('gwSoldeDisp'); if (el) el.textContent = gbal.toLocaleString('fr-FR') + ' FCFA';
   resetGainsWithdraw(); document.getElementById('modGainsWithdraw').classList.add('on');
 }
@@ -1711,35 +1703,33 @@ function updateGainsFrais() {
   if (!mt || mt < 1) { box.style.display = 'none'; return; }
   const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   document.getElementById('gainsFraisMtBrut').textContent  = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('gainsFraisMontant').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gainsFraisMontant').textContent = '- ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('gainsFraisNet').textContent     = net.toLocaleString('fr-FR') + ' FCFA';
   box.style.display = 'block';
 }
 async function doGainsWithdraw() {
-  if (!retraitOuvert()) { toast('⏰ Retraits fermés !'); return; }
+  if (!retraitOuvert()) { toast('Retraits fermés !'); return; }
   const num = document.getElementById('gwNum').value.trim();
   const mt  = parseInt(document.getElementById('gwMt').value);
   if (!num || !mt || isNaN(mt)) { toast('Remplis tous les champs'); return; }
   if (mt < CFG.GAINS_RETRAIT_MIN) { toast(`Minimum ${Number(CFG.GAINS_RETRAIT_MIN).toLocaleString('fr-FR')} FCFA`); return; }
   const gbal = userData?.gains_balance || 0;
-  if (mt > gbal) { toast('💜 Solde gains insuffisant'); return; }
+  if (mt > gbal) { toast('Solde gains insuffisant'); return; }
   const frais = Math.round(mt * CFG.FRAIS_PERCENT / 100), net = mt - frais;
   const { data: res, error } = await sb.rpc('request_gains_withdrawal', { p_number: num, p_amount: mt });
   if (error || !res?.success) { toast(res?.message || 'Erreur retrait gains'); return; }
   await sendTG(`💜 <b>RETRAIT GAINS VENTES</b>\n\n👤 <b>${userData.name}</b>\n📞 ${userData.phone}\n🆔 ${userData.ref_code}\n💰 Montant : <b>${mt.toLocaleString('fr-FR')} FCFA</b>\n💸 Frais : ${frais.toLocaleString('fr-FR')} FCFA · ✅ Net : <b>${net.toLocaleString('fr-FR')} FCFA</b>\n📱 MTN : ${num}`);
   document.getElementById('gwNumConf').textContent   = num;
   document.getElementById('gwMtConf').textContent    = mt.toLocaleString('fr-FR') + ' FCFA';
-  document.getElementById('gwFraisConf').textContent = '− ' + frais.toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('gwFraisConf').textContent = '- ' + frais.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('gwNetConf').textContent   = net.toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('gwS1').classList.remove('on');
   document.getElementById('gwS2').classList.add('on');
-  toast('Retrait gains soumis ✅');
+  toast('Retrait gains soumis');
   if (userData) { userData.gains_balance = (userData.gains_balance || 0) - mt; updBal(); }
 }
 
-/* ══════════════════════════════════════════════════════
- 
-══════════════════════════════════════════════════════ */
+/* ── PUBLICITÉS ── */
 async function loadAds() {
   const today = new Date().toISOString().split('T')[0];
   const { data: ads } = await sb.from('ads').select('*').eq('is_active', true).order('created_at', { ascending: false });
@@ -1752,7 +1742,6 @@ async function loadAds() {
     .eq('user_id', user.id).eq('type','ad').gte('created_at', today+'T00:00:00');
   const wids = new Set((wt||[]).map(t => t.meta?.ad_id ? String(t.meta.ad_id) : null).filter(Boolean));
 
-  // 
   ads.forEach(ad => {
     adsRegistry[String(ad.id)] = {
       id:       String(ad.id),
@@ -1762,7 +1751,6 @@ async function loadAds() {
     };
   });
 
-  // ✅ L
   el.innerHTML = ads.map(ad => {
     const done    = wids.has(String(ad.id));
     const hasLink = ad.link && ad.link.trim() !== '';
@@ -1771,7 +1759,7 @@ async function loadAds() {
         <div class="task-ico" style="background:var(--b50)">${ad.icon || '📢'}</div>
         <div class="task-body">
           <div class="task-title">${ad.title}</div>
-          <div class="task-desc">${ad.description || 'Regarder ' + ad.duration_seconds + 's'}${hasLink ? ' · 🔗 Lien inclus' : ''}</div>
+          <div class="task-desc">${ad.description || 'Regarder ' + ad.duration_seconds + 's'}${hasLink ? ' · Lien inclus' : ''}</div>
           <div class="ad-timer-bar"><div class="ad-timer-fill" id="adbar-${ad.id}"></div></div>
         </div>
         <div class="task-rew">+${ad.reward} FCFA</div>
@@ -1779,24 +1767,20 @@ async function loadAds() {
   }).join('');
 }
 
-/* ✅ */
 function watchAd(adId) {
   if (!userData?.is_active) { toast('Compte non activé.'); return; }
-
   const ad = adsRegistry[String(adId)];
   if (!ad) { toast('Pub introuvable'); return; }
-
   const el = document.getElementById('ad-' + adId);
-  if (el?.classList.contains('done')) { toast('Déjà regardée aujourd\'hui'); return; }
+  if (el?.classList.contains('done')) { toast('Deja regardee aujourd hui'); return; }
 
-  // ✅ 1. 
+  // Ouvrir le lien immédiatement
   if (ad.link && ad.link.trim() !== '') {
     window.open(ad.link, '_blank', 'noopener,noreferrer');
   }
 
-  // 2.
   if (el) { el.style.opacity = '0.6'; el.style.pointerEvents = 'none'; }
-  toast(`⏳ Pub en cours… +${ad.reward} FCFA dans ${ad.duration}s`);
+  toast(`Pub en cours… +${ad.reward} FCFA dans ${ad.duration}s`);
 
   const bar = document.getElementById('adbar-' + adId);
   let elapsed = 0;
@@ -1805,18 +1789,25 @@ function watchAd(adId) {
     if (bar) bar.style.width = Math.min((elapsed / ad.duration) * 100, 100) + '%';
   }, 1000);
 
-  // 3. Créditer après la durée
+  // ✅ CORRECTION CLÉ : convertir adId en BIGINT (parseInt) avant l'appel RPC
   setTimeout(async () => {
     clearInterval(iv);
     if (bar) bar.style.width = '100%';
-    const { data: res, error } = await sb.rpc('claim_ad_reward', { p_ad_id: adId, p_gain: ad.reward });
+
+    const adIdInt = parseInt(adId, 10);
+    const { data: res, error } = await sb.rpc('claim_ad_reward', {
+      p_ad_id: adIdInt,
+      p_gain:  ad.reward
+    });
+
     if (error || !res?.success) {
+      console.error('Erreur pub:', error, res);
       toast(res?.message || 'Erreur pub');
       if (el) { el.style.opacity = ''; el.style.pointerEvents = ''; }
       return;
     }
     bal += res.gain; updBal();
-    toast(`✅ +${res.gain} FCFA crédités !`);
+    toast(`+${res.gain} FCFA credites !`);
     if (el) el.classList.add('done');
     const mc = document.getElementById('mCount');
     if (mc) mc.textContent = parseInt(mc.textContent || '0') + 1;
@@ -1824,13 +1815,10 @@ function watchAd(adId) {
   }, ad.duration * 1000);
 }
 
-/* ══════════════════════════════════════════════════════
-  
-══════════════════════════════════════════════════════ */
+/* ── BOUTIQUE ── */
 async function loadProducts() {
   const { data } = await sb.from('products').select('*').eq('is_approved', true).order('created_at', { ascending: false });
   products = data || [];
-  // Stocker chaque produit dans le registre
   products.forEach(p => { prodsRegistry[String(p.id)] = p; });
   renderProducts();
 }
@@ -1843,7 +1831,6 @@ function renderProducts() {
     el.innerHTML = '<p style="text-align:center;color:var(--gr600);padding:20px 0">Aucun produit disponible</p>';
     return;
   }
-  // ✅ es titres
   el.innerHTML = page.map(p => {
     const gains  = Math.round((p.price || 0) * CFG.VENDOR_PERCENT / 100);
     const imgHtml = p.cover
@@ -1856,11 +1843,11 @@ function renderProducts() {
           <div style="flex:1;min-width:0">
             <div style="font-weight:600;font-size:14px">${p.title}</div>
             <div class="row-sub" style="margin-top:3px">${(p.price || 0).toLocaleString('fr-FR')} FCFA</div>
-            <div style="font-size:11px;color:var(--pur600);font-weight:600;margin-top:2px">💜 Vendeur : ${gains.toLocaleString('fr-FR')} FCFA</div>
+            <div style="font-size:11px;color:var(--pur600);font-weight:600;margin-top:2px">Vendeur : ${gains.toLocaleString('fr-FR')} FCFA</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:6px;margin-left:10px">
             <button class="btn-main" style="width:auto;padding:7px 13px;font-size:13px" onclick="buyProduct('${p.id}')">Acheter</button>
-            <button style="background:var(--b50);border:1px solid #a5d6a7;border-radius:8px;color:var(--b800);font-size:12px;font-weight:600;padding:6px 10px;cursor:pointer" onclick="ouvrirShare('${p.id}')">📤 Partager</button>
+            <button style="background:var(--b50);border:1px solid #a5d6a7;border-radius:8px;color:var(--b800);font-size:12px;font-weight:600;padding:6px 10px;cursor:pointer" onclick="ouvrirShare('${p.id}')">Partager</button>
           </div>
         </div>
       </div>`;
@@ -1878,52 +1865,36 @@ function renderPagination() {
 }
 function goPage(p) { currentPage = p; renderProducts(); }
 
-/* ✅ buyProduct — corrigé */
 async function buyProduct(prodId) {
   const p = prodsRegistry[String(prodId)];
   if (!p) { toast('Produit introuvable'); return; }
-
-  // ── 1. R ──────
-  toast('⏳ Vérification du solde…');
+  toast('Verification du solde…');
   const { data: freshUser, error: ue } = await sb.from('users')
     .select('shop_balance').eq('id', user.id).single();
   if (ue || !freshUser) { toast('Erreur chargement solde'); return; }
-
   const realBalance = freshUser.shop_balance || 0;
-  // Mettre à jour le cache local
   if (userData) userData.shop_balance = realBalance;
   updBal();
-
-  // ── 2. V ────────────────
   if (realBalance < p.price) {
-    toast(`💳 Solde insuffisant (${realBalance.toLocaleString('fr-FR')} FCFA) — rechargez votre solde boutique`);
+    toast(`Solde insuffisant (${realBalance.toLocaleString('fr-FR')} FCFA) — rechargez votre solde boutique`);
     return;
   }
-
-  // ── 3. Appel RPC ─────────────────────────────────────────────
   const { data: res, error } = await sb.rpc('buy_product', {
     p_product_id:     prodId,
     p_vendor_percent: CFG.VENDOR_PERCENT
   });
-
   if (error || !res?.success) {
-    // Afficher l'erreur exacte retournée par Supabase
-    const msg = res?.message || error?.message || 'Erreur lors de l\'achat';
-    toast('❌ ' + msg);
-    return;
+    const msg = res?.message || error?.message || 'Erreur lors de l achat';
+    toast(msg); return;
   }
-
-  // ── 4. ─────────
   if (p.link && p.link.trim() !== '') {
     window.open(p.link, '_blank', 'noopener,noreferrer');
   }
-  toast(`✅ Achat réussi ! "${p.title}"`);
-  // Me
+  toast(`Achat reussi ! "${p.title}"`);
   if (userData) { userData.shop_balance = (userData.shop_balance || 0) - p.price; updBal(); }
   await loadTransactions();
 }
 
-/* ──  ── */
 function openAddProduct() {
   ['pTitle','pDesc','pPrice','pLink','pCover'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
@@ -1931,7 +1902,7 @@ function openAddProduct() {
   document.getElementById('prodCommissionPreview').style.display = 'none';
   document.getElementById('prodErrMsg').style.display = 'none';
   document.getElementById('btnSubmitProd').disabled = false;
-  document.getElementById('btnSubmitProd').textContent = '📤 Envoyer à l\'admin pour validation';
+  document.getElementById('btnSubmitProd').textContent = 'Envoyer a l admin pour validation';
   document.getElementById('modProduct').classList.add('on');
 }
 function fermerModProduct() { document.getElementById('modProduct').classList.remove('on'); }
@@ -1955,44 +1926,43 @@ async function submitProduct() {
   const cover = document.getElementById('pCover').value.trim() || null;
   const errEl = document.getElementById('prodErrMsg');
   errEl.style.display = 'none';
-  if (!title)                        { errEl.innerHTML = '<strong>❌ Champ manquant</strong>Le titre est obligatoire.'; errEl.style.display = 'block'; return; }
-  if (!price || isNaN(price) || price <= 0) { errEl.innerHTML = '<strong>❌ Prix invalide</strong>Entrez un prix positif.'; errEl.style.display = 'block'; return; }
-  if (!link)                         { errEl.innerHTML = '<strong>❌ Lien manquant</strong>Le lien de téléchargement est obligatoire.'; errEl.style.display = 'block'; return; }
-  if (!link.startsWith('http'))      { errEl.innerHTML = '<strong>❌ Lien invalide</strong>Le lien doit commencer par https://'; errEl.style.display = 'block'; return; }
+  if (!title)                             { errEl.innerHTML = '<strong>Champ manquant</strong>Le titre est obligatoire.'; errEl.style.display = 'block'; return; }
+  if (!price || isNaN(price) || price<=0) { errEl.innerHTML = '<strong>Prix invalide</strong>Entrez un prix positif.'; errEl.style.display = 'block'; return; }
+  if (!link)                              { errEl.innerHTML = '<strong>Lien manquant</strong>Le lien est obligatoire.'; errEl.style.display = 'block'; return; }
+  if (!link.startsWith('http'))           { errEl.innerHTML = '<strong>Lien invalide</strong>Commencer par https://'; errEl.style.display = 'block'; return; }
   const btn = document.getElementById('btnSubmitProd');
-  btn.disabled = true; btn.textContent = '⏳ Envoi en cours…';
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
   try {
     const { error: insertErr } = await sb.from('products').insert({
       title, description: desc || null, price, link, cover,
-      seller_id: user.id, user_id: user.id,
-      is_approved: false, is_rejected: false,
+      user_id: user.id, is_approved: false, is_rejected: false,
     });
     if (insertErr) {
-      errEl.innerHTML = `<strong>❌ Erreur</strong>${insertErr.message}`;
+      errEl.innerHTML = `<strong>Erreur</strong>${insertErr.message}`;
       errEl.style.display = 'block';
-      btn.disabled = false; btn.textContent = '📤 Envoyer à l\'admin pour validation';
+      btn.disabled = false; btn.textContent = 'Envoyer a l admin pour validation';
       return;
     }
     const gains = Math.round(price * CFG.VENDOR_PERCENT / 100);
-    await sendTG(`📦 <b>NOUVEAU PRODUIT PROPOSÉ</b>\n\n👤 ${userData.name} (${userData.ref_code})\n📌 <b>${title}</b>\n📝 ${desc || 'Pas de description'}\n💰 ${price.toLocaleString('fr-FR')} FCFA\n💜 Gains vendeur : ${gains.toLocaleString('fr-FR')} FCFA (${CFG.VENDOR_PERCENT}%)\n🔗 ${link}\n🖼 ${cover || 'Pas d\'image'}\n\n✅ Validez depuis le bot admin.`);
+    await sendTG(`📦 <b>NOUVEAU PRODUIT PROPOSE</b>\n\n👤 ${userData.name} (${userData.ref_code})\n📌 <b>${title}</b>\n📝 ${desc || 'Pas de description'}\n💰 ${price.toLocaleString('fr-FR')} FCFA\n💜 Gains vendeur : ${gains.toLocaleString('fr-FR')} FCFA (${CFG.VENDOR_PERCENT}%)\n🔗 ${link}\n\n✅ Validez depuis le bot admin.`);
     fermerModProduct();
-    toast('✅ Produit envoyé ! En attente de validation admin.');
+    toast('Produit envoye ! En attente de validation admin.');
     if (document.getElementById('shopPanelMesProduits')?.style.display !== 'none') await loadMesProduits();
   } catch(e) {
-    errEl.innerHTML = `<strong>❌ Erreur inattendue</strong>${e.message}`;
+    errEl.innerHTML = `<strong>Erreur inattendue</strong>${e.message}`;
     errEl.style.display = 'block';
-    btn.disabled = false; btn.textContent = '📤 Envoyer à l\'admin pour validation';
+    btn.disabled = false; btn.textContent = 'Envoyer a l admin pour validation';
   }
 }
 
-/* ──  ── */
+/* ── Partage Produits ── */
 function ouvrirShare(prodId) {
   const p = prodsRegistry[String(prodId)];
   if (!p) return;
   shareProduct = p;
   const shareUrl = window.location.origin + window.location.pathname + '?prod=' + prodId;
-  document.getElementById('shareProductName').textContent  = '📌 ' + p.title;
-  document.getElementById('shareProductPrice').textContent = '💰 ' + Number(p.price || 0).toLocaleString('fr-FR') + ' FCFA';
+  document.getElementById('shareProductName').textContent  = p.title;
+  document.getElementById('shareProductPrice').textContent = Number(p.price || 0).toLocaleString('fr-FR') + ' FCFA';
   document.getElementById('shareLinkText').textContent     = shareUrl;
   document.getElementById('modShare').classList.add('on');
 }
@@ -2003,30 +1973,30 @@ function getShareUrl() {
 }
 function getShareText() {
   if (!shareProduct) return '';
-  return `🛍 *${shareProduct.title}*\n💰 ${Number(shareProduct.price || 0).toLocaleString('fr-FR')} FCFA\n\nDisponible sur MindCash Boutique :\n${getShareUrl()}`;
+  return `${shareProduct.title}\n${Number(shareProduct.price || 0).toLocaleString('fr-FR')} FCFA\n\nDisponible sur MindCash Boutique :\n${getShareUrl()}`;
 }
 function copyShareLink() {
   const url = getShareUrl();
   navigator.clipboard.writeText(url)
-    .then(() => toast('🔗 Lien copié !'))
+    .then(() => toast('Lien copie !'))
     .catch(() => {
       const ta = document.createElement('textarea');
       ta.value = url; document.body.appendChild(ta);
       ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      toast('🔗 Lien copié !');
+      toast('Lien copie !');
     });
 }
 function shareWhatsApp()  { window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`, '_blank'); }
 function shareFacebook()  { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}`, '_blank'); }
-function shareTelegram()  { window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent('🛍 ' + (shareProduct?.title || ''))}`, '_blank'); }
+function shareTelegram()  { window.open(`https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent(shareProduct?.title || '')}`, '_blank'); }
 function shareTwitter()   { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}`, '_blank'); }
 function shareSMS()       { window.open(`sms:?body=${encodeURIComponent(getShareText())}`, '_blank'); }
-function shareEmail()     { window.open(`mailto:?subject=${encodeURIComponent('🛍 ' + (shareProduct?.title || '') + ' sur MindCash')}&body=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareEmail()     { window.open(`mailto:?subject=${encodeURIComponent((shareProduct?.title || '') + ' sur MindCash')}&body=${encodeURIComponent(getShareText())}`, '_blank'); }
 function shareLinkedIn()  { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrl())}`, '_blank'); }
 async function shareNative() {
   if (navigator.share) {
     try {
-      await navigator.share({ title: '🛍 ' + (shareProduct?.title || ''), text: getShareText(), url: getShareUrl() });
+      await navigator.share({ title: shareProduct?.title || '', text: getShareText(), url: getShareUrl() });
     } catch(e) { if (e.name !== 'AbortError') copyShareLink(); }
   } else { copyShareLink(); }
 }
@@ -2041,12 +2011,12 @@ async function loadGainsHistory() {
   document.getElementById('statVentesCount').textContent = (sales || []).length;
   document.getElementById('statVentesTotal').textContent = total.toLocaleString('fr-FR');
   if (!sales?.length) {
-    el.innerHTML = `<div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #CE93D8;border-radius:14px"><div style="font-size:40px;margin-bottom:10px">🛍</div><div style="font-size:14px;font-weight:600;color:var(--pur800);margin-bottom:6px">Pas encore de ventes</div><div style="font-size:12px;color:var(--gr600)">Proposez vos produits et commencez à gagner 80% sur chaque vente !</div></div>`;
+    el.innerHTML = `<div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #CE93D8;border-radius:14px"><div style="font-size:40px;margin-bottom:10px">🛍</div><div style="font-size:14px;font-weight:600;color:var(--pur800);margin-bottom:6px">Pas encore de ventes</div><div style="font-size:12px;color:var(--gr600)">Proposez vos produits et commencez a gagner 80% sur chaque vente !</div></div>`;
     return;
   }
   el.innerHTML = sales.map(tx => {
     const date = new Date(tx.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-    return `<div class="gains-history-item"><div><div class="gh-title">🛍 ${tx.meta?.product_title || 'Produit vendu'}</div><div class="gh-sub">${date} · <span class="bdg bdg-p">${CFG.VENDOR_PERCENT}% vendeur</span></div></div><div class="gh-amt">+${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
+    return `<div class="gains-history-item"><div><div class="gh-title">${tx.meta?.product_title || 'Produit vendu'}</div><div class="gh-sub">${date} · <span class="bdg bdg-p">${CFG.VENDOR_PERCENT}% vendeur</span></div></div><div class="gh-amt">+${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
   }).join('');
 }
 
@@ -2054,16 +2024,16 @@ async function loadMesProduits() {
   const el = document.getElementById('mesProduitsList');
   if (!user) return;
   el.innerHTML = '<div style="text-align:center;color:var(--gr600);font-size:13px;padding:16px 0">Chargement...</div>';
-  const { data } = await sb.from('products').select('*').or(`seller_id.eq.${user.id},user_id.eq.${user.id}`).order('created_at', { ascending: false });
+  const { data } = await sb.from('products').select('*').eq('user_id', user.id).order('created_at', { ascending: false });
   if (!data?.length) {
-    el.innerHTML = `<div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #c8e6c9;border-radius:14px"><div style="font-size:40px;margin-bottom:10px">📦</div><div style="font-size:14px;font-weight:600;color:var(--b800);margin-bottom:6px">Aucun produit proposé</div><div style="font-size:12px;color:var(--gr600)">Cliquez sur "Proposer un produit" pour commencer à vendre.</div></div>`;
+    el.innerHTML = `<div style="text-align:center;padding:28px 20px;background:#fff;border:1px solid #c8e6c9;border-radius:14px"><div style="font-size:40px;margin-bottom:10px">📦</div><div style="font-size:14px;font-weight:600;color:var(--b800);margin-bottom:6px">Aucun produit propose</div><div style="font-size:12px;color:var(--gr600)">Cliquez sur Proposer un produit pour commencer a vendre.</div></div>`;
     return;
   }
   el.innerHTML = data.map(p => {
-    const status = p.is_approved ? '✅ Approuvé' : p.is_rejected ? '❌ Refusé' : '⏳ En attente de validation';
+    const status = p.is_approved ? 'Approuve' : p.is_rejected ? 'Refuse' : 'En attente de validation';
     const bdg    = p.is_approved ? 'bdg-g' : p.is_rejected ? 'bdg-r' : 'bdg-a';
     const gains  = Math.round((p.price || 0) * CFG.VENDOR_PERCENT / 100);
-    return `<div class="card" style="margin-bottom:10px">${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:120px;object-fit:cover" onerror="this.style.display='none'">` : ''}<div class="row" style="padding:10px 0"><div><div style="font-weight:600;font-size:14px">${p.title}</div><div class="row-sub">${(p.price || 0).toLocaleString('fr-FR')} FCFA · <span class="bdg ${bdg}">${status}</span></div><div style="font-size:11px;color:var(--pur600);margin-top:3px;font-weight:600">💜 Vos gains : ${gains.toLocaleString('fr-FR')} FCFA/vente</div></div></div></div>`;
+    return `<div class="card" style="margin-bottom:10px">${p.cover ? `<img src="${p.cover}" style="width:100%;border-radius:10px 10px 0 0;max-height:120px;object-fit:cover" onerror="this.style.display='none'">` : ''}<div class="row" style="padding:10px 0"><div><div style="font-weight:600;font-size:14px">${p.title}</div><div class="row-sub">${(p.price || 0).toLocaleString('fr-FR')} FCFA · <span class="bdg ${bdg}">${status}</span></div><div style="font-size:11px;color:var(--pur600);margin-top:3px;font-weight:600">Vos gains : ${gains.toLocaleString('fr-FR')} FCFA/vente</div></div></div></div>`;
   }).join('');
 }
 
@@ -2072,13 +2042,13 @@ async function loadTransactions() {
   const { data } = await sb.from('transactions').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(10);
   const el = document.getElementById('txList');
   if (!data?.length) { el.innerHTML = '<div class="row" style="justify-content:center;color:var(--gr600);font-size:13px">Aucune transaction</div>'; return; }
-  const lbl = { deposit:'Dépôt', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardée', mission:'Mission', referral:'Parrainage', sale_gain:'Gain vente boutique', gains_withdraw:'Retrait gains ventes', manual_credit:'Crédit admin' };
+  const lbl = { deposit:'Depot', withdraw:'Retrait', bonus:'Bonus quotidien', ad:'Pub regardee', mission:'Mission', referral:'Parrainage', sale_gain:'Gain vente boutique', gains_withdraw:'Retrait gains ventes', shop_purchase:'Achat boutique', manual_credit:'Credit admin' };
   el.innerHTML = data.map(tx => {
-    const pos  = !['withdraw','gains_withdraw','shop_withdraw'].includes(tx.type);
+    const pos  = !['withdraw','gains_withdraw','shop_withdraw','shop_purchase'].includes(tx.type);
     const date = new Date(tx.created_at).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
     const cls  = tx.status === 'success' ? 'bdg-g' : tx.status === 'pending' ? 'bdg-a' : 'bdg-r';
-    const stxt = tx.status === 'success' ? 'Validé' : tx.status === 'pending' ? 'En attente' : 'Échoué';
-    return `<div class="row"><div><div style="font-weight:600;font-size:13px${tx.type==='sale_gain'?';color:var(--pur600)':''}">${lbl[tx.type] || tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos ? 'var(--g600)' : 'var(--r600)'};font-weight:700">${pos ? '+' : '−'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
+    const stxt = tx.status === 'success' ? 'Valide' : tx.status === 'pending' ? 'En attente' : 'Echoue';
+    return `<div class="row"><div><div style="font-weight:600;font-size:13px${tx.type==='sale_gain'?';color:var(--pur600)':''}">${lbl[tx.type] || tx.type}</div><div class="row-sub">${date} · <span class="bdg ${cls}">${stxt}</span></div></div><div style="color:${pos ? 'var(--g600)' : 'var(--r600)'};font-weight:700">${pos ? '+' : '-'}${tx.amount.toLocaleString('fr-FR')} FCFA</div></div>`;
   }).join('');
 }
 
@@ -2100,7 +2070,7 @@ async function loadDepotBalance() {
   const { data: deps } = await sb.from('deposits').select('amount,status').eq('user_id', user.id);
   const td = (deps || []).filter(d => d.status === 'success').reduce((s, d) => s + (d.amount || 0), 0);
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-  s('totalDeposeAmt', td.toLocaleString('fr-FR') + ' FCFA');
+  s('totalDeposeAmt',  td.toLocaleString('fr-FR') + ' FCFA');
   s('profTotalDepose', td.toLocaleString('fr-FR') + ' FCFA');
   const { data: rets } = await sb.from('withdrawals').select('amount,status').eq('user_id', user.id).eq('status','pending');
   const tp = (rets || []).reduce((s, r) => s + (r.amount || 0), 0);
@@ -2121,13 +2091,13 @@ async function loadCompletedMissions() {
 }
 
 async function doMissionLink(id, name, rewardStr, link) {
-  if (!userData?.is_active) { toast('Compte non activé.'); return; }
+  if (!userData?.is_active) { toast('Compte non active.'); return; }
   const key = String(id);
-  if (completedMissions.has(key)) { toast('✅ Mission déjà complétée !'); return; }
+  if (completedMissions.has(key)) { toast('Mission deja completee !'); return; }
   if (link && link !== '#') window.open(link, '_blank');
   const { data: res, error } = await sb.rpc('complete_mission', { p_mission_id: key, p_mission_name: name, p_reward: parseInt(rewardStr) });
   if (error || !res?.success) {
-    toast(res?.message || '✅ Mission déjà complétée !');
+    toast(res?.message || 'Mission deja completee !');
     const el = document.getElementById('tM' + key) || document.getElementById('tAa' + key) || document.getElementById('tAaa' + key);
     if (el) el.classList.add('done');
     completedMissions.add(key); return;
@@ -2142,11 +2112,11 @@ async function doMissionLink(id, name, rewardStr, link) {
 
 /* ── Bonus ── */
 async function claimBonus() {
-  if (!userData?.is_active) { toast('Compte non activé.'); return; }
+  if (!userData?.is_active) { toast('Compte non active.'); return; }
   const { data: res, error } = await sb.rpc('claim_bonus_daily');
-  if (error || !res?.success) { toast(res?.message || '⏰ Bonus déjà récupéré aujourd\'hui !'); document.getElementById('tBonus').classList.add('done'); return; }
+  if (error || !res?.success) { toast(res?.message || 'Bonus deja recupere aujourd hui !'); document.getElementById('tBonus').classList.add('done'); return; }
   bal += res.gain; updBal();
-  toast(`+${res.gain} FCFA 🎁 Bonus du jour récupéré !`);
+  toast(`+${res.gain} FCFA Bonus du jour recupere !`);
   document.getElementById('tBonus').classList.add('done');
   await loadTransactions();
 }
@@ -2161,7 +2131,8 @@ async function checkBonusToday() {
 function copyLink() {
   if (!userData?.is_active) { toast('Activez votre compte avant de parrainer'); return; }
   navigator.clipboard.writeText('https://cashmind.pages.dev/?ref=' + userData.ref_code)
-    .then(() => toast('Lien copié ! 🔗')).catch(() => toast('Copie échouée'));
+    .then(() => toast('Lien copie !'))
+    .catch(() => toast('Copie echouee'));
 }
 
 async function loadAffilTree() {
